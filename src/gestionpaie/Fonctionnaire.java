@@ -11,5 +11,5 @@ package gestionpaie;
  * @author Oop
  */
 public class Fonctionnaire {
-    
+    private String nom;
 }
