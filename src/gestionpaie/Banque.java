@@ -8,8 +8,8 @@ package gestionpaie;
 
 /**
  *
- * @author Ahmed
+ * @author Oop
  */
-public class test {
+public class Banque {
     
 }
