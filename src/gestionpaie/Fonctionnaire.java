@@ -18,6 +18,7 @@ import javafx.beans.property.StringProperty;
  * @author Oop
  */
 public class Fonctionnaire {
+    int a ;
     private IntegerProperty nss;
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
