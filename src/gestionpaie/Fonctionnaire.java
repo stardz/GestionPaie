@@ -12,5 +12,5 @@ package gestionpaie;
  */
 public class Fonctionnaire {
     private String nom;
-    
+    int NSS ;
 }
