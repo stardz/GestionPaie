@@ -19,6 +19,7 @@ import javafx.beans.property.StringProperty;
  */
 public class Fonctionnaire {
     int a ;
+    String tst;
     private IntegerProperty nss;
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
