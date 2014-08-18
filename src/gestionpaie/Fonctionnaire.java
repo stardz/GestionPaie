@@ -18,7 +18,6 @@ import javafx.beans.property.StringProperty;
  * @author Oop
  */
 public class Fonctionnaire {
-
     private IntegerProperty nss;
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
@@ -43,6 +42,7 @@ public class Fonctionnaire {
         this.numMutuelle = new SimpleLongProperty(numMutuelle);
         this.numCompte =new SimpleLongProperty(numCompte) ;
     }
+    
     
     
 }
