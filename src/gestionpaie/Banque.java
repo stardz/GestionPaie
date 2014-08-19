@@ -11,5 +11,18 @@ package gestionpaie;
  * @author Oop
  */
 public class Banque {
-    
+   private String nomBanque;
+
+    public Banque(String nomBanque) {
+        this.nomBanque = nomBanque;
+    }
+
+    public String getNomBanque() {
+        return nomBanque;
+    }
+
+    public void setNomBanque(String nomBanque) {
+        this.nomBanque = nomBanque;
+    }
+   
 }

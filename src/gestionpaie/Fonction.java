@@ -11,5 +11,18 @@ package gestionpaie;
  * @author Oop
  */
 public class Fonction {
+    private String libelleFonction;
+
+    public Fonction(String libelleFonction) {
+        this.libelleFonction = libelleFonction;
+    }
+
+    public void setLibelleFonction(String libelleFonction) {
+        this.libelleFonction = libelleFonction;
+    }
+
+    public String getLibelleFonction() {
+        return libelleFonction;
+    }
     
 }

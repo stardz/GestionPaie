@@ -11,5 +11,18 @@ package gestionpaie;
  * @author Oop
  */
 public class Salaire {
-    
+    private double montantSalaire;  
+    public Salaire(double montantSalaire) {
+        this.montantSalaire = montantSalaire;
+    }
+    public double getMontantSalaire() {
+        return montantSalaire;
+    }
+
+    public void setMontantSalaire(double montantSalaire) {
+        this.montantSalaire = montantSalaire;
+    }
+
+   
+   
 }
