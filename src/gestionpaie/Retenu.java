@@ -11,5 +11,28 @@ package gestionpaie;
  * @author Oop
  */
 public class Retenu {
+    private String libelleRetenu;
+    private int tauxRetenu;
+
+    public Retenu(String libelleRetenu, int tauxRetenu) {
+        this.libelleRetenu = libelleRetenu;
+        this.tauxRetenu = tauxRetenu;
+    }
+
+    public String getLibelleRetenu() {
+        return libelleRetenu;
+    }
+
+    public int getTauxRetenu() {
+        return tauxRetenu;
+    }
+
+    public void setLibelleRetenu(String libelleRetenu) {
+        this.libelleRetenu = libelleRetenu;
+    }
+
+    public void setTauxRetenu(int tauxRetenu) {
+        this.tauxRetenu = tauxRetenu;
+    }
     
 }

@@ -11,5 +11,38 @@ package gestionpaie;
  * @author Oop
  */
 public class Bareme {
+    private int indiceMediane;
+    private int iep;
+    private int icr;
+
+    public Bareme(int indiceMediane, int iep, int icr) {
+        this.indiceMediane = indiceMediane;
+        this.iep = iep;
+        this.icr = icr;
+    }
+
+    public int getIndiceMediane() {
+        return indiceMediane;
+    }
+
+    public int getIep() {
+        return iep;
+    }
+
+    public int getIcr() {
+        return icr;
+    }
+
+    public void setIndiceMediane(int indiceMediane) {
+        this.indiceMediane = indiceMediane;
+    }
+
+    public void setIep(int iep) {
+        this.iep = iep;
+    }
+
+    public void setIcr(int icr) {
+        this.icr = icr;
+    }
     
 }

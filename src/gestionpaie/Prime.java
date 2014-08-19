@@ -5,11 +5,24 @@
  */
 
 package gestionpaie;
-
+import java.util.Date;
 /**
  *
  * @author Oop
  */
 public class Prime {
+    private Date datePrime;
+
+    public Prime(Date datePrime) {
+        this.datePrime = datePrime;
+    }
+
+    public Date getDatePrime() {
+        return datePrime;
+    }
+
+    public void setDatePrime(Date datePrime) {
+        this.datePrime = datePrime;
+    }
     
 }
