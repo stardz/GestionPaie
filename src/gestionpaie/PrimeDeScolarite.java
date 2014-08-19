@@ -16,6 +16,6 @@ public class PrimeDeScolarite extends Prime{
     public PrimeDeScolarite(Date datePrime,int tauxPrimeScolarite) {
         super(datePrime);
     }
-
+    
     
 }
