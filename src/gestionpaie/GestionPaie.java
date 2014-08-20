@@ -29,6 +29,7 @@ public class GestionPaie extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MAinFXML.fxml"));        
         Scene scene =new Scene(root);
         primaryStage.show();
+        
     }
 
     /**
