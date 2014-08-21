@@ -6,9 +6,9 @@
 
 package gestionpaie;
 
-import static gestionpaie.Main.root;
-import static gestionpaie.Main.scene;
-import static gestionpaie.Main.primaryStage ;
+import static gestionpaie.Main.root1;
+import static gestionpaie.Main.scene1;
+import static gestionpaie.Main.primaryStage1 ;
 import java.awt.Color;
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +39,9 @@ public class AuthentificationFXMLController implements Initializable {
     @FXML
     private void connexion(ActionEvent event) throws IOException {        
         /// Vérification du mot de passe
-        Main.root = FXMLLoader.load(getClass().getResource("MenuPrincipaleFXML.fxml"));        
-        Main.scene =new Scene(root); 
-        Main.primaryStage.setScene(Main.scene);
+        Main.root1 = FXMLLoader.load(getClass().getResource("MenuPrincipaleFXML.fxml"));        
+        Main.scene1 =new Scene(root1); 
+        Main.primaryStage1.setScene(Main.scene1);
         
     }
     @Override

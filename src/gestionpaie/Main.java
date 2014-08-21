@@ -23,18 +23,25 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
-    public static Parent root ;
-    public static Scene scene ;
-    public static Stage primaryStage ;
+    public static Parent root1 ;
+    public static Scene scene1 ;
+    public static Stage primaryStage1 ;
+    public static Parent root2 ;
+    public static Scene scene2 ;
+    public static Stage primaryStage2 ;
     
     @Override
     public void start(Stage primaryStage) throws IOException {
        
-        root = FXMLLoader.load(getClass().getResource("AuthentifcationFXML.fxml"));        
-        scene =new Scene(root); 
-        Main.primaryStage=primaryStage ;
-        this.primaryStage.setScene(scene);
-        this.primaryStage.show();
+        root1 = FXMLLoader.load(getClass().getResource("AuthentifcationFXML.fxml"));        
+        scene1 =new Scene(root1); 
+        Main.primaryStage1=primaryStage ;
+        this.primaryStage1.setScene(scene1);
+        this.primaryStage1.show();
+        
+        root2= FXMLLoader.load(getClass().getResource("AuthentifcationFXML.fxml"));        
+        scene2 =new Scene(root2); 
+        Main.primaryStage2=primaryStage ;
         
     }
 
