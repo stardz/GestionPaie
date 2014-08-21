@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionpaie.AuthentificationFXMLController">
+   <children>
+      <ImageView fitHeight="189.0" fitWidth="245.0" layoutX="282.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="390.0">
+         <image>
+            <Image url="@logo.png" />
+         </image></ImageView>
+      <TextField fx:id="nomUtilisateur" layoutX="289.0" layoutY="388.0" prefHeight="38.0" prefWidth="213.0" promptText="Nom d'utilisateur" style="-fx-border-color: #2980b9; -fx-border-radius: 10;" AnchorPane.leftAnchor="390.0" />
+      <PasswordField fx:id="motdePasse" layoutX="289.0" layoutY="331.0" prefHeight="38.0" prefWidth="213.0" promptText="Mot de passe" style="-fx-border-color: #2980b9; -fx-border-radius: 10;" AnchorPane.leftAnchor="390.0" />
+      <Button fx:id="btnConnect" layoutX="298.0" layoutY="449.0" mnemonicParsing="false" onAction="#connexion" prefHeight="39.0" prefWidth="213.0" style="-fx-background-color: #2980b9; -fx-border-color: #2980b9; -fx-border-radius: 25;" text="Se Connecter" textFill="WHITE" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="297.0">
+         <font>
+            <Font name="Tw Cen MT" size="20.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

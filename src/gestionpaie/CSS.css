@@ -1,0 +1,124 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 mai 2014, 09:46:34
+    Author     : Ash
+*/
+
+.label{
+    -fx-font-family: Cambria;
+    -fx-font-size: 14;
+    -fx-color: #000000;
+}
+
+ComboBox>Text{
+    -fx-font-family: Rockwell;
+    -fx-font-size: 14;
+    -fx-color: #000000;
+}
+
+
+myTextField CheckBox>Label{
+    -fx-font-family: Rockwell;
+    -fx-font-size: 14;
+
+}
+
+#form-title{
+    -fx-color: #000000;
+    -fx-font-size: 28px;
+    -fx-font-family: Rockwell;
+}
+
+#login-label{
+    -fx-color: #000000;
+    -fx-font-size: 32px;
+    -fx-translate-x: 60;
+    -fx-font-family: Rockwell;
+}
+myTextField{  
+    -fx-background-radius: 0, 0, 0, 0;  
+    -fx-padding: 16px;  
+    }
+
+#conf-btn{
+  -fx--webkit-border-radius: 5;
+  -fx--moz-border-radius: 5;
+  -fx-border-radius: 5px;
+  -fx-font-family: Rockwell;
+  -fx-font-size: 14px;
+  -fx-translate-x: 100;
+  -fx-padding: 10px 20px 10px 20px;
+  -fx-height: 60px;
+  
+}
+
+
+ #loginButton {
+  -fx--webkit-border-radius: 5;
+  -fx--moz-border-radius: 5;
+  -fx-border-radius: 5px;
+  -fx-font-family: Rockwell;
+  -fx-font-size: 14px;
+  -fx-padding: 10px 20px 10px 20px;
+  
+}
+
+
+#login{
+    -fx-background-image: url("login.png");
+}
+
+
+#btn {
+    -fx-font-size: 16px;
+    -fx-base: #00a7d4;
+    -fx-background: #e5f3f6;
+    -fx-focus-color: #0093FF;
+    -fx-control-inner-background: #FFFFFF;
+    -fx-text-base-color: #FFFFFF;
+    -fx-font-family: Cambria;
+    -fx-background-color:rgb(0, 112, 178);
+    -fx-inner-border: linear-gradient(to bottom, derive(-fx-color,73.6%) 0%, derive(-fx-color,29.200000000000003%) 100%);
+    -fx-body-color: linear-gradient( to bottom, derive(-fx-color, 34.0%) 0%, derive(-fx-color, -18.0%) 100%);
+    -fx-background-insets: 0px;
+    -fx-background-radius: 0px;
+    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+    -fx-text-fill: -fx-text-base-color;
+}
+
+#btn:focused {
+    -fx-color:#00a7d4;
+    -fx-background-insets: -1.4, 0, 1, 2;
+    -fx-background-radius: 0;
+}
+
+#btn:hover {
+    -fx-focus-color: #FF0000;
+    -fx-background-color:rgb(0, 142, 208);
+}
+
+
+#pane .title{
+    -fx-border-color:#FFFFFF;
+    -fx-font-family: Cambria;
+    -fx-font-size: 13px;
+    
+}
+
+#tab {
+    -fx-border-color:#FFFFFF;
+    -fx-font-family: Cambria;
+    -fx-font-size: 16px;
+    
+}
+
+#panacc{
+    -fx-border-color:#1B1B1B;
+    -fx-border-size:3px;
+    
+    
+}

@@ -13,13 +13,15 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author Oop
+ * @author Ahmed
  */
-public class MAinFXMLController implements Initializable {
+public class MenuPrincipaleFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
