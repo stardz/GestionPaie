@@ -6,7 +6,6 @@
 
 package gestionpaie;
 
-import static gestionpaie.Main.root1;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,14 +20,14 @@ import javafx.scene.Scene;
  *
  * @author Ahmed
  */
-public class MenuPrincipaleFXMLController implements Initializable {
+public class FicheFonctionnaire2FXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     
-        @FXML
-        private void insererFonctionaireOnAction(ActionEvent event) throws IOException {        
+       @FXML
+        private void retourOnAction(ActionEvent event) throws IOException {        
         /// Vérification du mot de passe
         Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire1FXML.fxml"));        
         Main.scene2 =new Scene(Main.root2); 
@@ -36,17 +35,6 @@ public class MenuPrincipaleFXMLController implements Initializable {
         Main.primaryStage2.show();
         
     }
-        @FXML
-        private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {        
-        /// Vérification du mot de passe
-        Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionnaireFXML.fxml"));        
-        Main.scene2 =new Scene(Main.root2); 
-        Main.primaryStage2.setScene(Main.scene2);
-        Main.primaryStage2.show();
-        
-    }
-        
-        
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

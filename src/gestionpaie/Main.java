@@ -41,7 +41,7 @@ public class Main extends Application {
         
         root2= FXMLLoader.load(getClass().getResource("AuthentifcationFXML.fxml"));        
         scene2 =new Scene(root2); 
-        Main.primaryStage2=primaryStage ;
+        Main.primaryStage2=new Stage()  ;
         
     }
 

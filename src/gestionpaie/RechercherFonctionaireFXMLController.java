@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
  *
  * @author Ahmed
  */
-public class FicheFonctionnaireFXMLController implements Initializable {
+public class RechercherFonctionaireFXMLController implements Initializable {
 
     /**
      * Initializes the controller class.
