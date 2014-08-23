@@ -39,7 +39,7 @@ public class AuthentificationFXMLController implements Initializable {
     @FXML
     private void connexion(ActionEvent event) throws IOException {        
         /// Vérification du mot de passe
-        Main.root1 = FXMLLoader.load(getClass().getResource("MenuPrincipaleFXML.fxml"));        
+        Main.root1 = FXMLLoader.load(getClass().getResource("MenuPrincipale1FXML.fxml"));        
         Main.scene1 =new Scene(root1); 
         Main.primaryStage1.setScene(Main.scene1);
         

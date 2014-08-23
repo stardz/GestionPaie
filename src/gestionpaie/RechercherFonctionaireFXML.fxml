@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -8,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionpaie.RechercherFonctionaireFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionpaie.RechercherFonctionaireFXMLController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="14.0" text="Recherche d'un fonctionnaire">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="14.0" text="Recherche d'un fonctionnaire">
          <font>
             <Font name="Cambria Bold" size="31.0" />
          </font>
@@ -20,9 +21,71 @@
             <Font name="Cambria" size="18.0" />
          </font>
       </Label>
-      <VBox layoutX="37.0" layoutY="144.0" prefHeight="367.0" prefWidth="188.0" />
-      <VBox layoutX="238.0" layoutY="144.0" prefHeight="357.0" prefWidth="196.0" />
-      <Button layoutX="257.0" layoutY="534.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" text="Rechercher" />
-      <Button layoutX="131.0" layoutY="534.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" text="Annuler" />
+      <Button layoutX="357.0" layoutY="534.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" text="Rechercher" />
+      <Button layoutX="114.0" layoutY="534.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="92.0" text="Annuler" />
+      <SplitPane dividerPositions="0.5, 0.5" layoutX="14.0" layoutY="154.0" prefHeight="362.0" prefWidth="560.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="-6.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="30.0">
+                     <children>
+                        <Label text="Identifiant :" />
+                        <Label text="   NSS :" />
+                        <Label text="Num Mutuelle :" />
+                        <Label text="Num Compte :" />
+                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="116.0" layoutY="1.0" prefHeight="366.0" prefWidth="159.0" spacing="25.0">
+                     <children>
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <DatePicker />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                     <children>
+                        <Label text="Code fonction :" />
+                        <Label text="Situation familiale :" />
+                        <Label text="Situation conjoint :" />
+                        <Label text="Adresse, ville :" />
+                        <Label text="Adresse, rue :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
+                     <children>
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </items>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
+      </SplitPane>
    </children>
 </AnchorPane>
