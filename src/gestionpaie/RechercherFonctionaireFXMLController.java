@@ -6,8 +6,10 @@
 
 package gestionpaie;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -19,9 +21,20 @@ import javafx.scene.control.ChoiceBox;
  */
 public class RechercherFonctionaireFXMLController implements Initializable {
     
-    @FXML
-    ChoiceBox situationFamiliale ;
-
+    
+    
+    
+       @FXML
+        private void rechercherOnAction(ActionEvent event) throws IOException {   
+            /// Afficher les resultats de recherche
+        Main.primaryStage2.hide();
+        
+        }
+        @FXML
+        private void annulerOnAction(ActionEvent event) throws IOException {        
+        Main.primaryStage2.hide();
+        
+        }
     /**
      * Initializes the controller class.
      */

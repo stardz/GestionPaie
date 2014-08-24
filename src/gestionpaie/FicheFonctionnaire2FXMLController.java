@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javax.print.attribute.standard.DialogTypeSelection;
 
 /**
  * FXML Controller class
@@ -25,7 +26,6 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
        @FXML
         private void retourOnAction(ActionEvent event) throws IOException {        
         /// Vérification du mot de passe
@@ -37,6 +37,12 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     }
         @FXML
         private void annulerOnAction(ActionEvent event) throws IOException {        
+        Main.primaryStage2.hide();
+        
+        }
+        @FXML
+        private void enregistrerOnAction(ActionEvent event) throws IOException {  
+        /// Sauvegarde des données dans la BDD
         Main.primaryStage2.hide();
         
     } 

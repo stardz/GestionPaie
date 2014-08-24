@@ -88,7 +88,7 @@
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </SplitPane>
-      <Button layoutX="531.0" layoutY="550.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="100.0" text="Enregistrer" />
+      <Button layoutX="531.0" layoutY="550.0" mnemonicParsing="false" onAction="#enregistrerOnAction" prefHeight="32.0" prefWidth="100.0" text="Enregistrer" />
       <ProgressBar layoutX="53.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="1.0" />
       <Button layoutX="439.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="85.0" text="Annuler" />
       <Button layoutX="338.0" layoutY="550.0" mnemonicParsing="false" onAction="#retourOnAction" prefHeight="32.0" prefWidth="85.0" text="Retour" />
