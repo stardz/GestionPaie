@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestionpaie;
 
 import java.io.IOException;
@@ -25,23 +24,24 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-        @FXML
-        private void suivantOnAction(ActionEvent event) throws IOException {        
-        Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));        
-        Main.scene2 =new Scene(Main.root2); 
+    @FXML
+    private void suivantOnAction(ActionEvent event) throws IOException {
+        Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
         Main.primaryStage2.show();
-        
+
     }
-        @FXML
-        private void annulerOnAction(ActionEvent event) throws IOException {        
+
+    @FXML
+    private void annulerOnAction(ActionEvent event) throws IOException {
         Main.primaryStage2.hide();
-        
+
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
