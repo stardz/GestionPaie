@@ -35,6 +35,11 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         Main.primaryStage2.show();
         
     }
+        @FXML
+        private void annulerOnAction(ActionEvent event) throws IOException {        
+        Main.primaryStage2.hide();
+        
+    } 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

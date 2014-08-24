@@ -35,7 +35,7 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
         
     }
         @FXML
-        private void retourOnAction(ActionEvent event) throws IOException {        
+        private void annulerOnAction(ActionEvent event) throws IOException {        
         Main.primaryStage2.hide();
         
     }
