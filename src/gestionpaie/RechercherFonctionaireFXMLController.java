@@ -8,7 +8,9 @@ package gestionpaie;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 
 /**
  * FXML Controller class
@@ -16,12 +18,16 @@ import javafx.fxml.Initializable;
  * @author Ahmed
  */
 public class RechercherFonctionaireFXMLController implements Initializable {
+    
+    @FXML
+    ChoiceBox situationFamiliale ;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         // TODO
     }    
     

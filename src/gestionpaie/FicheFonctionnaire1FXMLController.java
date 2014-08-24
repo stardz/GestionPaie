@@ -28,11 +28,15 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     
         @FXML
         private void suivantOnAction(ActionEvent event) throws IOException {        
-        /// Vérification du mot de passe
         Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));        
         Main.scene2 =new Scene(Main.root2); 
         Main.primaryStage2.setScene(Main.scene2);
         Main.primaryStage2.show();
+        
+    }
+        @FXML
+        private void retourOnAction(ActionEvent event) throws IOException {        
+        Main.primaryStage2.hide();
         
     }
     @Override
