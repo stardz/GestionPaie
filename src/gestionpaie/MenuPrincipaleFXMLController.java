@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gestionpaie;
 
 import static gestionpaie.Main.root1;
@@ -26,30 +25,52 @@ public class MenuPrincipaleFXMLController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-        @FXML
-        private void insererFonctionaireOnAction(ActionEvent event) throws IOException {        
-        /// Vérification du mot de passe
-        Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire1FXML.fxml"));        
-        Main.scene2 =new Scene(Main.root2); 
+    @FXML
+    private void insererFonctionaireOnAction(ActionEvent event) throws IOException {
+        Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire1FXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
         Main.primaryStage2.show();
-        
+
     }
-        @FXML
-        private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {        
-        /// Vérification du mot de passe
-        Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));        
-        Main.scene2 =new Scene(Main.root2); 
+
+    @FXML
+    private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {
+        Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
         Main.primaryStage2.show();
-        
+
     }
-        
-        
+
+    @FXML
+    private void modifierFonctionnaireOnAction(ActionEvent event) throws IOException {
+
+        Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire1FXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
+
+    }
+
+    @FXML
+    private void supprimerFonctionnaireOnAction(ActionEvent event) throws IOException {
+
+        Main.root2 = FXMLLoader.load(getClass().getResource("SupprimerFonctionnaireFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
+
+    }
+
+    @FXML
+    private void actualiserOnAction(ActionEvent event) throws IOException {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }

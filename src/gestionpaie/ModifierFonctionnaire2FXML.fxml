@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" onDragDetected="#confirmerOnAction" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionpaie.ModifierFonctionnaire2FXMLController">
+   <children>
+      <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="27.0" layoutY="21.0" prefHeight="49.0" prefWidth="648.0" text="Modification des information d'un fonctionnaire">
+         <font>
+            <Font name="Cambria Bold" size="28.0" />
+         </font>
+         <effect>
+         </effect>
+      </Label>
+      <Label layoutX="58.0" layoutY="94.0" prefHeight="49.0" prefWidth="242.0" text="Informations Professionels">
+         <font>
+            <Font name="Cambria" size="20.0" />
+         </font>
+      </Label>
+      <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="-6.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="106.0" text="Code Fonction :" />
+                        <Label text="Situation conj :" />
+                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
+                        <Label prefHeight="17.0" prefWidth="71.0" text="  Code IRG :" />
+                        <Label prefHeight="17.0" prefWidth="82.0" text="   Status :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="134.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="25.0">
+                     <children>
+                        <TextField />
+                        <TextField />
+                        <DatePicker />
+                        <TextField />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                     <children>
+                        <Label text="CAT/SEC/ECH :" />
+                        <Label text="Code banque :" />
+                        <Label text="Num Compte :" />
+                        <Label text="  NSS :" />
+                        <Label text="NUm mutuelle :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
+                     <children>
+                        <TextField promptText="Matricule" text=" . . / . . / " />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                        <TextField />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding>
+      </SplitPane>
+      <Button layoutX="531.0" layoutY="550.0" mnemonicParsing="false" onAction="#confirmerOnAction" prefHeight="32.0" prefWidth="100.0" text="Confirmer" />
+      <ProgressBar layoutX="53.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="1.0" />
+      <Button layoutX="439.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="85.0" text="Annuler" />
+      <Button layoutX="338.0" layoutY="550.0" mnemonicParsing="false" onAction="#retourOnAction" prefHeight="32.0" prefWidth="85.0" text="Retour" />
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>
