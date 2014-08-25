@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 
 /**
  * FXML Controller class
@@ -21,6 +22,10 @@ import javafx.scene.Scene;
  */
 public class FicheFonctionnaire1FXMLController implements Initializable {
 
+
+    
+    @FXML
+    private ChoiceBox choiceSituationFamiliale ;
     /**
      * Initializes the controller class.
      */
