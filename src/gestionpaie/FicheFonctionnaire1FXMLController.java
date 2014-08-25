@@ -8,14 +8,14 @@ package gestionpaie;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -24,8 +24,42 @@ import javafx.scene.control.ComboBox;
  */
 public class FicheFonctionnaire1FXMLController implements Initializable {
 
-    //@FXML
+    @FXML
+    private TextField identifiant ;
+    @FXML
+    private TextField nom ;
+    @FXML
+    private TextField prenom;
+    @FXML
+    private  RadioButton masculin;
+   @FXML
+    private  RadioButton feminin ;
+    @FXML
     private ComboBox<String> choiceSituationFamiliale;
+    @FXML
+    private  TextField enfantsEnCharge;
+    @FXML
+    private  TextField enfantScolarise;
+    @FXML
+    private  TextField enfantPlus10Ans ;
+    @FXML
+    private  TextField  adresseVille;
+    @FXML
+    private  TextField  adresseRue ;
+
+    
+    
+    
+        /**
+     * Initializes the controller class.
+     */
+    public void initialize(URL url, ResourceBundle rb) {
+
+        choiceSituationFamiliale.getItems().add("Marié");
+        choiceSituationFamiliale.getItems().add("Célibataire");
+        choiceSituationFamiliale.getItems().add("divorsé");
+
+    }
 
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
@@ -42,17 +76,6 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
 
     }
 
-    /**
-     * Initializes the controller class.
-     */
-    public void initialize(URL url, ResourceBundle rb) {
 
-        choiceSituationFamiliale = new ComboBox<String>();
-        choiceSituationFamiliale.setItems(FXCollections.observableArrayList());
-        choiceSituationFamiliale.getItems().add("Marié");
-        choiceSituationFamiliale.getItems().add("Célibataire");
-        choiceSituationFamiliale.getItems().add("Divorsé");
-        // TODO
-    }
 
 }
