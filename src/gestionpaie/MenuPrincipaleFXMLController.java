@@ -5,6 +5,9 @@
  */
 package gestionpaie;
 
+import static com.sun.deploy.util.ReflectionUtil.instanceOf;
+import static com.sun.deploy.util.ReflectionUtil.instanceOf;
+import static com.sun.deploy.util.ReflectionUtil.instanceOf;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -32,7 +35,6 @@ public class MenuPrincipaleFXMLController implements Initializable {
         Main.primaryStage2.show();
 
     }
-
     @FXML
     private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {
         Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
