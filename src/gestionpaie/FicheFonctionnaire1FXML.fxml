@@ -11,97 +11,97 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionpaie.FicheFonctionnaire1FXMLController">
-   <children>
-      <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="58.0" layoutY="21.0" prefHeight="49.0" prefWidth="537.0" text="Formulaire d'ajout d'un fonctionnaire">
-         <font>
-            <Font name="Cambria Bold" size="30.0" />
-         </font>
-         <effect>
-         </effect>
-      </Label>
-      <Label layoutX="58.0" layoutY="92.0" prefHeight="49.0" prefWidth="225.0" text="Informations Personnels">
-         <font>
-            <Font name="Cambria" size="20.0" />
-         </font>
-      </Label>
-      <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <VBox layoutX="14.0" layoutY="1.0" prefHeight="366.0" prefWidth="128.0" spacing="30.0">
-                     <children>
-                        <Label text="Identifiant :" />
-                        <Label text="Nom :" />
-                        <Label text="Prénom :" />
-                        <Label text="Sexe :" />
-                        <Label text="Situation familiale :" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox layoutX="120.0" layoutY="1.0" prefHeight="366.0" prefWidth="155.0" spacing="25.0">
-                     <children>
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <HBox prefHeight="22.0" prefWidth="151.0">
-                           <children>
-                              <RadioButton mnemonicParsing="false" selected="true" text="Masculin">
-                                 <toggleGroup>
-                                    <ToggleGroup fx:id="group1" />
-                                 </toggleGroup>
-                              </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
-                           </children>
-                        </HBox>
-                        <ComboBox prefWidth="150.0" visibleRowCount="3" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
-                     <children>
-                        <Label text="Enfants en charge :" />
-                        <Label text="Enfants scolarisés :" />
-                        <Label text="Enfants + 10 ans :" />
-                        <Label text="Adresse, ville :" />
-                        <Label text="Adresse, rue :" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
-                     <children>
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </padding>
-                  </VBox>
-               </children>
-            </AnchorPane>
-        </items>
-         <padding>
-            <Insets bottom="20.0" top="20.0" />
-         </padding>
-      </SplitPane>
-      <Button layoutX="502.0" layoutY="550.0" mnemonicParsing="false" onAction="#suivantOnAction" prefHeight="32.0" prefWidth="111.0" stylesheets="@CSS.css" text="Suivant" />
-      <ProgressBar layoutX="64.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="0.5" />
-      <Button layoutX="376.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="111.0" text="Annuler" />
-   </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
-   </padding>
+    <children>
+        <Label alignment="CENTER" blendMode="DARKEN" contentDisplay="CENTER" layoutX="58.0" layoutY="21.0" prefHeight="49.0" prefWidth="537.0" text="Formulaire d'ajout d'un fonctionnaire">
+            <font>
+                <Font name="Cambria Bold" size="30.0" />
+            </font>
+            <effect>
+            </effect>
+        </Label>
+        <Label layoutX="58.0" layoutY="92.0" prefHeight="49.0" prefWidth="225.0" text="Informations Personnels">
+            <font>
+                <Font name="Cambria" size="20.0" />
+            </font>
+        </Label>
+        <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <VBox layoutX="14.0" layoutY="1.0" prefHeight="366.0" prefWidth="128.0" spacing="30.0">
+                            <children>
+                                <Label text="Identifiant :" />
+                                <Label text="Nom :" />
+                                <Label text="Prénom :" />
+                                <Label text="Sexe :" />
+                                <Label text="Situation familiale :" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                        <VBox layoutX="120.0" layoutY="1.0" prefHeight="366.0" prefWidth="155.0" spacing="25.0">
+                            <children>
+                                <TextField />
+                                <TextField />
+                                <TextField />
+                                <HBox prefHeight="22.0" prefWidth="151.0">
+                                    <children>
+                                        <RadioButton mnemonicParsing="false" selected="true" text="Masculin">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="group1" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
+                                    </children>
+                                </HBox>
+                                <ComboBox fx:id="choiceSituationFamiliale" prefWidth="150.0" visibleRowCount="3" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                            <children>
+                                <Label text="Enfants en charge :" />
+                                <Label text="Enfants scolarisés :" />
+                                <Label text="Enfants + 10 ans :" />
+                                <Label text="Adresse, ville :" />
+                                <Label text="Adresse, rue :" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                        </VBox>
+                        <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
+                            <children>
+                                <TextField />
+                                <TextField />
+                                <TextField />
+                                <TextField />
+                                <TextField />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </items>
+            <padding>
+                <Insets bottom="20.0" top="20.0" />
+            </padding>
+        </SplitPane>
+        <Button layoutX="502.0" layoutY="550.0" mnemonicParsing="false" onAction="#suivantOnAction" prefHeight="32.0" prefWidth="111.0" stylesheets="@CSS.css" text="Suivant" />
+        <ProgressBar layoutX="64.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="0.5" />
+        <Button layoutX="376.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="111.0" text="Annuler" />
+    </children>
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
+    </padding>
 </AnchorPane>
