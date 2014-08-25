@@ -30,7 +30,7 @@
                     <children>
                         <VBox layoutX="14.0" layoutY="1.0" prefHeight="366.0" prefWidth="128.0" spacing="30.0">
                             <children>
-                                <Label text="Identifiant :" />
+                                <Label text="  NSS  :" />
                                 <Label text="Nom :" />
                                 <Label text="Prénom :" />
                                 <Label text="Sexe :" />
@@ -42,17 +42,17 @@
                         </VBox>
                         <VBox layoutX="120.0" layoutY="1.0" prefHeight="366.0" prefWidth="155.0" spacing="25.0">
                             <children>
-                                <TextField />
-                                <TextField />
-                                <TextField />
+                                <TextField fx:id="nss" />
+                                <TextField fx:id="nom" />
+                                <TextField fx:id="prenom" />
                                 <HBox prefHeight="22.0" prefWidth="151.0">
                                     <children>
-                                        <RadioButton mnemonicParsing="false" selected="true" text="Masculin">
+                                        <RadioButton fx:id="masculin" mnemonicParsing="false" selected="true" text="Masculin">
                                             <toggleGroup>
                                                 <ToggleGroup fx:id="group1" />
                                             </toggleGroup>
                                         </RadioButton>
-                                        <RadioButton mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
+                                        <RadioButton fx:id="feminin" mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
                                     </children>
                                 </HBox>
                                 <ComboBox fx:id="choiceSituationFamiliale" prefWidth="150.0" visibleRowCount="3" />
@@ -80,11 +80,11 @@
                         </VBox>
                         <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
                             <children>
-                                <TextField />
-                                <TextField />
-                                <TextField />
-                                <TextField />
-                                <TextField />
+                                <TextField fx:id="enfantsEnCharge" />
+                                <TextField fx:id="enfantScolarise" />
+                                <TextField fx:id="enfantPlus10Ans" />
+                                <TextField fx:id="adresseVille" />
+                                <TextField fx:id="adresseRue" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" left="10.0" right="10.0" />

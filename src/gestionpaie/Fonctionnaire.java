@@ -23,24 +23,36 @@ public class Fonctionnaire {
     private StringProperty prenomFonctionnaire;
     private StringProperty sexe;
     private StringProperty situationConjoint;
+    private StringProperty situationFamiliale;
+    private StringProperty ville;
+    private StringProperty rue;
+    
     private IntegerProperty enfantCharg;
     private IntegerProperty enfantScolarise;
     private IntegerProperty enfantPlusDixAns;
     private LongProperty numMutuelle;
     private LongProperty numCompte;
 
-    public Fonctionnaire(Integer nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte) {
+    public Fonctionnaire(Integer nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint,String situationFamiliale,String ville,String rue, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte) {
         this.nss = new SimpleIntegerProperty(nss);
         this.nomFonctionnaire = new SimpleStringProperty(nomFonctionnaire);
         this.prenomFonctionnaire = new SimpleStringProperty(prenomFonctionnaire);
         this.sexe = new SimpleStringProperty(sexe);
         this.situationConjoint = new SimpleStringProperty(situationConjoint);
+        this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
+        this.rue = new SimpleStringProperty(rue);
+        this.ville = new SimpleStringProperty(ville);
 
         this.enfantCharg = new SimpleIntegerProperty(enfantCharg);
         this.enfantScolarise = new SimpleIntegerProperty(enfantScolarise);
         this.enfantPlusDixAns = new SimpleIntegerProperty(enfantPlusDixAns);
         this.numMutuelle = new SimpleLongProperty(numMutuelle);
         this.numCompte = new SimpleLongProperty(numCompte);
+    }
+
+    public Fonctionnaire() {
+        
+        
     }
 
     public void setNss(Integer nss) {
@@ -121,6 +133,48 @@ public class Fonctionnaire {
 
     public Long getNumCompte() {
         return numCompte.getValue();
+    }
+
+    /**
+     * @return the situationFamiliale
+     */
+    public String getSituationFamiliale() {
+        return situationFamiliale.toString();
+    }
+
+    /**
+     * @param situationFamiliale the situationFamiliale to set
+     */
+    public void setSituationFamiliale(String situationFamiliale) {
+        this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
+    }
+
+    /**
+     * @return the ville
+     */
+    public String getVile() {
+        return ville.toString();
+    }
+
+    /**
+     * @param vile the ville to set
+     */
+    public void setVile(String vile) {
+        this.ville = new SimpleStringProperty(vile);
+    }
+
+    /**
+     * @return the rue
+     */
+    public String getRue() {
+        return rue.toString();
+    }
+
+    /**
+     * @param rue the rue to set
+     */
+    public void setRue(String rue) {
+        this.rue = new SimpleStringProperty(rue) ;
     }
  
     
