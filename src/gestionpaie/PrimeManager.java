@@ -11,5 +11,16 @@ package gestionpaie;
  * @author Oop
  */
 public class PrimeManager {
-    
+    static void calculerPrime(){
+        
+    }
+    static void imprimerFichePrime(){
+        
+    }
+    static void calculerPrimeRendement(){
+        
+    }
+    static void imprimerPrimeRendement(){
+        
+    }
 }

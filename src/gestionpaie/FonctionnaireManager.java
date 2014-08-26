@@ -11,5 +11,13 @@ package gestionpaie;
  * @author Oop
  */
 public class FonctionnaireManager {
-    
+    static void ajouterFonctionnaire(Fonctionnaire fonctionnaire){
+        
+    }
+    static void supprimerFonctionnaire(Fonctionnaire fonctionnaire){
+        
+    }
+    static void modifierFonctionnaire(Fonctionnaire fonctionnaire){
+        
+    }
 }
