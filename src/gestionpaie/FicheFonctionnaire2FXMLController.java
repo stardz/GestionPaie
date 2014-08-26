@@ -7,7 +7,6 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -29,17 +29,17 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     @FXML
     private ComboBox status ;
     @FXML
-    private int categorie ;
+    private TextField categorie ;
     @FXML
-    private int echelon ;
+    private TextField echelon ;
     @FXML
-    private  String codeBanque;
+    private  TextField codeBanque;
     @FXML
-    private int numCompte ;
+    private TextField numCompte ;
     @FXML
-    private  int numMutuelle ;
+    private TextField numMutuelle ;
     @FXML
-    private String codeIRG ;
+    private TextField codeIRG ;
     @FXML
     private  DatePicker dateRecrutement;
 
@@ -56,7 +56,6 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         codeFonction.getItems().add("T") ;
         status.getItems().add("Tutulaire") ;
         status.getItems().add("Vacataire") ;
-        dateRecrutement.setValue(LocalDate.MIN);
     }
 
     @FXML
@@ -79,7 +78,10 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     private void enregistrerOnAction(ActionEvent event) throws IOException {
         /// Sauvegarde des données dans la BDD
         Fonctionnaire f=FicheFonctionnaire1FXMLController.f ;
+        f.setNumCompte(Long.parseLong(numCompte.getText()));
+        f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
         f.setStatus(status.getValue().toString());
+        f.setDateRecrutement(dateRecrutement.getValue()) ;
 
     }
 

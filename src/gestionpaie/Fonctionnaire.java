@@ -5,6 +5,7 @@
  */
 package gestionpaie;
 
+import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -32,6 +33,7 @@ public class Fonctionnaire {
     private IntegerProperty enfantPlusDixAns;
     private LongProperty numMutuelle;
     private LongProperty numCompte;
+    private LocalDate dateRecrutement ;
 
     public Fonctionnaire(Integer nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint,String situationFamiliale,String ville,String rue, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte) {
         this.nss = new SimpleIntegerProperty(nss);
@@ -175,6 +177,20 @@ public class Fonctionnaire {
      */
     public void setRue(String rue) {
         this.rue = new SimpleStringProperty(rue) ;
+    }
+
+    /**
+     * @return the dateRecrutement
+     */
+    public LocalDate getDateRecrutement() {
+        return dateRecrutement;
+    }
+
+    /**
+     * @param dateRecrutement the dateRecrutement to set
+     */
+    public void setDateRecrutement(LocalDate dateRecrutement) {
+        this.dateRecrutement = dateRecrutement;
     }
  
     

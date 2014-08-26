@@ -33,8 +33,7 @@
                         <Label prefHeight="17.0" prefWidth="106.0" text="Code Fonction :" />
                         <Label prefHeight="17.0" prefWidth="82.0" text="   Status :" />
                         <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
-                        <Label text="Catégorie :" />
-                        <Label prefHeight="17.0" prefWidth="71.0" text="Echelon :" />
+                        <Label text="Code banque :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -45,8 +44,7 @@
                         <ComboBox fx:id="codeFonction" prefWidth="150.0" />
                         <ComboBox fx:id="status" prefWidth="150.0" />
                         <DatePicker fx:id="dateRecrutement" />
-                        <TextField fx:id="categorie" />
-                        <TextField fx:id="echelon" />
+                        <TextField fx:id="codeBanque" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -59,8 +57,8 @@
                <children>
                   <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
                      <children>
-                        <Label text="Code I.R.G :" />
-                        <Label text="Code banque :" />
+                        <Label text="Catégorie :" />
+                        <Label prefHeight="17.0" prefWidth="71.0" text="Echelon :" />
                         <Label text="Num Compte :" />
                         <Label text="NUm mutuelle :" />
                      </children>
@@ -70,8 +68,8 @@
                   </VBox>
                   <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
                      <children>
-                        <TextField fx:id="codeIRG" />
-                        <TextField fx:id="codeBanque" />
+                        <TextField fx:id="categorie" />
+                        <TextField fx:id="echelon" />
                         <TextField fx:id="numCompte" />
                         <TextField fx:id="numMutuelle" />
                      </children>
