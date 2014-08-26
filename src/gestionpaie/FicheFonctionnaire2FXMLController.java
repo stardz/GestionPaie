@@ -77,7 +77,13 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     @FXML
     private void enregistrerOnAction(ActionEvent event) throws IOException {
         /// Sauvegarde des données dans la BDD
-        Fonctionnaire f=FicheFonctionnaire1FXMLController.f ;
+        
+        FicheFonctionnaire1FXMLController.fonction=new Fonction(codeFonction.getValue().toString()) ;
+        FicheFonctionnaire1FXMLController.Barem=new Bareme(categorie.getText()+"/"+echelon.getText());
+        FicheFonctionnaire1FXMLController.banque=new Banque(codeBanque.getText()) ;
+       
+        
+        Fonctionnaire f=FicheFonctionnaire1FXMLController.fonctionnaire ;        
         f.setNumCompte(Long.parseLong(numCompte.getText()));
         f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
         f.setStatus(status.getValue().toString());

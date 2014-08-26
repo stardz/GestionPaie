@@ -46,8 +46,10 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     private TextField adresseVille;
     @FXML
     private TextField adresseRue;
-    public static Fonctionnaire f;
-    
+    public static Fonctionnaire fonctionnaire;
+    public static Bareme Barem ;
+    public static Fonction fonction ;
+    public static Banque banque ;
 
     /**
      * Initializes the controller class.
@@ -66,25 +68,25 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
 
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
-        f = new Fonctionnaire();
-        f.setNss(Integer.parseInt(nss.getText()));
-        f.setNomFonctionnaire(nom.getText());
-        f.setPrenomFonctionnaire(prenom.getText());
+        fonctionnaire = new Fonctionnaire();
+        fonctionnaire.setNss(Integer.parseInt(nss.getText()));
+        fonctionnaire.setNomFonctionnaire(nom.getText());
+        fonctionnaire.setPrenomFonctionnaire(prenom.getText());
 
         if (feminin.isSelected()) {
-            f.setSexe("Feminin");
+            fonctionnaire.setSexe("Feminin");
         } else {
-            f.setSexe("Feminin");
+            fonctionnaire.setSexe("Feminin");
         }
         System.out.println("si " + choiceSituationFamiliale.getValue());
-        f.setSituationFamiliale(choiceSituationFamiliale.getValue());
+        fonctionnaire.setSituationFamiliale(choiceSituationFamiliale.getValue());
 
-        f.setEnfantCharg(Integer.parseInt(enfantsEnCharge.getText()));
-        f.setEnfantScolarise(Integer.parseInt(enfantScolarise.getText()));
-        f.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
-        f.setVile(adresseVille.getText());
-        f.setRue(adresseRue.getText());
-        System.out.print("\n" + f.getNss() + "\n" + f.getNomFonctionnaire() + "\n" + f.getPrenomFonctionnaire() + "\n" + f.getSexe() + "\n" + f.getSituationFamiliale() + "\n" + f.getEnfantCharg() + "\n" + f.getEnfantScolarise() + "\n" + f.getEnfantPlusDixAns() + "\n");
+        fonctionnaire.setEnfantCharg(Integer.parseInt(enfantsEnCharge.getText()));
+        fonctionnaire.setEnfantScolarise(Integer.parseInt(enfantScolarise.getText()));
+        fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
+        fonctionnaire.setVile(adresseVille.getText());
+        fonctionnaire.setRue(adresseRue.getText());
+        System.out.print("\n" + fonctionnaire.getNss() + "\n" + fonctionnaire.getNomFonctionnaire() + "\n" + fonctionnaire.getPrenomFonctionnaire() + "\n" + fonctionnaire.getSexe() + "\n" + fonctionnaire.getSituationFamiliale() + "\n" + fonctionnaire.getEnfantCharg() + "\n" + fonctionnaire.getEnfantScolarise() + "\n" + fonctionnaire.getEnfantPlusDixAns() + "\n");
 
         Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
