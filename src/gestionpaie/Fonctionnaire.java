@@ -22,7 +22,7 @@ public class Fonctionnaire {
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
     private StringProperty sexe;
-    private StringProperty situationConjoint;
+    private StringProperty status;
     private StringProperty situationFamiliale;
     private StringProperty ville;
     private StringProperty rue;
@@ -38,7 +38,7 @@ public class Fonctionnaire {
         this.nomFonctionnaire = new SimpleStringProperty(nomFonctionnaire);
         this.prenomFonctionnaire = new SimpleStringProperty(prenomFonctionnaire);
         this.sexe = new SimpleStringProperty(sexe);
-        this.situationConjoint = new SimpleStringProperty(situationConjoint);
+        this.status = new SimpleStringProperty(situationConjoint);
         this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
         this.rue = new SimpleStringProperty(rue);
         this.ville = new SimpleStringProperty(ville);
@@ -71,8 +71,8 @@ public class Fonctionnaire {
         this.sexe = new SimpleStringProperty(sexe);
     }
 
-    public void setSituationConjoint(String situationConjoint) {
-        this.situationConjoint = new SimpleStringProperty(situationConjoint);
+    public void setStatus(String situationConjoint) {
+        this.status = new SimpleStringProperty(situationConjoint);
     }
 
     public void setEnfantCharg(Integer enfantCharg) {
@@ -111,8 +111,8 @@ public class Fonctionnaire {
         return sexe.getValue();
     }
 
-    public String getSituationConjoint() {
-        return situationConjoint.getValue();
+    public String getStatus() {
+        return status.getValue();
     }
 
     public Integer getEnfantCharg() {
@@ -139,21 +139,21 @@ public class Fonctionnaire {
      * @return the situationFamiliale
      */
     public String getSituationFamiliale() {
-        return situationFamiliale.toString();
+        return situationFamiliale.getValue();
     }
 
     /**
      * @param situationFamiliale the situationFamiliale to set
      */
     public void setSituationFamiliale(String situationFamiliale) {
-        this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
+        this.situationFamiliale = new SimpleStringProperty(situationFamiliale) ;
     }
 
     /**
      * @return the ville
      */
     public String getVile() {
-        return ville.toString();
+        return ville.getValue();
     }
 
     /**
@@ -167,7 +167,7 @@ public class Fonctionnaire {
      * @return the rue
      */
     public String getRue() {
-        return rue.toString();
+        return rue.getValue();
     }
 
     /**

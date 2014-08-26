@@ -31,10 +31,10 @@
                   <VBox layoutX="-6.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="106.0" text="Code Fonction :" />
-                        <Label text="Situation conj :" />
-                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
-                        <Label prefHeight="17.0" prefWidth="71.0" text="  Code IRG :" />
                         <Label prefHeight="17.0" prefWidth="82.0" text="   Status :" />
+                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
+                        <Label text="Catégorie :" />
+                        <Label prefHeight="17.0" prefWidth="71.0" text="Echelon :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -42,11 +42,11 @@
                   </VBox>
                   <VBox layoutX="134.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <TextField />
-                        <DatePicker />
-                        <TextField />
-                        <TextField />
+                        <ComboBox fx:id="codeFonction" prefWidth="150.0" />
+                        <ComboBox fx:id="status" prefWidth="150.0" />
+                        <DatePicker fx:id="dateRecrutement" />
+                        <TextField fx:id="categorie" />
+                        <TextField fx:id="echelon" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -59,10 +59,9 @@
                <children>
                   <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
                      <children>
-                        <Label text="CAT/SEC/ECH :" />
+                        <Label text="Code I.R.G :" />
                         <Label text="Code banque :" />
                         <Label text="Num Compte :" />
-                        <Label text="  NSS :" />
                         <Label text="NUm mutuelle :" />
                      </children>
                      <padding>
@@ -71,11 +70,10 @@
                   </VBox>
                   <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
                      <children>
-                        <TextField promptText="Matricule" text=" . . / . . / " />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
+                        <TextField fx:id="codeIRG" />
+                        <TextField fx:id="codeBanque" />
+                        <TextField fx:id="numCompte" />
+                        <TextField fx:id="numMutuelle" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
