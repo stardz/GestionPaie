@@ -57,6 +57,7 @@ public class SalaireManager {
         
         return 0;
     }
+    // Les indimnités
     public double getIEP(Fonctionnaire fonctionnaire){
         /*
         Bareme bareme= get bareme du fonctionnaire;
@@ -64,5 +65,55 @@ public class SalaireManager {
         */
         return 0;
     }
+    public double getIFC(Fonctionnaire fonctionnaire){
+        Bareme bareme = null;
+        /*
+        Bareme bareme= get bareme du fonctionnaire;
+        */
+        if(bareme.getCategorie()>=1&&bareme.getCategorie()<=6){
+            return 3200;          
+        }else if(bareme.getCategorie()>=7&&bareme.getCategorie()<=8){
+            return 2500;            
+        }else if(bareme.getCategorie()>=9&&bareme.getCategorie()<=10){
+            return 2000;
+        }else{
+            return 1500;
+        }
+    }
+    public double getSalaireBrut(Fonctionnaire fonctionnaire){
+        // sb + les indimnités
+        return this.getSalaireDeBase(fonctionnaire)+this.getIEP(fonctionnaire)+this.getIFC(fonctionnaire);
+    }
+    // Les allocations
+    public double getAllocation(Fonctionnaire fonctionnaire){
+        if(this.getSalaireBrut(fonctionnaire)>15000){
+            return fonctionnaire.getEnfantCharg()*300;
+        }else if(fonctionnaire.getEnfantCharg()<=5){
+            return fonctionnaire.getEnfantCharg()*600;
+        }else{
+            return ((5*600)+300*(fonctionnaire.getEnfantCharg()-5));
+        }
+    }
+    // Les Retenus
+    public double getMutuelle(Fonctionnaire fonctionnaire){
+        return this.getSalaireBrut(fonctionnaire)*0.01;
+    }
     
+    public double getSecSociale(Fonctionnaire fonctionnaire){
+        return this.getSalaireBrut(fonctionnaire)*0.09;
+    }
+    public double getIrg(Fonctionnaire fonctionnaire){
+        if(this.getSalaireBrut(fonctionnaire)>=15000&&this.getSalaireBrut(fonctionnaire)<22500){
+            return this.getSalaireBrut(fonctionnaire)*0.2 -3000;
+        }else if(this.getSalaireBrut(fonctionnaire)>=22500&&this.getSalaireBrut(fonctionnaire)<28750){
+            return this.getSalaireBrut(fonctionnaire)*0.12 -1200;
+        }else if(this.getSalaireBrut(fonctionnaire)>=28750&&this.getSalaireBrut(fonctionnaire)<30000){
+            return this.getSalaireBrut(fonctionnaire)*0.2 -3500;
+        }else if(this.getSalaireBrut(fonctionnaire)>=30000&&this.getSalaireBrut(fonctionnaire)<120000){
+            return this.getSalaireBrut(fonctionnaire)*0.30 -6500;
+        }else {
+            return this.getSalaireBrut(fonctionnaire)*0.35 -12500;
+        }
+
+    }
 }
