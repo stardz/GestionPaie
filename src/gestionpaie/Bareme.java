@@ -11,18 +11,18 @@ package gestionpaie;
  * @author Oop
  */
 public class Bareme {
-    private int indiceMediane;
+    private String categorieEchelon;
     private int iep;
     private int icr;
 
-    public Bareme(int indiceMediane, int iep, int icr) {
-        this.indiceMediane = indiceMediane;
+    public Bareme(String categorieEchelon, int iep, int icr) {
+        this.categorieEchelon = categorieEchelon;
         this.iep = iep;
         this.icr = icr;
     }
 
-    public int getIndiceMediane() {
-        return indiceMediane;
+    public String getcategorieEchelon() {
+        return categorieEchelon;
     }
 
     public int getIep() {
@@ -33,8 +33,8 @@ public class Bareme {
         return icr;
     }
 
-    public void setIndiceMediane(int indiceMediane) {
-        this.indiceMediane = indiceMediane;
+    public void setcategorieEchelon(String categorieEchelon) {
+        this.categorieEchelon = categorieEchelon;
     }
 
     public void setIep(int iep) {
@@ -44,5 +44,10 @@ public class Bareme {
     public void setIcr(int icr) {
         this.icr = icr;
     }
-    
+    public int getCategorie(){
+        return Integer.parseInt(this.categorieEchelon.split("/")[0]) ;
+    }
+    public int getEchelon(){
+        return Integer.parseInt(this.categorieEchelon.split("/")[1]) ;
+    }
 }
