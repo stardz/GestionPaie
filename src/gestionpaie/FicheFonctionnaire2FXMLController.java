@@ -88,6 +88,16 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
         f.setStatus(status.getValue().toString());
         f.setDateRecrutement(dateRecrutement.getValue()) ;
+        
+        
+        System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
+        System.out.println("\n status :"+f.getStatus());
+        System.out.println("\n Date de recrutement :"+f.getDateRecrutement().toString());
+        System.out.println("\n banque:"+FicheFonctionnaire1FXMLController.banque.getNomBanque());
+        System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
+        System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
+        System.out.println("\n Num compte:"+ f.getNumCompte());
+        
 
     }
 

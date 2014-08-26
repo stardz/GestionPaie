@@ -86,7 +86,13 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
         fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
         fonctionnaire.setVile(adresseVille.getText());
         fonctionnaire.setRue(adresseRue.getText());
-        System.out.print("\n" + fonctionnaire.getNss() + "\n" + fonctionnaire.getNomFonctionnaire() + "\n" + fonctionnaire.getPrenomFonctionnaire() + "\n" + fonctionnaire.getSexe() + "\n" + fonctionnaire.getSituationFamiliale() + "\n" + fonctionnaire.getEnfantCharg() + "\n" + fonctionnaire.getEnfantScolarise() + "\n" + fonctionnaire.getEnfantPlusDixAns() + "\n");
+        System.out.println("\n  NSS"+ fonctionnaire.getNss() +" / "+fonctionnaire.getEnfantCharg());
+        System.out.println("\n Nom "+fonctionnaire.getNomFonctionnaire()+" / "+fonctionnaire.getEnfantScolarise());
+        System.out.println("\n Prenom"+fonctionnaire.getPrenomFonctionnaire()+" / "+ fonctionnaire.getEnfantPlusDixAns());
+        System.out.println("\n "+fonctionnaire.getSexe()+ "/ "+ fonctionnaire.getVile());
+        System.out.println("\n "+fonctionnaire.getSituationFamiliale()+" / "+fonctionnaire.getRue());
+
+        
 
         Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
