@@ -69,9 +69,9 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
         fonctionnaire = new Fonctionnaire();
-        fonctionnaire.setNss(Integer.parseInt(nss.getText()));
-        fonctionnaire.setNomFonctionnaire(nom.getText());
-        fonctionnaire.setPrenomFonctionnaire(prenom.getText());
+        if(!nss.getText().isEmpty())fonctionnaire.setNss(Integer.parseInt(nss.getText()));
+        if(!nom.getText().isEmpty())fonctionnaire.setNomFonctionnaire(nom.getText());
+        if(!prenom.getText().isEmpty())fonctionnaire.setPrenomFonctionnaire(prenom.getText());
 
         if (feminin.isSelected()) {
             fonctionnaire.setSexe("Feminin");
