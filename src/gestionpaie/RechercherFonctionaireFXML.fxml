@@ -20,31 +20,31 @@
             <Font name="Cambria" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="357.0" layoutY="534.0" mnemonicParsing="false" onAction="#rechercherOnAction" prefHeight="39.0" prefWidth="92.0" text="Rechercher" />
-      <Button layoutX="114.0" layoutY="534.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="39.0" prefWidth="92.0" text="Annuler" />
-      <SplitPane dividerPositions="0.5, 0.5" layoutX="14.0" layoutY="154.0" prefHeight="362.0" prefWidth="560.0">
+      <Button layoutX="357.0" layoutY="534.0" mnemonicParsing="false" onAction="#rechercherOnAction" prefHeight="40.0" prefWidth="100.0" text="Rechercher" />
+      <Button layoutX="114.0" layoutY="534.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="40.0" prefWidth="100.0" text="Annuler" />
+      <SplitPane dividerPositions="0.4625, 0.4732142857142857" layoutX="14.0" layoutY="154.0" prefHeight="347.0" prefWidth="560.0">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="-6.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="30.0">
+                  <VBox layoutX="14.0" layoutY="1.0" prefHeight="257.0" prefWidth="151.0" spacing="30.0">
                      <children>
-                        <Label text="Identifiant :" />
                         <Label text="   NSS :" />
-                        <Label text="Num Mutuelle :" />
                         <Label text="Num Compte :" />
-                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
+                        <Label text="Num Mutuelle :" />
+                        <Label text="Nom :" />
+                        <Label text="Prenom :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="116.0" layoutY="1.0" prefHeight="366.0" prefWidth="159.0" spacing="25.0">
+                  <VBox layoutX="113.0" layoutY="1.0" prefHeight="257.0" prefWidth="139.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <DatePicker />
+                        <TextField fx:id="nss" />
+                        <TextField fx:id="numCompte" />
+                        <TextField fx:id="numMutuelle" />
+                        <TextField fx:id="nom" />
+                        <TextField fx:id="prenom" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -55,24 +55,33 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                  <VBox layoutX="3.0" layoutY="1.0" prefHeight="366.0" prefWidth="139.0" spacing="30.0">
                      <children>
+                        <Label text="  Sexe :" />
+                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
                         <Label text="Code fonction :" />
                         <Label text="Situation familiale :" />
-                        <Label text="Situation conjoint :" />
-                        <Label text="Adresse, ville :" />
-                        <Label text="Adresse, rue :" />
+                        <Label text="Code banque :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
+                  <VBox layoutX="124.0" layoutY="1.0" prefHeight="257.0" prefWidth="151.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <ChoiceBox prefWidth="150.0" />
-                        <TextField />
-                        <TextField />
+                        <HBox prefHeight="22.0" prefWidth="151.0">
+                           <children>
+                              <RadioButton mnemonicParsing="false" selected="true" text="Masculin">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="group1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
+                           </children>
+                        </HBox>
+                        <DatePicker fx:id="dateRecrut" />
+                        <ComboBox fx:id="codeFonction" prefWidth="150.0" />
+                        <ComboBox fx:id="situationFamiliale" prefWidth="150.0" />
                         <TextField />
                      </children>
                      <padding>
@@ -83,7 +92,7 @@
             </AnchorPane>
          </items>
          <padding>
-            <Insets bottom="20.0" top="20.0" />
+            <Insets bottom="20.0" top="40.0" />
          </padding>
       </SplitPane>
    </children>

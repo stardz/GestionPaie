@@ -86,11 +86,12 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
         fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
         fonctionnaire.setVile(adresseVille.getText());
         fonctionnaire.setRue(adresseRue.getText());
-        System.out.println("\n  NSS"+ fonctionnaire.getNss() +" / "+fonctionnaire.getEnfantCharg());
-        System.out.println("\n Nom "+fonctionnaire.getNomFonctionnaire()+" / "+fonctionnaire.getEnfantScolarise());
-        System.out.println("\n Prenom"+fonctionnaire.getPrenomFonctionnaire()+" / "+ fonctionnaire.getEnfantPlusDixAns());
-        System.out.println("\n "+fonctionnaire.getSexe()+ "/ "+ fonctionnaire.getVile());
-        System.out.println("\n "+fonctionnaire.getSituationFamiliale()+" / "+fonctionnaire.getRue());
+        
+        /*System.out.println("\n  NSS :"+ fonctionnaire.getNss() +" / enfan en charge : "+fonctionnaire.getEnfantCharg());
+        System.out.println("\n Nom :"+fonctionnaire.getNomFonctionnaire()+" /  enfant scolarise :"+fonctionnaire.getEnfantScolarise());
+        System.out.println("\n Prenom :"+fonctionnaire.getPrenomFonctionnaire()+" / enfant+10ans : "+ fonctionnaire.getEnfantPlusDixAns());
+        System.out.println("\n Sexe :"+fonctionnaire.getSexe()+ "/ ville : "+ fonctionnaire.getVile());
+        System.out.println("\n situation familiale : "+fonctionnaire.getSituationFamiliale()+" /  rue :"+fonctionnaire.getRue());*/
 
         
 

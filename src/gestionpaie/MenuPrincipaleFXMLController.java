@@ -5,9 +5,6 @@
  */
 package gestionpaie;
 
-import static com.sun.deploy.util.ReflectionUtil.instanceOf;
-import static com.sun.deploy.util.ReflectionUtil.instanceOf;
-import static com.sun.deploy.util.ReflectionUtil.instanceOf;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
