@@ -1,6 +1,8 @@
 package gestionpaie;
 
+import java.math.BigInteger;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -110,13 +112,13 @@ public class ConnexionBdd {
 
     }
     
-    public void insertFonctionnaire(Fonctionnaire fonctionnaire, Banque banque, Bareme bareme, Fonction fonction) {
+    public void insertFonctionnaire(Fonctionnaire fonctionnaire, int idBanque) {
         String requete = "INSERT IGNORE INTO fonctionnaire SET NSS='" + fonctionnaire.getNss() + "',"
                 + "Nom='" + fonctionnaire.getNomFonctionnaire() + "',"
                 + "Prenom='" + fonctionnaire.getPrenomFonctionnaire() + "',"
                 + "Sexe='" + fonctionnaire.getSexe() + "',"
                 + "situation_conj='" + fonctionnaire.getSituationFamiliale() + "',"
-                + "date_recrut='" + fonctionnaire.getDateRecrutement() + "',"
+                + "date_recrut='" + Date.valueOf(fonctionnaire.getDateRecrutement()) + "',"
                 + "enfant_charg='" + fonctionnaire.getEnfantCharg() + "',"
                 + "enfant_scol='" + fonctionnaire.getEnfantScolarise() + "',"
                 + "enfant_pdix='" + fonctionnaire.getEnfantPlusDixAns() + "',"
@@ -124,9 +126,32 @@ public class ConnexionBdd {
                 + "num_cpt='" + fonctionnaire.getNumCompte() + "',"
                 + "rue='" + fonctionnaire.getRue() + "',"
                 + "ville='" + fonctionnaire.getVile() + "',"
+                + "code_irg='" + fonctionnaire.getVile() + "',"
                 + "statut='" + fonctionnaire.getStatus() + "',"
-                + "id_fonction='" + fonction.getCodeFonction() + "',"
-                //+"id_prm_scol='"+fonc+"',"
-                + "id_banque='" + fonctionnaire.getNumCompte() + "',";
+                + "id_banque='" + idBanque + "';";
+        executerRequete(requete);              
+    }
+    public void attribuerBareme(Long nss ,String categorieEchelon,Date date){
+        String req="INSERT IGNORE INTO date SET date_date='" + date + "';";
+                executerRequete(req);
+        String requete="INSERT IGNORE INTO classe SET NSS='" + nss + "',"
+                + "categorie_echelon='" + categorieEchelon + "',"
+                + "date_date='" + date + "';";
+        executerRequete(requete);
+    }
+    public void attribuerPrime(Long nss,int idPrime){
+        String requete="INSERT IGNORE INTO avoir_prime SET NSS='" + nss + "',"                
+                + "id_prm='" + idPrime + "';";
+        executerRequete(requete);
+    }
+    public void attribuerIndemnite(Long nss,int idIndimnite){
+        String requete="INSERT IGNORE INTO possede_indemnite SET NSS='" + nss + "',"                
+                + "id_ind='" + idIndimnite + "';";
+        executerRequete(requete);
+    }
+    public void attribuerRetenu(Long nss,int idRetenu){
+        String requete="INSERT IGNORE INTO avoir_retenu SET NSS='" + nss + "',"                
+                + "id_retenu='" + idRetenu + "';";
+        executerRequete(requete);
     }
 }

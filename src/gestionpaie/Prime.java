@@ -14,11 +14,13 @@ public class Prime {
    private int idPrime;
    private int tauxPrime;
    private int durePrime;
+   private String libellePrime;
 
-    public Prime(int idPrime, int tauxPrime, int durePrime) {
+    public Prime(int idPrime, int tauxPrime, int durePrime, String libellePrime) {
         this.idPrime = idPrime;
         this.tauxPrime = tauxPrime;
         this.durePrime = durePrime;
+        this.libellePrime = libellePrime;
     }
 
     public int getIdPrime() {
@@ -44,6 +46,15 @@ public class Prime {
     public void setDurePrime(int durePrime) {
         this.durePrime = durePrime;
     }
+
+    public String getLibellePrime() {
+        return libellePrime;
+    }
+
+    public void setLibellePrime(String libellePrime) {
+        this.libellePrime = libellePrime;
+    }
+
    
     
 }

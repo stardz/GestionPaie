@@ -9,6 +9,8 @@ package gestionpaie;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.sql.Date;
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
@@ -19,14 +21,15 @@ import jxl.write.WriteException;
 public class TestConsol {
     public static void main(String[] args) throws IOException, BiffException, WriteException{
         
-        Fonctionnaire fonctionnaire =new Fonctionnaire(12354698, "Lattali", "Ahmed", "MASCULIN", 
-                "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"));
+        Fonctionnaire fonctionnaire =new Fonctionnaire(new Long("12354698"), "Lattali", "Ahmed", "MASCULIN", 
+                "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"),"2001-10-14");
         // SalaireManager.imprimerFichePaie(fonctionnaire);
         // Desktop.getDesktop().print(new File("fichepaie.xls"));
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
-        Bareme br=new Bareme("01/01",0,0); 
-        cnx.modifierBarem(br);
+        cnx.attribuerIndemnite(fonctionnaire.getNss(), 1);
+        cnx.attribuerRetenu(fonctionnaire.getNss(), 1);
+        cnx.attribuerPrime(fonctionnaire.getNss(), 1);
         cnx.deconnecter();
         
     }

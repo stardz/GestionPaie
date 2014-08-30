@@ -81,7 +81,7 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         f.setNumCompte(Long.parseLong(numCompte.getText()));
         f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
         f.setStatus(status.getValue().toString());
-        f.setDateRecrutement(dateRecrutement.getValue()) ;
+        f.setDateRecrutement(dateRecrutement.getValue().toString()) ;
 
     }
 
