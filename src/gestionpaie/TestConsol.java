@@ -21,7 +21,13 @@ public class TestConsol {
         
         Fonctionnaire fonctionnaire =new Fonctionnaire(12354698, "Lattali", "Ahmed", "MASCULIN", 
                 "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"));
-        SalaireManager.imprimerFichePaie(fonctionnaire);
+        // SalaireManager.imprimerFichePaie(fonctionnaire);
         // Desktop.getDesktop().print(new File("fichepaie.xls"));
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        Bareme br=new Bareme("01/01",0,0); 
+        cnx.modifierBarem(br);
+        cnx.deconnecter();
+        
     }
 }

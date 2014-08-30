@@ -11,18 +11,39 @@ import java.util.Date;
  * @author Oop
  */
 public class Prime {
-    private Date datePrime;
+   private int idPrime;
+   private int tauxPrime;
+   private int durePrime;
 
-    public Prime(Date datePrime) {
-        this.datePrime = datePrime;
+    public Prime(int idPrime, int tauxPrime, int durePrime) {
+        this.idPrime = idPrime;
+        this.tauxPrime = tauxPrime;
+        this.durePrime = durePrime;
     }
 
-    public Date getDatePrime() {
-        return datePrime;
+    public int getIdPrime() {
+        return idPrime;
     }
 
-    public void setDatePrime(Date datePrime) {
-        this.datePrime = datePrime;
+    public void setIdPrime(int idPrime) {
+        this.idPrime = idPrime;
     }
+
+    public int getTauxPrime() {
+        return tauxPrime;
+    }
+
+    public void setTauxPrime(int tauxPrime) {
+        this.tauxPrime = tauxPrime;
+    }
+
+    public int getDurePrime() {
+        return durePrime;
+    }
+
+    public void setDurePrime(int durePrime) {
+        this.durePrime = durePrime;
+    }
+   
     
 }

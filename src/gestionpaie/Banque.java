@@ -11,11 +11,15 @@ package gestionpaie;
  * @author Oop
  */
 public class Banque {
+    private int id_banque;
    private String nomBanque;
 
-    public Banque(String nomBanque) {
+    public Banque(int id_banque, String nomBanque) {
+        this.id_banque = id_banque;
         this.nomBanque = nomBanque;
     }
+
+   
 
     public String getNomBanque() {
         return nomBanque;
@@ -23,6 +27,14 @@ public class Banque {
 
     public void setNomBanque(String nomBanque) {
         this.nomBanque = nomBanque;
+    }
+
+    public int getId_banque() {
+        return id_banque;
+    }
+
+    public void setId_banque(int id_banque) {
+        this.id_banque = id_banque;
     }
    
 }
