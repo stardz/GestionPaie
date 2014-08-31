@@ -308,12 +308,25 @@
             </Tab>
             <Tab text="Configuration">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="grid" layoutX="28.0" layoutY="14.0" prefHeight="444.0" prefWidth="647.0" />
+                        <VBox layoutX="702.0" layoutY="64.0" prefHeight="282.0" prefWidth="148.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#modifierGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Modifier" />
+                              <Button mnemonicParsing="false" onAction="#annulerGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Annuler" />
+                              <Button mnemonicParsing="false" onAction="#validerGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Valider" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Statistiques">
                <content>
-                  <Accordion prefHeight="494.0" prefWidth="902.0" />
+                  <Accordion prefHeight="450.0" prefWidth="900.0" />
                </content>
             </Tab>
         </tabs>

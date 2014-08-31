@@ -16,22 +16,21 @@ public class Bareme {
     private int indiceEchelon;
 
     public Bareme(String categorieEchelon, int indiceCategorie, int indiceEchelon) {
+
         this.categorieEchelon = categorieEchelon;
         this.indiceCategorie = indiceCategorie;
         this.indiceEchelon = indiceEchelon;
+
     }
+
 
     public String getcategorieEchelon() {
         return categorieEchelon;
     }
-
- 
-
     public void setcategorieEchelon(String categorieEchelon) {
         this.categorieEchelon = categorieEchelon;
     }
 
- 
     public int getCategorie(){
         return Integer.parseInt(this.categorieEchelon.split("/")[0]) ;
     }
