@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -30,7 +33,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
     
      ObservableList<Ligne> data = FXCollections.observableArrayList() ;
     @FXML
-    private TableView<Ligne> grid;
+    private TableView<String[]> grid;
 
     private TableColumn col1;
 
@@ -145,39 +148,24 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     }
     public void afficherGrilleSalaire(){
-                //t.setCell
-        // TableCell c ;
-        // c.setText("11");
-        data.add( new Ligne(200, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120));
-        col1=new TableColumn("aaa") ;
-        col2=new TableColumn("   ") ;
-        col3=new TableColumn() ;
-        col4=new TableColumn() ;
-        col5=new TableColumn() ;
-        col6=new TableColumn() ;
-        col7=new TableColumn() ;
-        col8=new TableColumn() ;
-        col9=new TableColumn() ;
-        col10=new TableColumn() ;
-        col11=new TableColumn() ;
-        col12=new TableColumn() ;
-        col13=new TableColumn() ;
-        col1.setCellValueFactory(new PropertyValueFactory<>("c1"));
-        col2.setCellValueFactory(new PropertyValueFactory<>("c2"));
-        col3.setCellValueFactory(new PropertyValueFactory<>("c3"));
-        col4.setCellValueFactory(new PropertyValueFactory<>("c4"));
-        col5.setCellValueFactory(new PropertyValueFactory<>("c5"));
-        col6.setCellValueFactory(new PropertyValueFactory<>("c6"));
-        col7.setCellValueFactory(new PropertyValueFactory<>("c7"));
-        col8.setCellValueFactory(new PropertyValueFactory<>("c8"));
-        col9.setCellValueFactory(new PropertyValueFactory<>("c9"));
-        col10.setCellValueFactory(new PropertyValueFactory<>("c10"));
-        col11.setCellValueFactory(new PropertyValueFactory<>("c11"));
-        col12.setCellValueFactory(new PropertyValueFactory<>("c12"));
-        col13.setCellValueFactory(new PropertyValueFactory<>("c13"));
-
-        grid.setItems(data);
-        grid.getColumns().addAll(col1,col2,col3,col4,col5,col6,col7,col8,col9,col10,col11,col12,col13) ;
+         
+        ObservableList<String[]> data1 = FXCollections.observableArrayList();
+        data1.addAll(Arrays.asList(grilleSalaire));
+        
+                for (int i = 0; i < grilleSalaire[0].length; i++) {
+            TableColumn tc = new TableColumn(grilleSalaire[0][i]);
+            final int colNo = i;
+            tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
+                    return new SimpleStringProperty((p.getValue()[colNo]));
+                }
+            });
+            tc.setPrefWidth(50);
+            grid.getColumns().add(tc);
+            
+        }
+            grid.setItems(data1);
         
         
     }
