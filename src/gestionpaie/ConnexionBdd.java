@@ -154,4 +154,12 @@ public class ConnexionBdd {
                 + "id_retenu='" + idRetenu + "';";
         executerRequete(requete);
     }
+    public void attribuerFonction(Long nss,int idFonction,Date date){
+        String req="INSERT IGNORE INTO date SET date_date='" + date + "';";
+                executerRequete(req);
+        String requete="INSERT IGNORE INTO occupe SET NSS='" + nss + "',"
+                + "id_fonction='" + idFonction + "',"
+                + "date_date='" + date + "';";
+        executerRequete(requete);
+    }
 }
