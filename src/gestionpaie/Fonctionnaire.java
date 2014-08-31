@@ -5,6 +5,7 @@
  */
 package gestionpaie;
 
+import java.math.BigInteger;
 import java.time.LocalDate;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
@@ -19,7 +20,7 @@ import javafx.beans.property.StringProperty;
  */
 public class Fonctionnaire {
 
-    private IntegerProperty nss;
+    private LongProperty nss;
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
     private StringProperty sexe;
@@ -33,10 +34,10 @@ public class Fonctionnaire {
     private IntegerProperty enfantPlusDixAns;
     private LongProperty numMutuelle;
     private LongProperty numCompte;
-    private LocalDate dateRecrutement ;
+    private StringProperty dateRecrutement ;
 
-    public Fonctionnaire(Integer nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint,String situationFamiliale,String ville,String rue, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte) {
-        this.nss = new SimpleIntegerProperty(nss);
+    public Fonctionnaire(Long nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint,String situationFamiliale,String ville,String rue, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte,String Date) {
+        this.nss = new SimpleLongProperty(nss);
         this.nomFonctionnaire = new SimpleStringProperty(nomFonctionnaire);
         this.prenomFonctionnaire = new SimpleStringProperty(prenomFonctionnaire);
         this.sexe = new SimpleStringProperty(sexe);
@@ -44,7 +45,7 @@ public class Fonctionnaire {
         this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
         this.rue = new SimpleStringProperty(rue);
         this.ville = new SimpleStringProperty(ville);
-
+        this.dateRecrutement=new SimpleStringProperty(Date.toString());;
         this.enfantCharg = new SimpleIntegerProperty(enfantCharg);
         this.enfantScolarise = new SimpleIntegerProperty(enfantScolarise);
         this.enfantPlusDixAns = new SimpleIntegerProperty(enfantPlusDixAns);
@@ -58,7 +59,7 @@ public class Fonctionnaire {
     }
 
     public void setNss(Integer nss) {
-        this.nss = new SimpleIntegerProperty(nss);
+        this.nss = new SimpleLongProperty(nss);
     }
 
     public void setNomFonctionnaire(String nomFonctionnaire) {
@@ -97,7 +98,7 @@ public class Fonctionnaire {
         this.numCompte = new SimpleLongProperty(numCompte);
     }
 
-    public Integer getNss() {
+    public Long getNss() {
         return nss.getValue();
     }
 
@@ -182,15 +183,15 @@ public class Fonctionnaire {
     /**
      * @return the dateRecrutement
      */
-    public LocalDate getDateRecrutement() {
-        return dateRecrutement;
+    public String getDateRecrutement() {
+        return dateRecrutement.getValue();
     }
 
     /**
      * @param dateRecrutement the dateRecrutement to set
      */
-    public void setDateRecrutement(LocalDate dateRecrutement) {
-        this.dateRecrutement = dateRecrutement;
+    public void setDateRecrutement(String dateRecrutement) {
+        this.dateRecrutement = new SimpleStringProperty(dateRecrutement);
     }
  
     

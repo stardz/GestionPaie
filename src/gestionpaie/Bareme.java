@@ -12,10 +12,14 @@ package gestionpaie;
  */
 public class Bareme {
     private String categorieEchelon;
+    private int indiceCategorie;
+    private int indiceEchelon;
 
+    public Bareme(String categorieEchelon, int indiceCategorie, int indiceEchelon) {
 
-    public Bareme(String categorieEchelon) {
         this.categorieEchelon = categorieEchelon;
+        this.indiceCategorie = indiceCategorie;
+        this.indiceEchelon = indiceEchelon;
 
     }
 
@@ -23,7 +27,6 @@ public class Bareme {
     public String getcategorieEchelon() {
         return categorieEchelon;
     }
-
     public void setcategorieEchelon(String categorieEchelon) {
         this.categorieEchelon = categorieEchelon;
     }
@@ -34,4 +37,16 @@ public class Bareme {
     public int getEchelon(){
         return Integer.parseInt(this.categorieEchelon.split("/")[1]) ;
     }
+    public double getSalaireDeBase(){
+        return (this.indiceCategorie+this.indiceEchelon)*45;
+    }
+
+    public int getIndiceCategorie() {
+        return indiceCategorie;
+    }
+
+    public int getIndiceEchelon() {
+        return indiceEchelon;
+    }
+    
 }

@@ -79,15 +79,17 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         /// Sauvegarde des données dans la BDD
         
         FicheFonctionnaire1FXMLController.fonction=new Fonction(codeFonction.getValue().toString()) ;
-        FicheFonctionnaire1FXMLController.Barem=new Bareme(categorie.getText()+"/"+echelon.getText());
-        FicheFonctionnaire1FXMLController.banque=new Banque(codeBanque.getText()) ;
-       
+        //FicheFonctionnaire1FXMLController.Barem=new Bareme(categorie.getText()+"/"+echelon.getText());
+        /// attribuerBarem()
+        // attribuerFonction()
+        
         
         Fonctionnaire f=FicheFonctionnaire1FXMLController.fonctionnaire ;        
         f.setNumCompte(Long.parseLong(numCompte.getText()));
         f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
         f.setStatus(status.getValue().toString());
-        f.setDateRecrutement(dateRecrutement.getValue()) ;
+        f.setDateRecrutement(dateRecrutement.getValue().toString()) ;
+        
         
         
        /* System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
@@ -97,7 +99,6 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
         System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
         System.out.println("\n Num compte:"+ f.getNumCompte());*/
-        
 
     }
 
