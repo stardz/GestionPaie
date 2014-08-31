@@ -21,15 +21,13 @@ import jxl.write.WriteException;
 public class TestConsol {
     public static void main(String[] args) throws IOException, BiffException, WriteException{
         
-        Fonctionnaire fonctionnaire =new Fonctionnaire(new Long("12354698"), "Lattali", "Ahmed", "MASCULIN", 
-                "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"),"2001-10-14");
+      //  Fonctionnaire fonctionnaire =new Fonctionnaire(new Long("12354698"), "Lattali", "Ahmed", "MASCULIN", 
+     //           "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"),"2001-10-14");
         // SalaireManager.imprimerFichePaie(fonctionnaire);
         // Desktop.getDesktop().print(new File("fichepaie.xls"));
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
-        cnx.attribuerIndemnite(fonctionnaire.getNss(), 1);
-        cnx.attribuerRetenu(fonctionnaire.getNss(), 1);
-        cnx.attribuerPrime(fonctionnaire.getNss(), 1);
+        System.out.println(cnx.getAllPrime().get(0).getLibellePrime());
         cnx.deconnecter();
         
     }

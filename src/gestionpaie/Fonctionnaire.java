@@ -24,34 +24,41 @@ public class Fonctionnaire {
     private StringProperty nomFonctionnaire;
     private StringProperty prenomFonctionnaire;
     private StringProperty sexe;
-    private StringProperty status;
-    private StringProperty situationFamiliale;
-    private StringProperty ville;
-    private StringProperty rue;
-    
+     private StringProperty situationFamiliale;
+    private StringProperty dateRecrutement ;
     private IntegerProperty enfantCharg;
     private IntegerProperty enfantScolarise;
     private IntegerProperty enfantPlusDixAns;
     private LongProperty numMutuelle;
     private LongProperty numCompte;
-    private StringProperty dateRecrutement ;
+    private StringProperty rue; 
+    private StringProperty ville;
+    private StringProperty status;
 
-    public Fonctionnaire(Long nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationConjoint,String situationFamiliale,String ville,String rue, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte,String Date) {
+    public Fonctionnaire(Long nss, String nomFonctionnaire, String prenomFonctionnaire, String sexe, String situationFamiliale, String dateRecrutement, Integer enfantCharg, Integer enfantScolarise, Integer enfantPlusDixAns, Long numMutuelle, Long numCompte, String rue, String ville, String status) {
         this.nss = new SimpleLongProperty(nss);
         this.nomFonctionnaire = new SimpleStringProperty(nomFonctionnaire);
-        this.prenomFonctionnaire = new SimpleStringProperty(prenomFonctionnaire);
-        this.sexe = new SimpleStringProperty(sexe);
-        this.status = new SimpleStringProperty(situationConjoint);
-        this.situationFamiliale = new SimpleStringProperty(situationFamiliale);
-        this.rue = new SimpleStringProperty(rue);
-        this.ville = new SimpleStringProperty(ville);
-        this.dateRecrutement=new SimpleStringProperty(Date.toString());;
+        this.prenomFonctionnaire =  new SimpleStringProperty(prenomFonctionnaire);
+        this.sexe = new SimpleStringProperty(sexe) ;
+        this.situationFamiliale =new SimpleStringProperty(situationFamiliale) ;
+        this.dateRecrutement =new SimpleStringProperty(dateRecrutement) ;
         this.enfantCharg = new SimpleIntegerProperty(enfantCharg);
         this.enfantScolarise = new SimpleIntegerProperty(enfantScolarise);
         this.enfantPlusDixAns = new SimpleIntegerProperty(enfantPlusDixAns);
         this.numMutuelle = new SimpleLongProperty(numMutuelle);
         this.numCompte = new SimpleLongProperty(numCompte);
+        this.rue = new SimpleStringProperty(rue) ;
+        this.ville = new SimpleStringProperty(ville);
+        this.status =new SimpleStringProperty(status) ;
     }
+   
+    
+      
+    
+    
+    
+
+    
 
     public Fonctionnaire() {
         

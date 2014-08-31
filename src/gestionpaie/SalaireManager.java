@@ -44,7 +44,7 @@ public class SalaireManager {
       /*16*/ {713, 36, 71, 107, 143, 178, 214, 250, 285, 321, 357, 392, 428},
       /*17*/  {762, 38, 76, 114, 152, 191, 229, 267, 305, 343, 381, 419, 457},};
     static Bareme baremTest=new Bareme("12/7",537,133);
-    static Fonction fonctionTest=new Fonction("Ingénieur informatique");
+    static Fonction fonctionTest=new Fonction(1,"Ingénieur informatique");
     static double calculerPaie(Fonctionnaire fonctionnaire) {
             return getSalaireBrut(fonctionnaire)+getAllocation(fonctionnaire)-getSecSociale(fonctionnaire)-
                     getMutuelle(fonctionnaire)-getIrg(fonctionnaire);

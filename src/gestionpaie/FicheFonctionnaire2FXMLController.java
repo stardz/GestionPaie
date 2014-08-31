@@ -78,7 +78,7 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     private void enregistrerOnAction(ActionEvent event) throws IOException {
         /// Sauvegarde des données dans la BDD
         
-        FicheFonctionnaire1FXMLController.fonction=new Fonction(codeFonction.getValue().toString()) ;
+        //FicheFonctionnaire1FXMLController.fonction=new Fonction(codeFonction.getValue().toString()) ;
         //FicheFonctionnaire1FXMLController.Barem=new Bareme(categorie.getText()+"/"+echelon.getText());
         /// attribuerBarem()
         // attribuerFonction()

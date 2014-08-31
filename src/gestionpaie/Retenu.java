@@ -11,13 +11,25 @@ package gestionpaie;
  * @author Oop
  */
 public class Retenu {
+    private int idRetenu;
     private String libelleRetenu;
     private int tauxRetenu;
 
-    public Retenu(String libelleRetenu, int tauxRetenu) {
+    public Retenu(int idRetenu, String libelleRetenu, int tauxRetenu) {
+        this.idRetenu = idRetenu;
         this.libelleRetenu = libelleRetenu;
         this.tauxRetenu = tauxRetenu;
     }
+
+    public int getIdRetenu() {
+        return idRetenu;
+    }
+
+    public void setIdRetenu(int idRetenu) {
+        this.idRetenu = idRetenu;
+    }
+
+    
 
     public String getLibelleRetenu() {
         return libelleRetenu;

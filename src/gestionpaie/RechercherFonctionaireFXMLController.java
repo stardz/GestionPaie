@@ -87,7 +87,7 @@ public class RechercherFonctionaireFXMLController implements Initializable {
         } else {
             fonctionnaire.setSexe("Feminin");
         }
-        fonctionnaire.setDateRecrutement(dateRecrut.getValue()) ;
+        fonctionnaire.setDateRecrutement(dateRecrut.getValue().toString()) ;
         if(!situationFamiliale.getValue().isEmpty()) fonctionnaire.setSituationFamiliale(situationFamiliale.getValue());
         if(!status.getValue().isEmpty())fonctionnaire.setStatus(status.getValue());
         

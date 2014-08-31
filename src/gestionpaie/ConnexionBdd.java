@@ -84,22 +84,7 @@ public class ConnexionBdd {
         return v;
     }
 
-    public ArrayList<Bareme> getAllBareme() {
-        ArrayList<Bareme> retList = new ArrayList<Bareme>();
-        String requete = "select * from paie.bareme ;";
-        ResultSet res = getResultatRequete(requete);
-        try {
-            while (res.next()) {
-                Bareme bareme = new Bareme(res.getString("categorie_echelon"),
-                        res.getInt("indice_category"),
-                        res.getInt("indice_echelon"));
-                retList.add(bareme);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return retList;
-    }
+  
 
     public void modifierTable(String table, String attribut, String valeur, String condition) {
         String requete = "update " + table + " SET " + attribut + "= '" + valeur + "' where " + condition + "";
@@ -111,7 +96,7 @@ public class ConnexionBdd {
         modifierTable("bareme", "indice_echelon", bareme.getIndiceEchelon() + "", "categorie_echelon = '" + bareme.getcategorieEchelon() + "'");
 
     }
-    
+    /************************************** Insertion **********************************************************/
     public void insertFonctionnaire(Fonctionnaire fonctionnaire, int idBanque) {
         String requete = "INSERT IGNORE INTO fonctionnaire SET NSS='" + fonctionnaire.getNss() + "',"
                 + "Nom='" + fonctionnaire.getNomFonctionnaire() + "',"
@@ -161,5 +146,128 @@ public class ConnexionBdd {
                 + "id_fonction='" + idFonction + "',"
                 + "date_date='" + date + "';";
         executerRequete(requete);
+    }
+    public void insertSalaireDu(Long nss){
+        
+    }
+    public void insertSalaireRecu(Long nss){
+        
+    }
+    /*********************************** Get All *****************************************/
+      public ArrayList<Bareme> getAllBareme() {
+        ArrayList<Bareme> retList = new ArrayList<Bareme>();
+        String requete = "select * from paie.bareme ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Bareme bareme = new Bareme(res.getString("categorie_echelon"),
+                        res.getInt("indice_category"),
+                        res.getInt("indice_echelon"));
+                retList.add(bareme);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+      public  ArrayList<Fonctionnaire> getAllFonctionnaire(){
+          ArrayList<Fonctionnaire> retList=new ArrayList<Fonctionnaire>();
+          String requete = "select * from paie.fonctionnaire ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+            //Fonctionnaire( Long numMutuelle, Long numCompte, String rue, String ville, String status) {
+       
+                Fonctionnaire fonctionnaire = new Fonctionnaire(
+                        res.getLong("NSS"),
+                        res.getString("Nom"),
+                        res.getString("Prenom") ,
+                        res.getString("Sexe"),
+                        res.getString("situation_conj"),
+                         res.getDate("date_recrut").toString(),
+                        res.getInt("enfant_charg"),
+                        res.getInt("enfant_scol"),
+                        res.getInt("enfant_pdix"),
+                        new Long(res.getInt("num_mutuel")),
+                        new Long(res.getInt("num_cpt")),
+                        res.getString("rue"),
+                        res.getString("ville"),
+                        res.getString("statut"));
+                retList.add(fonctionnaire);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+      }
+      public ArrayList<Banque> getAllBanque() {
+        ArrayList<Banque> retList = new ArrayList<Banque>();
+        String requete = "select * from paie.banque ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Banque banque = new Banque(res.getInt("id_banque"),res.getString("nom_banque"));
+                retList.add(banque);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+       public ArrayList<Fonction> getAllFonction() {
+        ArrayList<Fonction> retList = new ArrayList<Fonction>();
+        String requete = "select * from paie.fonction ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Fonction fonction = new Fonction(res.getInt("id_fonction"),res.getString("libelle_fonction"));
+                retList.add(fonction);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+       public ArrayList<Indemnite> getAllInimnete() {
+        ArrayList<Indemnite> retList = new ArrayList<Indemnite>();
+        String requete = "select * from paie.indemnite ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Indemnite indemnite = new Indemnite(res.getInt("id_ind"),res.getInt("taux_ind"),res.getString("libelle_indimnite"));
+                retList.add(indemnite);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+       public ArrayList<Retenu> getAllRetenu() {
+        ArrayList<Retenu> retList = new ArrayList<Retenu>();
+        String requete = "select * from paie.retenu ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Retenu retenu = new Retenu(res.getInt("id_retenu"),res.getString("libelle_ret"),res.getInt("taux_ret"));
+                retList.add(retenu);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+        public ArrayList<Prime> getAllPrime() {
+        ArrayList<Prime> retList = new ArrayList<Prime>();
+        String requete = "select * from paie.prime ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Prime prime = new Prime(res.getInt(3),res.getInt(2),res.getInt(1),res.getString(4));
+                retList.add(prime);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
     }
 }

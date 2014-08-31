@@ -11,29 +11,29 @@ package gestionpaie;
  * @author Oop
  */
 public class Fonction {
+    private int idFonction;
     private String libelleFonction;
 
-    public Fonction(String libelleFonction) {
+    public Fonction(int idFonction, String libelleFonction) {
+        this.idFonction = idFonction;
         this.libelleFonction = libelleFonction;
+    }
+
+    public int getIdFonction() {
+        return idFonction;
+    }
+
+    public void setIdFonction(int idFonction) {
+        this.idFonction = idFonction;
+    }
+
+    public String getLibelleFonction() {
+        return libelleFonction;
     }
 
     public void setLibelleFonction(String libelleFonction) {
         this.libelleFonction = libelleFonction;
     }
 
-    public String getLibelleFonction() {
-        return libelleFonction;
-    }
-    public int getCodeFonction(){
-        if(this.libelleFonction.equals("ING")){
-           return 1; 
-        }else if(this.libelleFonction.equals("TS")){
-            return 2;
-        }else if(this.libelleFonction.equals("T")){
-            return 3;
-        }else{
-            return 4;
-        }
-    }
     
 }
