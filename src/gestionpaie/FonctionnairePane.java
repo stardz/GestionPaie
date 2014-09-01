@@ -16,9 +16,9 @@ public class FonctionnairePane  extends TitledPane{
     
     private Fonctionnaire fonctionnaire ;
     
-    public FonctionnairePane(Fonctionnaire f){
+    public FonctionnairePane(Fonctionnaire f , String libeleBanque , String libeleFonction){
        
-        super( f.getPrenomFonctionnaire()+f.getNomFonctionnaire(),new FonctionnaireInfoGrid(f)) ;
+        super( f.getPrenomFonctionnaire()+f.getNomFonctionnaire(),new FonctionnaireInfoGrid(f,libeleBanque,libeleFonction)) ;
          this.fonctionnaire=f ;
     }
     

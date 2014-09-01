@@ -52,7 +52,7 @@ public class FonctionnaireInfoGrid  extends VBox{
     private GridPane grid2;
     
     
-    public FonctionnaireInfoGrid(Fonctionnaire f){
+    public FonctionnaireInfoGrid(Fonctionnaire f , String libeleBanque , String libeleFonction){
         
     super(2) ;    
     this.fonctionnaire = f;
@@ -86,10 +86,10 @@ public class FonctionnaireInfoGrid  extends VBox{
     this.adresseVilleValue = new Label(f.getVile());
     this.situationFamilialeValue= new Label(f.getSituationFamiliale());
     ///*************************************************************************
-    this.fonctionValue =new Label("Fonction") ;
+    this.fonctionValue =new Label(libeleFonction) ;
     this.statusValue =new Label(f.getStatus()) ;
     this.dateDerecrutementValue =new Label(f.getDateRecrutement()) ;
-    this.codeBanqueValue =new Label(" Banque") ;
+    this.codeBanqueValue =new Label(libeleBanque) ;
     this.numCompteValue =new Label(f.getNumCompte().toString()) ;
     ///*************************************************************************
     this.grid.add(nssLabel, 0, 1);
@@ -120,12 +120,13 @@ public class FonctionnaireInfoGrid  extends VBox{
     SplitPane p=new SplitPane() ;
     p.getItems().addAll(grid,grid2) ;
     HBox hbox = new HBox(40);
+    hbox.getChildren().addAll(new ImageView(), this.grid);
     hbox.setStyle("-fx-translate-x:30px");
     
     Label titreFiche= new Label("Fiche d'informations");
     StackPane stack = new StackPane();
     stack.getChildren().addAll(topRectangle, titreFiche);
-    this.getChildren().addAll(stack, grid);
+    this.getChildren().addAll(stack, hbox);
     }
 
     /**

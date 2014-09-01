@@ -7,6 +7,7 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -108,7 +109,9 @@ public class RechercherFonctionaireFXMLController implements Initializable {
 
         MenuPrincipaleFXMLController.accordion.getPanes().remove(0, MenuPrincipaleFXMLController.accordion.getPanes().size());
         if (fonctionnaireTrouve != null) {
-            MenuPrincipaleFXMLController.accordion.getPanes().add(new FonctionnairePane(fonctionnaireTrouve));
+            Banque banque=cnx.getBanque(fonctionnaireTrouve.getNss()) ;
+            ArrayList<Fonction> listeFonction=cnx.getAllFonction(fonctionnaireTrouve.getNss()) ;
+            MenuPrincipaleFXMLController.accordion.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
         }
 
         cnx.deconnecter();

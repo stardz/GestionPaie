@@ -151,7 +151,7 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
             }
         }
         cnx.attribuerBareme(f.getNss(),categorie.getText()+"/"+echelon.getText(), Date.valueOf(f.getDateRecrutement()));
-        MenuPrincipaleFXMLController.ajouterFonctionnaireAccordion(f);
+        MenuPrincipaleFXMLController.ajouterFonctionnaireAccordion(f,banquesCombo.getValue().toString(),fonctionCombo.getValue().toString());
         cnx.deconnecter();
 
         /* System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());

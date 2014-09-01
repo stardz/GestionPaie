@@ -120,11 +120,20 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void supprimerFonctionnaireOnAction(ActionEvent event) throws IOException {
+
+        int i=0 ;
+        while(i<accordion.getPanes().size() & !accordion.getPanes().get(i).isExpanded()) i++ ;
+        if(i<accordion.getPanes().size()){
+            accordion.getPanes().remove(i) ;
+        }
+        else{
+           // afficher message  selectionner un fonctionnaire
+        }
         
-        Main.root2 = FXMLLoader.load(getClass().getResource("SupprimerFonctionnaireFXML.fxml"));
+        /*Main.root2 = FXMLLoader.load(getClass().getResource("SupprimerFonctionnaireFXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
-        Main.primaryStage2.show();
+        Main.primaryStage2.show();*/
 
     }
 
@@ -227,9 +236,14 @@ public class MenuPrincipaleFXMLController implements Initializable {
         cnx.connecter();
         fonctionnairePanes = new ArrayList<FonctionnairePane>();
         listesFonctionnaire = cnx.getAllFonctionnaire();
-        cnx.deconnecter();
+        
         for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
-            FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
+            ArrayList<Fonction> listefonctions=cnx.getAllFonction(fonctionnaire.getNss()) ;
+            
+            Banque  banque=cnx.getBanque(fonctionnaire.getNss()) ;
+            
+            
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(),listefonctions.get(0).getLibelleFonction());
             fonctionnairePanes.add(pane);
 
             fonctionnaireAccordion2.getPanes().add(pane);
@@ -238,15 +252,16 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
         }
         accordion=fonctionnaireAccordion1 ;
+        cnx.deconnecter();
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
         
 
         
     }
-    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire){
+    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire , String libeleBanque , String libeleFonction){
             listesFonctionnaire.add(fonctionnaire) ;
-             FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire,libeleBanque,libeleFonction);
             fonctionnairePanes.add(pane);
             accordion.getPanes().add(pane);
             
