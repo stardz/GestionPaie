@@ -176,11 +176,4 @@ public class MenuPrincipaleFXMLController implements Initializable {
         
     }
     
-    
-    @FXML
-    private void tabPaiementChanged(ActionEvent event) throws IOException {
-            System.out.println("Tab Selection changed");
-    }
-
-
 }

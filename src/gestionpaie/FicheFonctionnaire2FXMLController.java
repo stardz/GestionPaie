@@ -7,14 +7,22 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 
 /**
@@ -25,37 +33,65 @@ import javafx.scene.control.TextField;
 public class FicheFonctionnaire2FXMLController implements Initializable {
 
     @FXML
-    private ComboBox codeFonction ;
+    private ChoiceBox fonctionCombo;
     @FXML
-    private ComboBox status ;
+    private ComboBox statusCombo;
     @FXML
-    private TextField categorie ;
+    private TextField categorie;
     @FXML
-    private TextField echelon ;
+    private TextField echelon;
     @FXML
-    private  TextField codeBanque;
+    private ComboBox banquesCombo;
     @FXML
-    private TextField numCompte ;
+    private TextField numCompte;
     @FXML
-    private TextField numMutuelle ;
+    private TextField numMutuelle;
     @FXML
-    private TextField codeIRG ;
+    private TextField codeIRG;
     @FXML
-    private  DatePicker dateRecrutement;
+    private DatePicker dateRecrutement;
+    @FXML
+    private MenuButton retenusMenu;
+    @FXML
+    private MenuButton indimnitésMenu;
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        codeFonction.getItems().add("Ing") ;
-        codeFonction.getItems().add("TS") ;
-        codeFonction.getItems().add("T") ;
-        status.getItems().add("Tutulaire") ;
-        status.getItems().add("Vacataire") ;
+
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        ArrayList<Banque> listeBanques = cnx.getAllBanque();
+        ArrayList<Retenu> listeRetenus = cnx.getAllRetenu();
+        ArrayList<Indemnite> listeIndemnites = cnx.getAllInimnete();
+        ArrayList<Fonction> listeFonctions = cnx.getAllFonction();
+        cnx.deconnecter();
+        for (Banque banque : listeBanques) {
+            banquesCombo.getItems().add(banque.getNomBanque());
+
+        }
+        for (Fonction fonction : listeFonctions) {
+            fonctionCombo.getItems().add(fonction.getLibelleFonction());
+        }
+        for (Retenu retenu : listeRetenus) {
+            //retenusCombo.getItems().add(retenu.getLibelleRetenu()) ;
+            retenusMenu.getItems().add(new CheckMenuItem(retenu.getLibelleRetenu()));
+            retenusMenu.getItems().add(new CheckMenuItem(retenu.getLibelleRetenu()));
+
+        }
+
+        for (Indemnite indemnite : listeIndemnites) {
+            indimnitésMenu.getItems().add(new CheckMenuItem(indemnite.getLibelle_indemnite()));
+            indimnitésMenu.getItems().add(new CheckMenuItem(indemnite.getLibelle_indemnite()));
+        }
+        statusCombo.getItems().add("Tutulaire");
+        statusCombo.getItems().add("Vacataire");
     }
 
     @FXML
@@ -70,6 +106,11 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
 
     @FXML
     private void annulerOnAction(ActionEvent event) throws IOException {
+        for (int i = 0; i < retenusMenu.getItems().size(); i++) {
+            if (((CheckMenuItem) retenusMenu.getItems().get(i)).isSelected()) {
+                System.out.println("\n " + retenusMenu.getItems().get(i).getText());
+            }
+        }
         Main.primaryStage2.hide();
 
     }
@@ -77,29 +118,46 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
     @FXML
     private void enregistrerOnAction(ActionEvent event) throws IOException {
         /// Sauvegarde des données dans la BDD
-        
-        //FicheFonctionnaire1FXMLController.fonction=new Fonction(codeFonction.getValue().toString()) ;
+
+        //FicheFonctionnaire1FXMLController.fonction=new Fonction(fonctionCombo.getValue().toString()) ;
         //FicheFonctionnaire1FXMLController.Barem=new Bareme(categorie.getText()+"/"+echelon.getText());
         /// attribuerBarem()
         // attribuerFonction()
-        
-        
-        Fonctionnaire f=FicheFonctionnaire1FXMLController.fonctionnaire ;        
+        Fonctionnaire f = FicheFonctionnaire1FXMLController.fonctionnaire;
         f.setNumCompte(Long.parseLong(numCompte.getText()));
         f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
-        f.setStatus(status.getValue().toString());
-        f.setDateRecrutement(dateRecrutement.getValue().toString()) ;
-        
-        
-        
-       /* System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
-        System.out.println("\n status :"+f.getStatus());
-        System.out.println("\n Date de recrutement :"+f.getDateRecrutement().toString());
-        System.out.println("\n banque:"+FicheFonctionnaire1FXMLController.banque.getNomBanque());
-        System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
-        System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
-        System.out.println("\n Num compte:"+ f.getNumCompte());*/
+        f.setStatus(statusCombo.getValue().toString());
+        f.setDateRecrutement(dateRecrutement.getValue().toString());
 
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+
+        // System.out.println("banque : "+ banquesCombo.getItems().indexOf(banquesCombo.getValue()));
+        cnx.insertFonctionnaire(f, banquesCombo.getItems().indexOf(banquesCombo.getValue()) + 1);
+        cnx.attribuerFonction(f.getNss(), fonctionCombo.getItems().indexOf(fonctionCombo.getValue()) + 1, Date.valueOf(f.getDateRecrutement()));
+        cnx.attribuerPrime(f.getNss(), 1);
+       // cnx.attribuer
+
+        for (int i = 0; i < retenusMenu.getItems().size(); i++) {
+            if (((CheckMenuItem) retenusMenu.getItems().get(i)).isSelected()) {
+                System.out.println("\n " + retenusMenu.getItems().get(i).getText());
+                cnx.attribuerRetenu(f.getNss(), i + 1);
+            }
+        }
+        for (int i = 0; i < indimnitésMenu.getItems().size(); i++) {
+            if (((CheckMenuItem) indimnitésMenu.getItems().get(i)).isSelected()) {
+                System.out.println("\n " + indimnitésMenu.getItems().get(i).getText());
+                cnx.attribuerIndemnite(f.getNss(), i + 1);
+            }
+        }
+        cnx.deconnecter();
+
+        /* System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
+         System.out.println("\n statusCombo :"+f.getStatus());
+         System.out.println("\n Date de recrutement :"+f.getDateRecrutement().toString());
+         System.out.println("\n banquesCombo:"+FicheFonctionnaire1FXMLController.banquesCombo.getNomBanque());
+         System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
+         System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
+         System.out.println("\n Num compte:"+ f.getNumCompte());*/
     }
-
 }
