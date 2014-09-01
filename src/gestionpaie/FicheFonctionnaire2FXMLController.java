@@ -150,6 +150,8 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
                 cnx.attribuerIndemnite(f.getNss(), i + 1);
             }
         }
+        cnx.attribuerBareme(f.getNss(),categorie.getText()+"/"+echelon.getText(), Date.valueOf(f.getDateRecrutement()));
+        MenuPrincipaleFXMLController.ajouterFonctionnaireAccordion(f);
         cnx.deconnecter();
 
         /* System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
@@ -159,5 +161,6 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
          System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
          System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
          System.out.println("\n Num compte:"+ f.getNumCompte());*/
+         Main.primaryStage2.hide();
     }
 }

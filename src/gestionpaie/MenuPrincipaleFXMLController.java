@@ -78,13 +78,14 @@ public class MenuPrincipaleFXMLController implements Initializable {
      * ******************* Fin conf *********************************************
      */
     @FXML
-    Accordion fonctionnaireAccordion1;
+     Accordion fonctionnaireAccordion1;
     @FXML
     Accordion fonctionnaireAccordion2;
     @FXML
     Accordion fonctionnaireAccordion3;
-    private ArrayList<Fonctionnaire> listesFonctionnaire;
-    private ArrayList<FonctionnairePane> fonctionnairePanes;
+    public static Accordion accordion ;
+    private static ArrayList<Fonctionnaire> listesFonctionnaire;
+    private static ArrayList<FonctionnairePane> fonctionnairePanes;
 
     /**
      * Initializes the controller class.
@@ -226,13 +227,21 @@ public class MenuPrincipaleFXMLController implements Initializable {
             fonctionnaireAccordion3.getPanes().add(pane);
 
         }
+        accordion=fonctionnaireAccordion1 ;
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
         cnx.deconnecter();
 
         
     }
-
-
+    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire){
+            listesFonctionnaire.add(fonctionnaire) ;
+             FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
+            fonctionnairePanes.add(pane);
+            accordion.getPanes().add(pane);
+            
+        
     }
+    }
+    
 

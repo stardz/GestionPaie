@@ -87,12 +87,20 @@ public class RechercherFonctionaireFXMLController implements Initializable {
         } else {
             fonctionnaire.setSexe("Feminin");
         }
-        fonctionnaire.setDateRecrutement(dateRecrut.getValue().toString()) ;
-        if(!situationFamiliale.getValue().isEmpty()) fonctionnaire.setSituationFamiliale(situationFamiliale.getValue());
-        if(!status.getValue().isEmpty())fonctionnaire.setStatus(status.getValue());
+        fonctionnaire.setDateRecrutement(dateRecrut.getValue().toString());
+        if (!situationFamiliale.getValue().isEmpty()) {
+            fonctionnaire.setSituationFamiliale(situationFamiliale.getValue());
+        }
+        if (!status.getValue().isEmpty()) {
+            fonctionnaire.setStatus(status.getValue());
+        }
+
         
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
         /// lancer la requete de recherche
-        
+        cnx.deconnecter();
+
         Main.primaryStage2.hide();
 
     }
