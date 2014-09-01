@@ -8,24 +8,16 @@ package gestionpaie;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TitledPane;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -34,36 +26,65 @@ import javafx.util.Callback;
  */
 public class MenuPrincipaleFXMLController implements Initializable {
 
-    
+    /**
+     * ******************* LA CONFIGURATION *************************************
+     */
     @FXML
-    private TableView<String[]> grid;
+    ComboBox categorieConf;
+    @FXML
+    ComboBox echelonConf;
+    @FXML
+    ComboBox libIndim;
+    @FXML
+    ComboBox libRet;
+    @FXML
+    ComboBox libPrime;
+    @FXML
+    ComboBox libFonct;
+    @FXML
+    ComboBox nomBanque;
+    @FXML
+    TextField indicereel;
+    @FXML
+    TextField ptsEchelon;
+    @FXML
+    TextField indiceBrut;
+    @FXML
+    TextField tauxInd;
+    @FXML
+    TextField valInd;
+    @FXML
+    TextField tauxRet;
+    @FXML
+    TextField valRet;
+    @FXML
+    TextField durePrime;
+    @FXML
+    TextField tauxPrime;
+    @FXML
+    Button validerBareme;
+    @FXML
+    Button validerInd;
+    @FXML
+    Button validerRet;
+    @FXML
+    Button validerPrime;
+    @FXML
+    Button validerFonct;
+    @FXML
+    Button validerBanque;
+
+    /**
+     * ******************* Fin conf *********************************************
+     */
     @FXML
     Accordion fonctionnaireAccordion1;
     @FXML
     Accordion fonctionnaireAccordion2;
     @FXML
     Accordion fonctionnaireAccordion3;
-    private  ArrayList<Fonctionnaire> listesFonctionnaire ;
-    private ArrayList<FonctionnairePane> fonctionnairePanes ;
-
-    String[][] grilleSalaire = {
-        {"200", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120"},
-        {"219", "11", "22", "33", "44", "55", "66", "77", "88", "99", "110", "120", "131"},
-        {"240", "12", "24", "36", "48", "60", "72", "84", "96", "108", "120", "132", "144"},
-        {"263", "13", "26", "39", "53", "66", "79", "92", "105", "118", "132", "145", "158"},
-        {"288", "14", "29", "43", "58", "72", "86", "101", "115", "130", "144", "158", "173"},
-        {"315", "16", "32", "47", "63", "79", "95", "110", "126", "142", "158", "173", "189"},
-        {"348", "17", "35", "52", "70", "87", "104", "122", "139", "157", "174", "191", "209"},
-        {"379", "19", "38", "57", "76", "95", "114", "133", "152", "171", "190", "208", "225"},
-        {"418", "21", "42", "63", "84", "105", "125", "146", "167", "188", "209", "230", "251"},
-        {"453", "23", "45", "68", "91", "113", "136", "159", "181", "204", "227", "249", "272"},
-        {"498", "25", "50", "75", "100", "125", "149", "174", "199", "224", "249", "274", "299"},
-        {"537", "27", "54", "81", "107", "134", "161", "188", "215", "242", "269", "295", "322"},
-        {"578", "29", "58", "87", "116", "145", "173", "202", "231", "260", "289", "318", "347"},
-        {"621", "31", "62", "93", "124", "155", "186", "217", "248", "279", "311", "342", "373"},
-        {"666", "33", "67", "100", "133", "167", "200", "233", "266", "300", "333", "366", "400"},
-        {"713", "36", "71", "107", "143", "178", "214", "250", "285", "321", "357", "392", "428"},
-        {"762", "38", "76", "114", "152", "191", "229", "267", "305", "343", "381", "419", "457"},};
+    private ArrayList<Fonctionnaire> listesFonctionnaire;
+    private ArrayList<FonctionnairePane> fonctionnairePanes;
 
     /**
      * Initializes the controller class.
@@ -110,77 +131,105 @@ public class MenuPrincipaleFXMLController implements Initializable {
     private void actualiserOnAction(ActionEvent event) throws IOException {
 
     }
-
     @FXML
-    private void modifierGrilleOnAction(ActionEvent event) throws IOException {
+    private void salaireSelectionne(ActionEvent event) throws IOException {
+           ConnexionBdd cnx=new ConnexionBdd();
+           cnx.connecter();
+           if(categorieConf.getValue()==null||echelonConf.getValue()==null) return;
+           Bareme bareme=cnx.getBareme(categorieConf.getValue().toString()+"/"+ echelonConf.getValue().toString());
+           indicereel.setText(""+bareme.getIndiceCategorie());
+           ptsEchelon.setText(""+bareme.getIndiceEchelon());
+           indiceBrut.setText(""+bareme.getIndiceCategorie()+bareme.getIndiceEchelon());
+           cnx.deconnecter();
+        
+    }
+    @FXML
+    private void indemniteSelectionne(ActionEvent event) throws IOException {
+          ConnexionBdd cnx=new ConnexionBdd();
+           cnx.connecter();
+           if(libIndim.getValue()==null) return;
+           Indemnite indemnite=cnx.getInimnete(libIndim.getValue().toString());
+           if(indemnite.getTaux_indemnite()<=200)tauxInd.setText(""+indemnite.getTaux_indemnite());
+           else valInd.setText(""+indemnite.getLibelle_indemnite());
+            cnx.deconnecter();
+    }
+    @FXML
+    private void primeSelectionne(ActionEvent event) throws IOException {
+         /*  ConnexionBdd cnx=new ConnexionBdd();
+           cnx.connecter();
+           if(libPrime.getValue()==null) return;
+           Prime prime=cnx.getInimnete(libIndim.getValue().toString());
+           if(indemnite.getTaux_indemnite()<=200)tauxInd.setText(""+indemnite.getLibelle_indemnite());
+           else valInd.setText(""+indemnite.getLibelle_indemnite());
+            cnx.deconnecter();*/
+    }
+    @FXML
+    private void retenuSelectionne(ActionEvent event) throws IOException {
 
     }
-
     @FXML
-    private void annulerGrilleOnAction(ActionEvent event) throws IOException {
+    private void banqueSelectionne(ActionEvent event) throws IOException {
 
     }
-
     @FXML
-    private void validerGrilleOnAction(ActionEvent event) throws IOException {
+    private void fonctionSelectionne(ActionEvent event) throws IOException {
 
     }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         remplirAccordions();
-        afficherGrilleSalaire();
-
-    }
-
-    public void afficherGrilleSalaire() {
-
-        ObservableList<String[]> data1 = FXCollections.observableArrayList();
-        data1.addAll(Arrays.asList(grilleSalaire));
-
-        for (int i = 0; i < grilleSalaire[0].length; i++) {
-            TableColumn tc = new TableColumn(grilleSalaire[0][i]);
-            final int colNo = i;
-            tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
-                    return new SimpleStringProperty((p.getValue()[colNo]));
-                }
-            });
-            tc.setPrefWidth(50);
-            grid.getColumns().add(tc);
-
-        }
-        grid.setItems(data1);
-
-    }
-    public void remplirAccordions(){
-                ConnexionBdd cnx = new ConnexionBdd();
+        //la configuration
+        ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
-        fonctionnairePanes =new ArrayList<FonctionnairePane>() ;
-        listesFonctionnaire= cnx.getAllFonctionnaire() ;
-        for(Fonctionnaire fonctionnaire : listesFonctionnaire){
-            FonctionnairePane pane=new FonctionnairePane(fonctionnaire) ;
-            fonctionnairePanes.add(pane) ;
-            
-           
-            fonctionnaireAccordion2.getPanes().add(pane) ;
-            fonctionnaireAccordion1.getPanes().add(pane) ;
-            fonctionnaireAccordion3.getPanes().add(pane) ;
-            
+        // initialisation des combobox
+        int i;
+        for (i = 1; i <= 17; i++) {
+            if(i<10)categorieConf.getItems().add("0" + i);
+            else categorieConf.getItems().add("" + i);
+        }
+        for (i = 0; i <= 12; i++) {
+            if(i<10)echelonConf.getItems().add("0" + i);
+            else echelonConf.getItems().add("" + i);
+        }
+        for (i = 0; i < cnx.getAllInimnete().size(); i++) {
+            libIndim.getItems().add("" + cnx.getAllInimnete().get(i).getLibelle_indemnite());
+        }
+        for (i = 0; i < cnx.getAllRetenu().size(); i++) {
+            libRet.getItems().add("" + cnx.getAllRetenu().get(i).getLibelleRetenu());
+        }
+        for (i = 0; i < cnx.getAllPrime().size(); i++) {
+            libPrime.getItems().add("" + cnx.getAllPrime().get(i).getLibellePrime());
+        }
+        for (i = 0; i < cnx.getAllFonction().size(); i++) {
+            libFonct.getItems().add("" + cnx.getAllFonction().get(i).getLibelleFonction());
+        }
+        for (i = 0; i < cnx.getAllBanque().size(); i++) {
+            nomBanque.getItems().add("" + cnx.getAllBanque().get(i).getNomBanque());
+        }
+        
+        cnx.deconnecter();
+
+    }
+
+    public void remplirAccordions() {
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        fonctionnairePanes = new ArrayList<FonctionnairePane>();
+        listesFonctionnaire = cnx.getAllFonctionnaire();
+        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
+            fonctionnairePanes.add(pane);
+
+            fonctionnaireAccordion2.getPanes().add(pane);
+            fonctionnaireAccordion1.getPanes().add(pane);
+            fonctionnaireAccordion3.getPanes().add(pane);
+
         }
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
-       // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
+        // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
         cnx.deconnecter();
-        
-    }
-    
-    
-    @FXML
-    private void tabPaiementChanged(ActionEvent event) throws IOException {
-            System.out.println("Tab Selection changed");
-    }
 
+    }
 
 }

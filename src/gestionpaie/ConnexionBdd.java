@@ -21,7 +21,7 @@ public class ConnexionBdd {
         String url = "jdbc:mysql://localhost:3306/paie";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connexion = DriverManager.getConnection(url, "root", "85795544");
+            connexion = DriverManager.getConnection(url, "root", "");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erreur - SQL - lors de la connexion" + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {
@@ -90,7 +90,7 @@ public class ConnexionBdd {
         String requete = "update " + table + " SET " + attribut + "= '" + valeur + "' where " + condition + "";
         executerRequete(requete);
     }
-
+    
     public void modifierBarem(Bareme bareme) {
         modifierTable("bareme", "indice_category", bareme.getIndiceCategorie() + "", "categorie_echelon = '" + bareme.getcategorieEchelon() + "'");
         modifierTable("bareme", "indice_echelon", bareme.getIndiceEchelon() + "", "categorie_echelon = '" + bareme.getcategorieEchelon() + "'");
@@ -452,6 +452,37 @@ public class ConnexionBdd {
         }
         return retList;
     }
-         
+      /************************  recuperation des objet specifies************************************************/
+        public Bareme getBareme(String categorieEchelon) {
+        Bareme baremeRet = null;
+        String requete = "select * from paie.bareme where paie.bareme.categorie_echelon='"+categorieEchelon+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Bareme bareme = new Bareme(res.getString("categorie_echelon"),
+                        res.getInt("indice_category"),
+                        res.getInt("indice_echelon"));
+                baremeRet=bareme;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return baremeRet;
+         }  
+         public Indemnite getInimnete(String libelle) {
+        Indemnite retInd = null;
+        String requete = "select * from paie.indemnite where "
+                + "libelle_indimnite='"+libelle+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Indemnite indemnite = new Indemnite(res.getInt("id_ind"),res.getInt("taux_ind"),res.getString("libelle_indimnite"));
+                retInd = indemnite;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retInd;
+    }
          
 }
