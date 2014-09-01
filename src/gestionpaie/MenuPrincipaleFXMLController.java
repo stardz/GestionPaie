@@ -120,7 +120,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void supprimerFonctionnaireOnAction(ActionEvent event) throws IOException {
-
+        
         Main.root2 = FXMLLoader.load(getClass().getResource("SupprimerFonctionnaireFXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
@@ -130,7 +130,16 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void actualiserOnAction(ActionEvent event) throws IOException {
+        
+        accordion.getPanes().remove(0, accordion.getPanes().size());
+        for (FonctionnairePane pane : fonctionnairePanes) {
 
+           // fonctionnaireAccordion2.getPanes().add(pane);
+            fonctionnaireAccordion1.getPanes().add(pane);
+           // fonctionnaireAccordion3.getPanes().add(pane);
+
+        }
+        accordion=fonctionnaireAccordion1 ;
     }
     @FXML
     private void salaireSelectionne(ActionEvent event) throws IOException {
@@ -218,6 +227,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
         cnx.connecter();
         fonctionnairePanes = new ArrayList<FonctionnairePane>();
         listesFonctionnaire = cnx.getAllFonctionnaire();
+        cnx.deconnecter();
         for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
             FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
             fonctionnairePanes.add(pane);
@@ -230,7 +240,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
         accordion=fonctionnaireAccordion1 ;
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
-        cnx.deconnecter();
+        
 
         
     }

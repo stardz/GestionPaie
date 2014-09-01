@@ -45,7 +45,8 @@ public class RechercherFonctionaireFXMLController implements Initializable {
     private RadioButton masculin;
     @FXML
     private RadioButton feminin;
-    public static Fonctionnaire fonctionnaire;
+    public static Fonctionnaire fonctionnaireRecherche;
+    public static Fonctionnaire fonctionnaireTrouve;
 
     /**
      * Initializes the controller class.
@@ -68,37 +69,48 @@ public class RechercherFonctionaireFXMLController implements Initializable {
     @FXML
     private void rechercherOnAction(ActionEvent event) throws IOException {
         /// Afficher les resultats de recherche
-        fonctionnaire = new Fonctionnaire();
+        fonctionnaireRecherche = new Fonctionnaire();
         if (!nss.getText().isEmpty()) {
-            fonctionnaire.setNss(Integer.parseInt(nss.getText()));
+            fonctionnaireRecherche.setNss(Integer.parseInt(nss.getText()));
         }
-        fonctionnaire.setNumCompte(Long.parseLong(numCompte.getText()));
-        fonctionnaire.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
+        if (!numCompte.getText().isEmpty()) {
+            fonctionnaireRecherche.setNumCompte(Long.parseLong(numCompte.getText()));
+        }
+        if (!numMutuelle.getText().isEmpty()) {
+            fonctionnaireRecherche.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
+        }
+
         if (!nom.getText().isEmpty()) {
-            fonctionnaire.setNomFonctionnaire(nom.getText());
+            fonctionnaireRecherche.setNomFonctionnaire(nom.getText());
         }
 
         if (!prenom.getText().isEmpty()) {
-            fonctionnaire.setPrenomFonctionnaire(prenom.getText());
+            fonctionnaireRecherche.setPrenomFonctionnaire(prenom.getText());
         }
 
         if (feminin.isSelected()) {
-            fonctionnaire.setSexe("Feminin");
+            fonctionnaireRecherche.setSexe("Feminin");
         } else {
-            fonctionnaire.setSexe("Feminin");
+            fonctionnaireRecherche.setSexe("Feminin");
         }
-        fonctionnaire.setDateRecrutement(dateRecrut.getValue().toString());
+        /*if(!=dateRecrut.get)
+        //fonctionnaireRecherche.setDateRecrutement(dateRecrut.getValue().toString());
         if (!situationFamiliale.getValue().isEmpty()) {
-            fonctionnaire.setSituationFamiliale(situationFamiliale.getValue());
+            fonctionnaireRecherche.setSituationFamiliale(situationFamiliale.getValue());
         }
         if (!status.getValue().isEmpty()) {
-            fonctionnaire.setStatus(status.getValue());
-        }
+            fonctionnaireRecherche.setStatus(status.getValue());
+        }*/
 
-        
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
-        /// lancer la requete de recherche
+        fonctionnaireTrouve = cnx.getFonctionnaire(fonctionnaireRecherche.getNss());
+
+        MenuPrincipaleFXMLController.accordion.getPanes().remove(0, MenuPrincipaleFXMLController.accordion.getPanes().size());
+        if (fonctionnaireTrouve != null) {
+            MenuPrincipaleFXMLController.accordion.getPanes().add(new FonctionnairePane(fonctionnaireTrouve));
+        }
+
         cnx.deconnecter();
 
         Main.primaryStage2.hide();
