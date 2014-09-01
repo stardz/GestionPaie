@@ -7,6 +7,7 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,8 +19,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
@@ -31,35 +35,16 @@ import javafx.util.Callback;
 public class MenuPrincipaleFXMLController implements Initializable {
 
     
-     ObservableList<Ligne> data = FXCollections.observableArrayList() ;
     @FXML
     private TableView<String[]> grid;
-
-    private TableColumn col1;
-
-    private TableColumn col2;
-
-    private TableColumn col3;
-
-    private TableColumn col4;
-
-    private TableColumn col5;
-
-    private TableColumn col6;
-
-    private TableColumn col7;
-
-    private TableColumn col8;
-
-    private TableColumn col9;
-
-    private TableColumn col10;
-
-    private TableColumn col11;
-
-    private TableColumn col12;
-
-    private TableColumn col13;
+    @FXML
+    Accordion fonctionnaireAccordion1;
+    @FXML
+    Accordion fonctionnaireAccordion2;
+    @FXML
+    Accordion fonctionnaireAccordion3;
+    private  ArrayList<Fonctionnaire> listesFonctionnaire ;
+    private ArrayList<FonctionnairePane> fonctionnairePanes ;
 
     String[][] grilleSalaire = {
         {"200", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "110", "120"},
@@ -144,15 +129,17 @@ public class MenuPrincipaleFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-            afficherGrilleSalaire();
+        remplirAccordions();
+        afficherGrilleSalaire();
 
     }
-    public void afficherGrilleSalaire(){
-         
+
+    public void afficherGrilleSalaire() {
+
         ObservableList<String[]> data1 = FXCollections.observableArrayList();
         data1.addAll(Arrays.asList(grilleSalaire));
-        
-                for (int i = 0; i < grilleSalaire[0].length; i++) {
+
+        for (int i = 0; i < grilleSalaire[0].length; i++) {
             TableColumn tc = new TableColumn(grilleSalaire[0][i]);
             final int colNo = i;
             tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
@@ -163,11 +150,37 @@ public class MenuPrincipaleFXMLController implements Initializable {
             });
             tc.setPrefWidth(50);
             grid.getColumns().add(tc);
+
+        }
+        grid.setItems(data1);
+
+    }
+    public void remplirAccordions(){
+                ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        fonctionnairePanes =new ArrayList<FonctionnairePane>() ;
+        listesFonctionnaire= cnx.getAllFonctionnaire() ;
+        for(Fonctionnaire fonctionnaire : listesFonctionnaire){
+            FonctionnairePane pane=new FonctionnairePane(fonctionnaire) ;
+            fonctionnairePanes.add(pane) ;
+            
+           
+            fonctionnaireAccordion2.getPanes().add(pane) ;
+            fonctionnaireAccordion1.getPanes().add(pane) ;
+            fonctionnaireAccordion3.getPanes().add(pane) ;
             
         }
-            grid.setItems(data1);
-        
+        //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
+       // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
+        cnx.deconnecter();
         
     }
+    
+    
+    @FXML
+    private void tabPaiementChanged(ActionEvent event) throws IOException {
+            System.out.println("Tab Selection changed");
+    }
+
 
 }
