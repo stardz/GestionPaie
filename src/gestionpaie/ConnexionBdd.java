@@ -116,7 +116,7 @@ public class ConnexionBdd {
                 + "id_banque='" + idBanque + "';";
         executerRequete(requete);              
     }
-    public void attribuerBareme(Long nss ,String categorieEchelon,Date date){
+    public void Bareme(Long nss ,String categorieEchelon,Date date){
         String req="INSERT IGNORE INTO date SET date_date='" + date + "';";
                 executerRequete(req);
         String requete="INSERT IGNORE INTO classe SET NSS='" + nss + "',"

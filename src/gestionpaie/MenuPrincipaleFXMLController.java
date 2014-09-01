@@ -335,7 +335,10 @@ public class MenuPrincipaleFXMLController implements Initializable {
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
         cnx.deconnecter();
+
     }
 
-    
-}
+
+    }
+
+
