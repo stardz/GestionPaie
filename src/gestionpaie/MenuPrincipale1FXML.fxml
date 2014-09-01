@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -76,17 +77,114 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="grid" layoutX="28.0" layoutY="14.0" prefHeight="444.0" prefWidth="647.0" />
-                        <VBox layoutX="702.0" layoutY="64.0" prefHeight="282.0" prefWidth="148.0" spacing="30.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#modifierGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Modifier" />
-                              <Button mnemonicParsing="false" onAction="#annulerGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Annuler" />
-                              <Button mnemonicParsing="false" onAction="#validerGrilleOnAction" prefHeight="40.0" prefWidth="100.0" text="Valider" />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-                           </padding>
-                        </VBox>
+                        <TitledPane animated="false" collapsible="false" layoutX="43.0" layoutY="30.0" prefHeight="295.0" prefWidth="280.0" text="Bareme des salaires">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="200.0">
+                                 <children>
+                                    <ComboBox fx:id="categorieConf" layoutX="56.0" layoutY="36.0" prefHeight="20.0" prefWidth="60.0" />
+                                    <ComboBox fx:id="echelonConf" layoutX="158.0" layoutY="36.0" prefHeight="20.0" prefWidth="60.0" />
+                                    <Text layoutX="131.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="10.67578125">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <TextField fx:id="indicereel" layoutX="135.0" layoutY="78.0" prefHeight="27.0" prefWidth="121.0" />
+                                    <TextField fx:id="ptsEchelon" layoutX="135.0" layoutY="119.0" prefHeight="27.0" prefWidth="122.0" />
+                                    <Text layoutX="58.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categorie       /        Echelon :" wrappingWidth="160.171875" />
+                                    <Text layoutX="17.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indice réel :" />
+                                    <Text layoutX="17.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts echelon :" />
+                                    <Text layoutX="19.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indice brut :" />
+                                    <TextField fx:id="indiceBrut" layoutX="135.0" layoutY="161.0" prefHeight="27.0" prefWidth="121.0" />
+                                    <Button fx:id="validerBareme" layoutX="94.0" layoutY="209.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" layoutX="353.0" layoutY="234.0" prefHeight="91.0" prefWidth="520.0" text="Primes">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="156.0">
+                                 <children>
+                                    <ComboBox fx:id="libPrime" editable="true" layoutX="63.0" layoutY="14.0" prefHeight="27.0" prefWidth="100.0" />
+                                    <TextField fx:id="durePrime" layoutX="216.0" layoutY="14.0" prefHeight="27.0" prefWidth="65.0" />
+                                    <TextField fx:id="tauxPrime" layoutX="328.0" layoutY="14.0" prefHeight="27.0" prefWidth="57.0" />
+                                    <Button fx:id="validerPrime" layoutX="419.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
+                                    <Text layoutX="179.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duré :" />
+                                    <Text layoutX="291.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="taux :" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" layoutX="353.0" layoutY="30.0" prefHeight="194.0" prefWidth="241.0" text="Indemnitées">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="validerInd" layoutX="81.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
+                                    <ComboBox fx:id="libIndim" editable="true" layoutX="116.0" layoutY="15.0" prefHeight="27.0" prefWidth="104.0" />
+                                    <TextField fx:id="tauxInd" layoutX="116.0" layoutY="50.0" prefHeight="27.0" prefWidth="105.0" />
+                                    <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taux :" />
+                                    <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur :" />
+                                    <TextField fx:id="valInd" layoutX="117.0" layoutY="82.0" prefHeight="27.0" prefWidth="105.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" layoutX="43.0" layoutY="355.0" prefHeight="97.0" prefWidth="405.0" text="Fonctions">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Text layoutX="23.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé fonction :" wrappingWidth="113.064453125" />
+                                    <ComboBox fx:id="libFonct" editable="true" layoutX="128.0" layoutY="20.0" prefWidth="150.0" />
+                                    <Button fx:id="validerFonct" layoutX="298.0" layoutY="20.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" layoutX="474.0" layoutY="355.0" prefHeight="97.0" prefWidth="401.0" text="Banques">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <ComboBox fx:id="nomBanque" editable="true" layoutX="133.0" layoutY="20.0" prefWidth="150.0" />
+                                    <Text layoutX="28.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Banque :" wrappingWidth="113.064453125" />
+                                    <Button fx:id="validerBanque" layoutX="303.0" layoutY="20.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
+                        <TitledPane animated="false" collapsible="false" layoutX="632.0" layoutY="30.0" prefHeight="194.0" prefWidth="241.0" text="Retenu">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="validerRet" layoutX="81.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
+                                    <ComboBox fx:id="libRet" editable="true" layoutX="116.0" layoutY="15.0" prefHeight="27.0" prefWidth="104.0" />
+                                    <TextField fx:id="tauxRet" layoutX="116.0" layoutY="50.0" prefHeight="27.0" prefWidth="105.0" />
+                                    <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taux :" />
+                                    <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur :" />
+                                    <TextField fx:id="valRet" layoutX="117.0" layoutY="82.0" prefHeight="27.0" prefWidth="105.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TitledPane>
                      </children></AnchorPane>
                </content>
             </Tab>
