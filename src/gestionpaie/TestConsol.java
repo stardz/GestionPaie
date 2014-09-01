@@ -6,11 +6,11 @@
 
 package gestionpaie;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
 import java.sql.Date;
+
+
+
 import jxl.read.biff.BiffException;
 import jxl.write.WriteException;
 
@@ -25,9 +25,11 @@ public class TestConsol {
      //           "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"),"2001-10-14");
         // SalaireManager.imprimerFichePaie(fonctionnaire);
         // Desktop.getDesktop().print(new File("fichepaie.xls"));
+        Salaire salaire=new Salaire(100, 20, 20, 20, 20);
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
-        System.out.println(cnx.getAllPrime().get(0).getLibellePrime());
+        
+        System.out.println(cnx.getAllSalaireDu(new Long("12354698"),Date.valueOf("1900-2-2")).get(0).getIdSalaire()+"");
         cnx.deconnecter();
         
     }

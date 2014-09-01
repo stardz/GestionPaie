@@ -147,11 +147,34 @@ public class ConnexionBdd {
                 + "date_date='" + date + "';";
         executerRequete(requete);
     }
-    public void insertSalaireDu(Long nss){
-        
+    public void insertSalaireDu(Long nss,Salaire salaire,Date date){
+        String requete="INSERT IGNORE INTO date SET date_date='" + date + "';";
+                executerRequete(requete);
+                requete="INSERT IGNORE INTO salaire SET id_salaire='" + salaire.getIdSalaire() + "',"
+                        +"salaire_base='"+salaire.getSalaire_base()+"',"
+                        +"salaire_poste='"+salaire.getSalaire_poste()+"',"
+                        +"salaire_imposable='"+salaire.getSalaire_imposable()+"',"
+                        +"salaire_net='"+salaire.getSalaire_net()+"';";              
+                executerRequete(requete);
+                requete="INSERT IGNORE INTO du SET nss='"+nss+"',"
+                +"date_date='"+date+"',"
+                +"id_salaire='"+salaire.getIdSalaire()+"';";
+                executerRequete(requete);
+                
     }
-    public void insertSalaireRecu(Long nss){
-        
+    public void insertSalaireRecu(Long nss,Salaire salaire,Date date){
+        String requete="INSERT IGNORE INTO date SET date_date='" + date + "';";
+                executerRequete(requete);
+                requete="INSERT IGNORE INTO salaire SET id_salaire='" + salaire.getIdSalaire() + "',"
+                        +"salaire_base='"+salaire.getSalaire_base()+"',"
+                        +"salaire_poste='"+salaire.getSalaire_poste()+"',"
+                        +"salaire_imposable='"+salaire.getSalaire_imposable()+"',"
+                        +"salaire_net='"+salaire.getSalaire_net()+"';";              
+                executerRequete(requete);
+                requete="INSERT IGNORE INTO percevoir SET nss='"+nss+"',"
+                +"date_date='"+date+"',"
+                +"id_salaire='"+salaire.getIdSalaire()+"';";
+                executerRequete(requete);
     }
     /*********************************** Get All *****************************************/
       public ArrayList<Bareme> getAllBareme() {
@@ -270,4 +293,165 @@ public class ConnexionBdd {
         }
         return retList;
     }
+        /************************  recuperation des informations d'un fonctionnaire************************************************/
+         public ArrayList<Bareme> getAllBareme(Long nss) {
+        ArrayList<Bareme> retList = new ArrayList<Bareme>();
+        String requete = "select * from paie.bareme natural join paie.classe natural join paie.fonctionnaire where paie.fonctionnaire.nss='"+nss+"' order by date_date;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Bareme bareme = new Bareme(res.getString("categorie_echelon"),
+                        res.getInt("indice_category"),
+                        res.getInt("indice_echelon"));
+                retList.add(bareme);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+         }
+        public  Fonctionnaire getFonctionnaire(Long nss){
+          Fonctionnaire retFonctionnaire=null;
+          String requete = "select * from paie.fonctionnaire where nss = '"+nss+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+          
+                Fonctionnaire fonctionnaire = new Fonctionnaire(
+                        res.getLong("NSS"),
+                        res.getString("Nom"),
+                        res.getString("Prenom") ,
+                        res.getString("Sexe"),
+                        res.getString("situation_conj"),
+                         res.getDate("date_recrut").toString(),
+                        res.getInt("enfant_charg"),
+                        res.getInt("enfant_scol"),
+                        res.getInt("enfant_pdix"),
+                        new Long(res.getInt("num_mutuel")),
+                        new Long(res.getInt("num_cpt")),
+                        res.getString("rue"),
+                        res.getString("ville"),
+                        res.getString("statut"));
+                retFonctionnaire=fonctionnaire;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retFonctionnaire;
+      }
+    public Banque getBanque(Long nss) {
+        Banque retBanque =null;
+        String requete = "select * from paie.banque natural join paie.fonctionnaire;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Banque banque = new Banque(res.getInt("id_banque"),res.getString("nom_banque"));
+                retBanque=banque;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retBanque;
+    }
+    public ArrayList<Fonction> getAllFonction(Long nss) {
+        ArrayList<Fonction> retList = new ArrayList<Fonction>();
+        String requete = "select * from paie.fonction natural join occupe natural join paie.fonctionnaire where nss='"+nss+"' order by date_date;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Fonction fonction = new Fonction(res.getInt("id_fonction"),res.getString("libelle_fonction"));
+                retList.add(fonction);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+    public ArrayList<Indemnite> getAllInimnete(Long nss) {
+        ArrayList<Indemnite> retList = new ArrayList<Indemnite>();
+        String requete = "select * from paie.indemnite natural join paie.possede_indemnite natural join paie.fonctionnaire where"
+                + "nss='"+nss+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Indemnite indemnite = new Indemnite(res.getInt("id_ind"),res.getInt("taux_ind"),res.getString("libelle_indimnite"));
+                retList.add(indemnite);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+    public ArrayList<Retenu> getAllRetenu(Long nss) {
+        ArrayList<Retenu> retList = new ArrayList<Retenu>();
+        String requete = "select * from paie.retenu natural join paie.avoir_retenu natural join paie.fonctionnaire where"
+                + "nss='"+nss+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Retenu retenu = new Retenu(res.getInt("id_retenu"),res.getString("libelle_ret"),res.getInt("taux_ret"));
+                retList.add(retenu);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+        public ArrayList<Prime> getAllPrime(Long nss) {
+        ArrayList<Prime> retList = new ArrayList<Prime>();
+        String requete = "select * from paie.prime natural join paie.avoir_prime natural join paie.fonctionnaire where"
+                + "nss='"+nss+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Prime prime = new Prime(res.getInt(3),res.getInt(2),res.getInt(1),res.getString(4));
+                retList.add(prime);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+       public ArrayList<Salaire> getAllSalaireDu(Long nss,Date date) {
+        ArrayList<Salaire> retList = new ArrayList<Salaire>();
+        String requete = "select * from paie.salaire natural join paie.du natural join paie.fonctionnaire where"
+                + " nss='"+nss+"'&& date_date>='"+date+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Salaire salaire = new Salaire(
+                        res.getInt("id_salaire"),
+                        res.getDouble("salaire_base"),
+                        res.getDouble("salaire_poste"),
+                        res.getDouble("salaire_imposable"),
+                        res.getDouble("salaire_net"));
+                retList.add(salaire);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+       public ArrayList<Salaire> getAllSalaireRecu(Long nss,Date date) {
+        ArrayList<Salaire> retList = new ArrayList<Salaire>();
+        String requete = "select * from paie.salaire natural join paie.percevoir natural join paie.fonctionnaire where"
+                + " nss='"+nss+"'&& date_date>='"+date+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Salaire salaire = new Salaire(
+                        res.getInt("id_salaire"),
+                        res.getDouble("salaire_base"),
+                        res.getDouble("salaire_poste"),
+                        res.getDouble("salaire_imposable"),
+                        res.getDouble("salaire_net"));
+                retList.add(salaire);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+         
+         
 }
