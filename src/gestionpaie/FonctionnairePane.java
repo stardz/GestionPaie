@@ -18,7 +18,7 @@ public class FonctionnairePane  extends TitledPane{
     
     public FonctionnairePane(Fonctionnaire f){
        
-        super(f.getNomFonctionnaire(),new FonctionnaireInfoGrid(f)) ;
+        super( f.getPrenomFonctionnaire()+f.getNomFonctionnaire(),new FonctionnaireInfoGrid(f)) ;
          this.fonctionnaire=f ;
     }
     
