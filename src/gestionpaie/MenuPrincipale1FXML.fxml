@@ -81,8 +81,8 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="264.0" prefWidth="200.0">
                                  <children>
-                                    <ComboBox fx:id="categorieConf" layoutX="44.0" layoutY="36.0" onAction="#salaireSelectionne" prefHeight="27.0" prefWidth="72.0" />
-                                    <ComboBox fx:id="echelonConf" layoutX="158.0" layoutY="36.0" onAction="#salaireSelectionne" prefHeight="27.0" prefWidth="72.0" />
+                                    <ComboBox fx:id="categorieConf" editable="true" layoutX="44.0" layoutY="36.0" onAction="#salaireSelectionne" prefHeight="27.0" prefWidth="72.0" />
+                                    <ComboBox fx:id="echelonConf" editable="true" layoutX="158.0" layoutY="36.0" onAction="#salaireSelectionne" prefHeight="27.0" prefWidth="72.0" />
                                     <Text layoutX="131.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="10.67578125">
                                        <font>
                                           <Font size="16.0" />
@@ -95,7 +95,7 @@
                                     <Text layoutX="17.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pts echelon :" />
                                     <Text layoutX="19.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indice brut :" />
                                     <TextField fx:id="indiceBrut" layoutX="135.0" layoutY="161.0" prefHeight="27.0" prefWidth="121.0" />
-                                    <Button fx:id="validerBareme" layoutX="94.0" layoutY="209.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                    <Button fx:id="validerBareme" layoutX="94.0" layoutY="209.0" mnemonicParsing="false" onAction="#validerBareme" prefHeight="27.0" prefWidth="82.0" text="Valider" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -107,10 +107,10 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="156.0">
                                  <children>
-                                    <ComboBox fx:id="libPrime" editable="true" layoutX="63.0" layoutY="14.0" prefHeight="27.0" prefWidth="100.0" />
+                                    <ComboBox fx:id="libPrime" editable="true" layoutX="63.0" layoutY="14.0" onAction="#primeSelectionne" prefHeight="27.0" prefWidth="100.0" />
                                     <TextField fx:id="durePrime" layoutX="216.0" layoutY="14.0" prefHeight="27.0" prefWidth="65.0" />
                                     <TextField fx:id="tauxPrime" layoutX="328.0" layoutY="14.0" prefHeight="27.0" prefWidth="57.0" />
-                                    <Button fx:id="validerPrime" layoutX="419.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Button fx:id="validerPrime" layoutX="419.0" layoutY="14.0" mnemonicParsing="false" onAction="#validerPrime" prefHeight="25.0" prefWidth="72.0" text="Valider" />
                                     <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
                                     <Text layoutX="179.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duré :" />
                                     <Text layoutX="291.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="taux :" />
@@ -125,13 +125,14 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="validerInd" layoutX="81.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Button fx:id="validerInd" layoutX="132.0" layoutY="122.0" mnemonicParsing="false" onAction="#validerIndemnite" prefHeight="25.0" prefWidth="72.0" text="Valider" />
                                     <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
                                     <ComboBox fx:id="libIndim" editable="true" layoutX="116.0" layoutY="15.0" onAction="#indemniteSelectionne" prefHeight="27.0" prefWidth="104.0" />
                                     <TextField fx:id="tauxInd" layoutX="116.0" layoutY="50.0" prefHeight="27.0" prefWidth="105.0" />
                                     <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taux :" />
                                     <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur :" />
                                     <TextField fx:id="valInd" layoutX="117.0" layoutY="82.0" prefHeight="27.0" prefWidth="105.0" />
+                                    <ComboBox fx:id="valTauxInd" layoutX="12.0" layoutY="122.0" prefHeight="27.0" prefWidth="99.0" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -145,7 +146,7 @@
                                  <children>
                                     <Text layoutX="23.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libellé fonction :" wrappingWidth="113.064453125" />
                                     <ComboBox fx:id="libFonct" editable="true" layoutX="128.0" layoutY="20.0" prefWidth="150.0" />
-                                    <Button fx:id="validerFonct" layoutX="298.0" layoutY="20.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                    <Button fx:id="validerFonct" layoutX="298.0" layoutY="20.0" mnemonicParsing="false" onAction="#validerFonction" prefHeight="27.0" prefWidth="82.0" text="Valider" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -159,7 +160,7 @@
                                  <children>
                                     <ComboBox fx:id="nomBanque" editable="true" layoutX="133.0" layoutY="20.0" prefWidth="150.0" />
                                     <Text layoutX="28.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Banque :" wrappingWidth="113.064453125" />
-                                    <Button fx:id="validerBanque" layoutX="303.0" layoutY="20.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="82.0" text="Valider" />
+                                    <Button fx:id="validerBanque" layoutX="303.0" layoutY="20.0" mnemonicParsing="false" onAction="#validerBanque" prefHeight="27.0" prefWidth="82.0" text="Valider" />
                                  </children>
                               </AnchorPane>
                            </content>
@@ -171,13 +172,14 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="validerRet" layoutX="81.0" layoutY="123.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0" text="Valider" />
+                                    <Button fx:id="validerRet" layoutX="134.0" layoutY="124.0" mnemonicParsing="false" onAction="#validerRetenu" prefHeight="25.0" prefWidth="72.0" text="Valider" />
                                     <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle :" />
-                                    <ComboBox fx:id="libRet" editable="true" layoutX="116.0" layoutY="15.0" prefHeight="27.0" prefWidth="104.0" />
+                                    <ComboBox fx:id="libRet" editable="true" layoutX="116.0" layoutY="15.0" onAction="#retenuSelectionne" prefHeight="27.0" prefWidth="104.0" />
                                     <TextField fx:id="tauxRet" layoutX="116.0" layoutY="50.0" prefHeight="27.0" prefWidth="105.0" />
                                     <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taux :" />
                                     <Text layoutX="15.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valeur :" />
                                     <TextField fx:id="valRet" layoutX="117.0" layoutY="82.0" prefHeight="27.0" prefWidth="105.0" />
+                                    <ComboBox fx:id="valTauxRet" layoutX="15.0" layoutY="124.0" prefHeight="27.0" prefWidth="99.0" />
                                  </children>
                               </AnchorPane>
                            </content>

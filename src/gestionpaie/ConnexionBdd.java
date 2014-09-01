@@ -484,5 +484,135 @@ public class ConnexionBdd {
         }
         return retInd;
     }
-         
+         public Prime getPrime(String libelle) {
+        Prime retPrime = null;
+        String requete = "select * from paie.prime where "
+                + "Libelle_prime='"+libelle+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Prime prime = new Prime(res.getInt(3),res.getInt(2),res.getInt(1),res.getString(4));
+                retPrime=prime;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retPrime;
+    }
+       public Retenu getRetenu(String libelle) {
+        Retenu retRet = null;
+        String requete = "select * from paie.retenu where "
+                + "Libelle_ret='"+libelle+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Retenu retenu = new Retenu(res.getInt("id_retenu"),res.getString("libelle_ret"),res.getInt("taux_ret"));
+                retRet=retenu;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retRet;
+    }  
+       public Fonction getFonction(String libelle) {
+        Fonction retFonct = null;
+        String requete = "select * from paie.fonction libelle_fonction='"+libelle+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Fonction fonction = new Fonction(res.getInt("id_fonction"),res.getString("libelle_fonction"));
+                retFonct=fonction;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retFonct;
+    }
+       public Banque getBanque(String libelle) {
+        Banque retBanque = null;
+        String requete = "select * from paie.banque where nom_banque='"+libelle+";";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Banque banque = new Banque(res.getInt("id_banque"),res.getString("nom_banque"));
+                retBanque=banque;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retBanque;
+    }
+       /***************************************** Insertion ********************************/
+       public void insertBareme(Bareme bareme){
+          String requete = "INSERT IGNORE INTO bareme SET categorie_echelon='" + bareme.getcategorieEchelon() + "',"
+                  +" indice_category='" + bareme.getCategorie() + "',"
+                  +" indice_echelon='" + bareme.getEchelon() + "';";
+           executerRequete(requete);          
+       }
+       public void insertIndemnite(Indemnite indemnite){
+          String requete = "INSERT IGNORE INTO indemnite SET id_ind='" +indemnite.getId_indemnite() + "',"
+                  +" taux_ind='" + indemnite.getTaux_indemnite() + "',"
+                  +" libelle_indimnite='" + indemnite.getLibelle_indemnite() + "';";
+           executerRequete(requete);          
+       }
+       public void insertRetenu(Retenu retenu){
+          String requete = "INSERT IGNORE INTO retenu SET id_retenu='" +retenu.getIdRetenu() + "',"
+                  +" libelle_ret='" + retenu.getLibelleRetenu() + "',"
+                  +" taux_ret='" + retenu.getTauxRetenu() + "';";
+           executerRequete(requete);          
+       }
+       public void insertPrime(Prime prime){
+          String requete = "INSERT IGNORE INTO prime SET dure_mois_prm='" +prime.getDurePrime() + "',"
+                  +" taux_prm='" + prime.getTauxPrime() + "',"
+                  +" Libelle_prime='" + prime.getLibellePrime() + "',"
+                  +" id_prm='" + prime.getIdPrime() + "';";
+           executerRequete(requete);          
+       }
+       public void insertFonction(Fonction fonction){
+          String requete = "INSERT IGNORE INTO fonction SET id_fonction='" +fonction.getIdFonction() + "',"
+                  +" libelle_fonction='" + fonction.getLibelleFonction() + "';";
+           executerRequete(requete);          
+       }
+       public void insertBanque(Banque banque){
+          String requete = "INSERT IGNORE INTO banque SET id_banque='" +banque.getId_banque() + "',"
+                  +" nom_banque='" + banque.getNomBanque()+ "';";
+           executerRequete(requete);          
+       }
+       /***************************** supprimer fonctionnaire *******************************/
+      public void supprimer(Long nss){
+        String requete="delete from du where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from percevoir where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from classe where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from avoir_prime where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from possede_indemnite where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from avoir_retenu where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from occupe where nss='"+nss+"';";
+	executerRequete(requete);
+        requete="delete from fonctionnaire where nss='"+nss+"';";
+	executerRequete(requete);
+      }
+      /*********************************** Modif ***********************************/
+      public void modifierFonctionnaire(Fonctionnaire fonctionnaire, int idBanque) {
+        modifierTable("fonctionnaire", "Nom", ""+fonctionnaire.getNomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "Prenom", ""+fonctionnaire.getPrenomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "Sexe", ""+fonctionnaire.getSexe(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "situation_conj", ""+fonctionnaire.getSituationFamiliale(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "date_recrut", ""+fonctionnaire.getDateRecrutement(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "enfant_charg", ""+fonctionnaire.getEnfantCharg(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "enfant_scol", ""+fonctionnaire.getEnfantScolarise(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "enfant_pdix", ""+fonctionnaire.getEnfantPlusDixAns(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "num_mutuel", ""+fonctionnaire.getNomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "num_cpt", ""+fonctionnaire.getNumCompte(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "rue", ""+fonctionnaire.getRue(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "ville", ""+fonctionnaire.getVile(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "id_banque", ""+idBanque, " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "statut", ""+fonctionnaire.getStatus(), " nss='"+fonctionnaire.getNss()+"'");      
+    }
+      
 }

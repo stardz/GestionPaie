@@ -30,6 +30,10 @@ public class MenuPrincipaleFXMLController implements Initializable {
      * ******************* LA CONFIGURATION *************************************
      */
     @FXML
+    ComboBox valTauxInd;
+    @FXML
+    ComboBox valTauxRet;
+    @FXML
     ComboBox categorieConf;
     @FXML
     ComboBox echelonConf;
@@ -137,6 +141,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
            cnx.connecter();
            if(categorieConf.getValue()==null||echelonConf.getValue()==null) return;
            Bareme bareme=cnx.getBareme(categorieConf.getValue().toString()+"/"+ echelonConf.getValue().toString());
+           if(bareme==null)return;
            indicereel.setText(""+bareme.getIndiceCategorie());
            ptsEchelon.setText(""+bareme.getIndiceEchelon());
            indiceBrut.setText(""+bareme.getIndiceCategorie()+bareme.getIndiceEchelon());
@@ -149,31 +154,128 @@ public class MenuPrincipaleFXMLController implements Initializable {
            cnx.connecter();
            if(libIndim.getValue()==null) return;
            Indemnite indemnite=cnx.getInimnete(libIndim.getValue().toString());
+           if(indemnite==null)return;
            if(indemnite.getTaux_indemnite()<=200)tauxInd.setText(""+indemnite.getTaux_indemnite());
-           else valInd.setText(""+indemnite.getLibelle_indemnite());
+           else valInd.setText(""+indemnite.getTaux_indemnite());
             cnx.deconnecter();
     }
     @FXML
     private void primeSelectionne(ActionEvent event) throws IOException {
-         /*  ConnexionBdd cnx=new ConnexionBdd();
+           ConnexionBdd cnx=new ConnexionBdd();
            cnx.connecter();
            if(libPrime.getValue()==null) return;
-           Prime prime=cnx.getInimnete(libIndim.getValue().toString());
-           if(indemnite.getTaux_indemnite()<=200)tauxInd.setText(""+indemnite.getLibelle_indemnite());
-           else valInd.setText(""+indemnite.getLibelle_indemnite());
-            cnx.deconnecter();*/
+           Prime prime=cnx.getPrime(libPrime.getValue().toString());
+           if (prime==null)return;
+           tauxPrime.setText(""+prime.getTauxPrime());
+           durePrime.setText(""+prime.getDurePrime());
+            cnx.deconnecter();
     }
     @FXML
     private void retenuSelectionne(ActionEvent event) throws IOException {
-
+          ConnexionBdd cnx=new ConnexionBdd();
+           cnx.connecter();
+           if(libRet.getValue()==null) return;
+           Retenu retenu=cnx.getRetenu(libRet.getValue().toString());
+           if(retenu==null)return;
+           if(retenu.getTauxRetenu()<=200)tauxRet.setText(""+retenu.getTauxRetenu());
+           else valRet.setText(""+retenu.getTauxRetenu());
+            cnx.deconnecter();
     }
     @FXML
-    private void banqueSelectionne(ActionEvent event) throws IOException {
-
+    private void validerBareme(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(categorieConf.getValue()==null||echelonConf.getValue()==null||indicereel.getText()==null
+                ||indiceBrut.getText()==null||ptsEchelon.getText()==null)return;
+        
+        if(cnx.getBareme(categorieConf.getValue().toString()+"/"+echelonConf.getValue().toString())==null){           
+            cnx.insertBareme(new Bareme(categorieConf.getValue().toString()+"/"+echelonConf.getValue().toString(), 
+            Integer.parseInt(indicereel.getText()),Integer.parseInt(ptsEchelon.getText())));
+        }else{
+            cnx.modifierBarem(new Bareme(categorieConf.getValue().toString()+"/"+echelonConf.getValue().toString(), 
+            Integer.parseInt(indicereel.getText()),Integer.parseInt(ptsEchelon.getText())));
+        }
+        cnx.deconnecter(); 
     }
     @FXML
-    private void fonctionSelectionne(ActionEvent event) throws IOException {
-
+    private void validerIndemnite(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(libIndim.getValue()==null)return;
+        if(valTauxInd.getValue().toString().equals("Taux")){
+            if(tauxInd.getText()==null)return;
+            if(cnx.getInimnete(libIndim.getValue().toString())==null){
+                cnx.insertIndemnite(new Indemnite(cnx.getAllInimnete().size()+1,Integer.parseInt(tauxInd.getText()) ,
+                        libIndim.getValue().toString()));
+            }else{
+                cnx.modifierTable("indemnite", "taux_ind", tauxInd.getText(), "libelle_ind='"+libIndim.getValue().toString()+"'");
+            }
+            
+        }else if(valTauxInd.getValue().toString().equals("Valeure")){
+            if(valInd.getText()==null)return;
+            if(cnx.getInimnete(libIndim.getValue().toString())==null){
+                cnx.insertIndemnite(new Indemnite(cnx.getAllInimnete().size()+1,Integer.parseInt(valInd.getText()) ,
+                        libIndim.getValue().toString()));
+            }else{
+                cnx.modifierTable("indemnite", "taux_ind", valInd.getText(), "libelle_indimnite='"+libIndim.getValue().toString()+"'");
+            }
+        }else return;
+        cnx.deconnecter(); 
+    }
+    @FXML
+    private void validerRetenu(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(libRet.getValue()==null)return;
+        if(valTauxRet.getValue().toString().equals("Taux")){
+            if(tauxRet.getText()==null)return;
+            if(cnx.getRetenu(libRet.getValue().toString())==null){
+                cnx.insertRetenu(new Retenu(cnx.getAllRetenu().size()+1,libRet.getValue().toString(),Integer.parseInt(tauxRet.getText())
+                        ));
+            }else{
+                cnx.modifierTable("retenu", "taux_ret", tauxRet.getText(), "libelle_ret='"+libRet.getValue().toString()+"'");
+            }
+            
+        }else if(valTauxRet.getValue().toString().equals("Valeure")){
+            if(valRet.getText()==null)return;
+            if(cnx.getRetenu(libRet.getValue().toString())==null){
+                cnx.insertRetenu(new Retenu(cnx.getAllRetenu().size()+1,libRet.getValue().toString(),Integer.parseInt(valRet.getText())
+                        ));
+            }else{
+                cnx.modifierTable("retenu", "taux_ret", valRet.getText(), "libelle_ret='"+libRet.getValue().toString()+"'");
+            }
+        }else return;
+        cnx.deconnecter();
+    }
+    @FXML 
+    private void validerPrime(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(libPrime.getValue()==null||durePrime.getText()==null||tauxPrime.getText()==null)return;
+        if(cnx.getPrime(libPrime.getValue().toString())==null){           
+            cnx.insertPrime(new Prime(cnx.getAllPrime().size()+1, Integer.parseInt(durePrime.getText()), Integer.parseInt(tauxPrime.getText()),
+            libPrime.getValue().toString()));
+        }else{
+            cnx.modifierTable("prime", "dure_mois_prm", durePrime.getText(), " libelle_prime='"+libPrime.getValue().toString()+"'");
+            cnx.modifierTable("prime", "taux_prm", tauxPrime.getText(), " libelle_prime='"+libPrime.getValue().toString()+"'");
+        }
+        cnx.deconnecter();
+    }
+    @FXML
+    private void validerBanque(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(nomBanque.getValue().toString()==null)return;
+        cnx.insertBanque(new Banque(cnx.getAllBanque().size()+1,nomBanque.getValue().toString()));
+        cnx.deconnecter();
+    }
+    @FXML
+    private void validerFonction(ActionEvent event) throws IOException{
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        if(libFonct.getValue().toString()==null)return;
+        cnx.insertFonction(new Fonction(cnx.getAllFonction().size()+1,libFonct.getValue().toString()));
+        cnx.deconnecter();
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -183,6 +285,10 @@ public class MenuPrincipaleFXMLController implements Initializable {
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
         // initialisation des combobox
+        valTauxInd.getItems().add("Taux");
+        valTauxInd.getItems().add("Valeure");
+        valTauxRet.getItems().add("Taux");
+        valTauxRet.getItems().add("Valeure");
         int i;
         for (i = 1; i <= 17; i++) {
             if(i<10)categorieConf.getItems().add("0" + i);
@@ -229,7 +335,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
         cnx.deconnecter();
-
     }
 
+    
 }
