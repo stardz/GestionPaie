@@ -330,7 +330,6 @@ public class MenuPrincipaleFXMLController implements Initializable {
             fonctionnaireAccordion2.getPanes().add(pane);
             fonctionnaireAccordion1.getPanes().add(pane);
             fonctionnaireAccordion3.getPanes().add(pane);
-
         }
         //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
         // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
