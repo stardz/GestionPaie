@@ -29,7 +29,7 @@ public class TestConsol {
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
         
-        System.out.println(cnx.getAllSalaireDu(new Long("12354698"),Date.valueOf("1900-2-2")).get(0).getIdSalaire()+"");
+        System.out.println(cnx.getAllInimnete(new Long("12354698"),1,1).get(0).getLibelle_indemnite());
         cnx.deconnecter();
         
     }

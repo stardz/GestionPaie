@@ -326,7 +326,6 @@ public class MenuPrincipaleFXMLController implements Initializable {
         for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
             FonctionnairePane pane = new FonctionnairePane(fonctionnaire);
             fonctionnairePanes.add(pane);
-
             fonctionnaireAccordion2.getPanes().add(pane);
             fonctionnaireAccordion1.getPanes().add(pane);
             fonctionnaireAccordion3.getPanes().add(pane);
