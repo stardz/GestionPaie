@@ -114,37 +114,37 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {
-        
-        int i=0 ;
-        while (i < accordion.getPanes().size() && !accordion.getPanes().get(i).isExpanded()) {
-            i++;
-        }
-        if (i < accordion.getPanes().size()) {
-            Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
-            Main.scene2 = new Scene(Main.root2);
-            Main.primaryStage2.setScene(Main.scene2);
-            Main.primaryStage2.show();
-            
-        } else {
-            // afficher message  selectionner un fonctionnaire
-            Stage dialogStage = new Stage();
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setScene(new Scene(VBoxBuilder.create().
-                    children(new Text("Vous devez selectionner un fonctionnaire  "), new Button("Ok.")).
-                    alignment(Pos.CENTER).padding(new Insets(20)).build()));
-            dialogStage.show();
 
-        }
+        Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
 
     }
 
     @FXML
     private void modifierFonctionnaireOnAction(ActionEvent event) throws IOException {
 
-        Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire1FXML.fxml"));
-        Main.scene2 = new Scene(Main.root2);
-        Main.primaryStage2.setScene(Main.scene2);
-        Main.primaryStage2.show();
+        int i = 0;
+        while (i < accordion.getPanes().size() && !accordion.getPanes().get(i).isExpanded()) {
+            i++;
+        }
+        if (i < accordion.getPanes().size()) {
+
+            Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire1FXML.fxml"));
+            Main.scene2 = new Scene(Main.root2);
+            Main.primaryStage2.setScene(Main.scene2);
+            Main.primaryStage2.show();
+        } else {
+            // afficher message  selectionner un fonctionnaire
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+            children(new Text("Vous devez selectionner un fonctionnaire  "), new Button("Ok.")).
+            alignment(Pos.CENTER).padding(new Insets(20)).build()));
+            dialogStage.show();
+
+        }
 
     }
 

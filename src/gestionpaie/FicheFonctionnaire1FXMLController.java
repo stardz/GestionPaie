@@ -76,7 +76,7 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
         if (feminin.isSelected()) {
             fonctionnaire.setSexe("Feminin");
         } else {
-            fonctionnaire.setSexe("Feminin");
+            fonctionnaire.setSexe("Masculin");
         }
        // System.out.println("si " + choiceSituationFamiliale.getValue());
         fonctionnaire.setSituationFamiliale(choiceSituationFamiliale.getValue());

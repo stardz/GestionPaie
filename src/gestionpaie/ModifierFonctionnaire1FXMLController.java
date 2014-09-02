@@ -56,6 +56,8 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
     private TextField enfantPlus10Ans;
     @FXML
     private TextField adresseVille;
+   @FXML
+    private TextField adresseRue;
     public static Fonctionnaire fonctionnaireInitiale;
     public static Fonctionnaire fonctionnaireModifie;
 
@@ -89,7 +91,9 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
             i++;
         }
         if (i < MenuPrincipaleFXMLController.accordion.getPanes().size()) {
-            afficherFonctionnaire(MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire()) ;
+            
+            fonctionnaireInitiale=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ; 
+            afficherFonctionnaire(fonctionnaireInitiale) ;
             ConnexionBdd cnx = new ConnexionBdd();
             cnx.connecter();
             
@@ -97,18 +101,28 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
             cnx.deconnecter();
 
 
-        } else {
-            // afficher message  selectionner un fonctionnaire
-            Stage dialogStage = new Stage();
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.setScene(new Scene(VBoxBuilder.create().
-                    children(new Text("Vous devez selectionner un fonctionnaire  "), new Button("Ok.")).
-                    alignment(Pos.CENTER).padding(new Insets(20)).build()));
-            dialogStage.show();
         }
 
     }
     private void afficherFonctionnaire(Fonctionnaire fonctionnaire) {
        nss.setText(fonctionnaire.getNss().toString());
+       nom.setText(fonctionnaire.getNomFonctionnaire());
+       prenom.setText(fonctionnaire.getPrenomFonctionnaire());
+       if(fonctionnaire.getSexe().compareToIgnoreCase("Masculin")==0){
+           masculin.setSelected(true);
+       }
+       else{
+           masculin.setSelected(false);
+         feminin.setSelected(true);
+       }
+       choiceSituationFamiliale.setValue(fonctionnaire.getSituationFamiliale());
+       enfantsEnCharge.setText(fonctionnaire.getEnfantCharg().toString());
+       enfantScolarise.setText(fonctionnaire.getEnfantScolarise().toString());
+       enfantPlus10Ans .setText(fonctionnaire.getEnfantPlusDixAns().toString());
+       adresseVille.setText(fonctionnaire.getVile());
+       adresseRue.setText(fonctionnaire.getRue());
+       
+       
+       
     }
 }
