@@ -24,11 +24,11 @@
                 <Font name="Cambria" size="20.0" />
             </font>
         </Label>
-        <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
+        <SplitPane dividerPositions="0.5, 0.5" layoutX="47.0" layoutY="141.0" prefHeight="362.0" prefWidth="560.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <VBox layoutX="14.0" layoutY="1.0" prefHeight="366.0" prefWidth="128.0" spacing="30.0">
+                        <VBox layoutX="7.0" layoutY="1.0" prefHeight="296.0" prefWidth="135.0" spacing="30.0">
                             <children>
                                 <Label text="  NSS  :" />
                                 <Label text="Nom :" />
@@ -61,6 +61,23 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" />
                             </padding>
                         </VBox>
+                  <HBox layoutX="71.0" layoutY="513.0" prefHeight="63.0" prefWidth="277.0" spacing="90.0">
+                     <children>
+                        <Label text="Etape  1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Etape  2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
@@ -100,6 +117,23 @@
         <Button layoutX="502.0" layoutY="550.0" mnemonicParsing="false" onAction="#suivantOnAction" prefHeight="32.0" prefWidth="111.0" stylesheets="@CSS.css" text="Suivant" />
         <ProgressBar layoutX="64.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="0.5" />
         <Button layoutX="376.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="111.0" text="Annuler" />
+      <HBox layoutX="64.0" layoutY="503.0" prefHeight="63.0" prefWidth="277.0" spacing="90.0">
+         <children>
+            <Label text="Etape  1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Etape  2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+      </HBox>
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />
