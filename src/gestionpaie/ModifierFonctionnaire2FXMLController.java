@@ -13,6 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -20,6 +25,29 @@ import javafx.scene.Scene;
  * @author Ahmed
  */
 public class ModifierFonctionnaire2FXMLController implements Initializable {
+
+    @FXML
+    private ChoiceBox fonctionCombo;
+    @FXML
+    private ComboBox statusCombo;
+    @FXML
+    private TextField categorie;
+    @FXML
+    private TextField echelon;
+    @FXML
+    private ComboBox banquesCombo;
+    @FXML
+    private TextField numCompte;
+    @FXML
+    private TextField numMutuelle;
+    @FXML
+    private TextField codeIRG;
+    @FXML
+    private DatePicker dateRecrutement;
+    @FXML
+    private MenuButton retenusMenu;
+    @FXML
+    private MenuButton indimnitésMenu;
 
     @FXML
     private void retourOnAction(ActionEvent event) throws IOException {

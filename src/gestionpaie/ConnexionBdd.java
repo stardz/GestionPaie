@@ -21,7 +21,7 @@ public class ConnexionBdd {
         String url = "jdbc:mysql://localhost:3306/paie";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connexion = DriverManager.getConnection(url, "root", "");
+            connexion = DriverManager.getConnection(url, "root", "85795544");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erreur - SQL - lors de la connexion" + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {
@@ -116,7 +116,7 @@ public class ConnexionBdd {
                 + "id_banque='" + idBanque + "';";
         executerRequete(requete);              
     }
-    public void Bareme(Long nss ,String categorieEchelon,Date date){
+    public void attribuerBareme(Long nss ,String categorieEchelon,Date date){
         String req="INSERT IGNORE INTO date SET date_date='" + date + "';";
                 executerRequete(req);
         String requete="INSERT IGNORE INTO classe SET NSS='" + nss + "',"
@@ -125,7 +125,7 @@ public class ConnexionBdd {
         executerRequete(requete);
     }
     public void attribuerPrime(Long nss,int idPrime){
-        String requete="INSERT IGNORE INTO avoir_prime SET NSS='" + nss + "',"                
+        String requete="INSERT IGNORE INTO avoir_prime SET NSS='" + nss + "',"               
                 + "id_prm='" + idPrime + "';";
         executerRequete(requete);
     }

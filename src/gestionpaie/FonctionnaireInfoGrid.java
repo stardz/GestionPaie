@@ -6,6 +6,7 @@
 
 package gestionpaie;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.ImageView;
@@ -51,7 +52,7 @@ public class FonctionnaireInfoGrid  extends VBox{
     private GridPane grid2;
     
     
-    public FonctionnaireInfoGrid(Fonctionnaire f){
+    public FonctionnaireInfoGrid(Fonctionnaire f , String libeleBanque , String libeleFonction){
         
     super(2) ;    
     this.fonctionnaire = f;
@@ -59,6 +60,9 @@ public class FonctionnaireInfoGrid  extends VBox{
     Rectangle topRectangle = new Rectangle(598, 26, Color.BEIGE);
     topRectangle.setStroke(Color.BLACK);
     this.grid = new GridPane();
+   // this.grid.setPadding(new Insets(USE_PREF_SIZE, USE_PREF_SIZE, USE_PREF_SIZE, 10));
+    this.grid.setHgap(50);
+    this.grid.setVgap(5);
     this.grid2 = new GridPane();
    // this.grid.setHgap(20);
     //this.grid.setVgap(5);
@@ -82,10 +86,10 @@ public class FonctionnaireInfoGrid  extends VBox{
     this.adresseVilleValue = new Label(f.getVile());
     this.situationFamilialeValue= new Label(f.getSituationFamiliale());
     ///*************************************************************************
-    this.fonctionValue =new Label("Fonction") ;
+    this.fonctionValue =new Label(libeleFonction) ;
     this.statusValue =new Label(f.getStatus()) ;
     this.dateDerecrutementValue =new Label(f.getDateRecrutement()) ;
-    this.codeBanqueValue =new Label(" Banque") ;
+    this.codeBanqueValue =new Label(libeleBanque) ;
     this.numCompteValue =new Label(f.getNumCompte().toString()) ;
     ///*************************************************************************
     this.grid.add(nssLabel, 0, 1);
@@ -99,29 +103,30 @@ public class FonctionnaireInfoGrid  extends VBox{
     this.grid.add(adresseVilleValue, 1, 4);
     this.grid.add(situationFamilialeValue, 1, 5);
   
-    this.grid2.add(fonctionLabel, 0, 1);
-    this.grid2.add(statusLabel, 2, 2);
-    this.grid2.add(dateDerecrutementLabel, 0, 3);
-    this.grid2.add(codeBanqueLabel, 0, 4);
-    this.grid2.add(numCompteLabel, 0, 5);
+    this.grid.add(fonctionLabel, 0, 6);
+    this.grid.add(statusLabel, 0, 7);
+    this.grid.add(dateDerecrutementLabel, 0, 8);
+    this.grid.add(codeBanqueLabel, 0, 9);
+    this.grid.add(numCompteLabel, 0, 10);
     
-    this.grid2.add(fonctionValue, 1, 1);
-    this.grid2.add(statusValue, 1, 2);
-    this.grid2.add(dateDerecrutementValue, 1, 3);
-    this.grid2.add(codeBanqueValue,1, 4);
-    this.grid2.add(numCompteValue, 1, 5);
+    this.grid.add(fonctionValue, 1, 6);
+    this.grid.add(statusValue, 1, 7);
+    this.grid.add(dateDerecrutementValue, 1, 8);
+    this.grid.add(codeBanqueValue,1, 9);
+    this.grid.add(numCompteValue, 1, 10);
     ///************************************************************************
     this.grid.setMaxHeight(60);
     this.grid2.setMaxHeight(60);
     SplitPane p=new SplitPane() ;
     p.getItems().addAll(grid,grid2) ;
     HBox hbox = new HBox(40);
+    hbox.getChildren().addAll(new ImageView(), this.grid);
     hbox.setStyle("-fx-translate-x:30px");
     
     Label titreFiche= new Label("Fiche d'informations");
     StackPane stack = new StackPane();
     stack.getChildren().addAll(topRectangle, titreFiche);
-    this.getChildren().addAll(stack, p);
+    this.getChildren().addAll(stack, hbox);
     }
 
     /**

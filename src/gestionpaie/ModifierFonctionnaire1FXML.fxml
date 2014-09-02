@@ -24,13 +24,16 @@
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
-      <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <Button layoutX="502.0" layoutY="550.0" mnemonicParsing="false" onAction="#suivantOnAction" prefHeight="32.0" prefWidth="111.0" text="Suivant" />
+      <ProgressBar layoutX="64.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="0.5" />
+      <Button layoutX="376.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="111.0" text="Annuler" />
+      <SplitPane dividerPositions="0.5, 0.5" layoutX="53.0" layoutY="142.0" prefHeight="362.0" prefWidth="560.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <VBox layoutX="14.0" layoutY="1.0" prefHeight="366.0" prefWidth="128.0" spacing="30.0">
                      <children>
-                        <Label text="Identifiant :" />
+                        <Label text="  NSS  :" />
                         <Label text="Nom :" />
                         <Label text="Prénom :" />
                         <Label text="Sexe :" />
@@ -42,20 +45,20 @@
                   </VBox>
                   <VBox layoutX="120.0" layoutY="1.0" prefHeight="366.0" prefWidth="155.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <TextField />
-                        <TextField />
+                        <TextField fx:id="nss" />
+                        <TextField fx:id="nom" />
+                        <TextField fx:id="prenom" />
                         <HBox prefHeight="22.0" prefWidth="151.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" selected="true" text="Masculin">
+                              <RadioButton fx:id="masculin" mnemonicParsing="false" selected="true" text="Masculin">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="group1" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
+                              <RadioButton fx:id="feminin" mnemonicParsing="false" text="Feminin" toggleGroup="$group1" />
                            </children>
                         </HBox>
-                        <TextField />
+                        <ComboBox fx:id="choiceSituationFamiliale" prefWidth="150.0" visibleRowCount="3" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -63,7 +66,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
@@ -80,11 +83,11 @@
                   </VBox>
                   <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
+                        <TextField fx:id="enfantsEnCharge" />
+                        <TextField fx:id="enfantScolarise" />
+                        <TextField fx:id="enfantPlus10Ans" />
+                        <TextField fx:id="adresseVille" />
+                        <TextField fx:id="adresseRue" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -92,14 +95,28 @@
                   </VBox>
                </children>
             </AnchorPane>
-        </items>
+         </items>
          <padding>
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </SplitPane>
-      <Button layoutX="502.0" layoutY="550.0" mnemonicParsing="false" onAction="#suivantOnAction" prefHeight="32.0" prefWidth="111.0" text="Suivant" />
-      <ProgressBar layoutX="64.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="0.5" />
-      <Button layoutX="376.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="111.0" text="Annuler" />
+      <HBox layoutX="61.0" layoutY="503.0" prefHeight="63.0" prefWidth="277.0" spacing="90.0">
+         <children>
+            <Label text="Etape  1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Etape  2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+      </HBox>
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />

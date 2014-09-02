@@ -24,29 +24,33 @@
             <Font name="Cambria" size="20.0" />
          </font>
       </Label>
-      <SplitPane dividerPositions="0.5, 0.5" layoutX="58.0" layoutY="152.0" prefHeight="362.0" prefWidth="560.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <Button layoutX="531.0" layoutY="550.0" mnemonicParsing="false" onAction="#confirmerOnAction" prefHeight="32.0" prefWidth="100.0" text="Confirmer" />
+      <ProgressBar layoutX="53.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="1.0" />
+      <Button layoutX="439.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="85.0" text="Annuler" />
+      <Button layoutX="338.0" layoutY="550.0" mnemonicParsing="false" onAction="#retourOnAction" prefHeight="32.0" prefWidth="85.0" text="Retour" />
+      <SplitPane dividerPositions="0.5, 0.5" layoutX="49.0" layoutY="138.0" prefHeight="386.0" prefWidth="579.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <VBox layoutX="-6.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
                      <children>
                         <Label prefHeight="17.0" prefWidth="106.0" text="Code Fonction :" />
-                        <Label text="Situation conj :" />
-                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
-                        <Label prefHeight="17.0" prefWidth="71.0" text="  Code IRG :" />
                         <Label prefHeight="17.0" prefWidth="82.0" text="   Status :" />
+                        <Label prefHeight="17.0" prefWidth="121.0" text="Date de recrutement :" />
+                        <Label text=" Banque :" />
+                        <Label text="Indemnités :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="134.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="25.0">
+                  <VBox layoutX="135.0" prefHeight="366.0" prefWidth="141.0" spacing="25.0">
                      <children>
-                        <TextField />
-                        <TextField />
-                        <DatePicker />
-                        <TextField />
-                        <TextField />
+                        <ChoiceBox fx:id="fonctionCombo" prefWidth="150.0" />
+                        <ComboBox fx:id="statusCombo" prefWidth="150.0" />
+                        <DatePicker fx:id="dateRecrutement" />
+                        <ComboBox fx:id="banquesCombo" prefWidth="150.0" />
+                        <MenuButton fx:id="indimnitésMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Indemnités" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -54,16 +58,16 @@
                   </VBox>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="368.0" prefWidth="244.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="1.0" layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
+                  <VBox layoutY="1.0" prefHeight="366.0" prefWidth="141.0" spacing="30.0">
                      <children>
-                        <Label text="CAT/SEC/ECH :" />
-                        <Label text="Code banque :" />
+                        <Label text="Catégorie :" />
+                        <Label prefHeight="17.0" prefWidth="71.0" text="Echelon :" />
                         <Label text="Num Compte :" />
-                        <Label text="  NSS :" />
                         <Label text="NUm mutuelle :" />
+                        <Label text="Retenus :" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -71,11 +75,11 @@
                   </VBox>
                   <VBox layoutX="104.0" layoutY="1.0" prefHeight="366.0" prefWidth="171.0" spacing="25.0">
                      <children>
-                        <TextField promptText="Matricule" text=" . . / . . / " />
-                        <TextField />
-                        <TextField />
-                        <TextField />
-                        <TextField />
+                        <TextField fx:id="categorie" />
+                        <TextField fx:id="echelon" />
+                        <TextField fx:id="numCompte" />
+                        <TextField fx:id="numMutuelle" />
+                        <MenuButton fx:id="retenusMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="143.0" text="Retenus" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" />
@@ -83,15 +87,11 @@
                   </VBox>
                </children>
             </AnchorPane>
-        </items>
+         </items>
          <padding>
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </SplitPane>
-      <Button layoutX="531.0" layoutY="550.0" mnemonicParsing="false" onAction="#confirmerOnAction" prefHeight="32.0" prefWidth="100.0" text="Confirmer" />
-      <ProgressBar layoutX="53.0" layoutY="550.0" prefHeight="32.0" prefWidth="277.0" progress="1.0" />
-      <Button layoutX="439.0" layoutY="550.0" mnemonicParsing="false" onAction="#annulerOnAction" prefHeight="32.0" prefWidth="85.0" text="Annuler" />
-      <Button layoutX="338.0" layoutY="550.0" mnemonicParsing="false" onAction="#retourOnAction" prefHeight="32.0" prefWidth="85.0" text="Retour" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="10.0" top="10.0" />

@@ -17,7 +17,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="850.0">
                      <children>
-                        <Accordion fx:id="fonctionnaireAccordion1" layoutX="32.0" layoutY="29.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="338.0" AnchorPane.topAnchor="50.0" />
+                        <ScrollPane layoutX="40.0" layoutY="50.0" prefViewportHeight="409.0" prefViewportWidth="522.0">
+                           <content>
+                              <Accordion fx:id="fonctionnaireAccordion1" layoutX="32.0" layoutY="29.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="338.0" AnchorPane.topAnchor="50.0" />
+                           </content>
+                        </ScrollPane>
                         <VBox alignment="TOP_CENTER" layoutX="621.0" layoutY="29.0" prefHeight="414.0" prefWidth="230.0" spacing="30.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="29.0">
                            <children>
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#insererFonctionaireOnAction" prefHeight="40.0" prefWidth="160.0" text="Ajouter fonctionnaire" />
@@ -38,7 +42,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Accordion fx:id="fonctionnaireAccordion2" layoutX="34.0" layoutY="30.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
+                        <ScrollPane layoutX="40.0" layoutY="50.0" prefViewportHeight="430.0" prefViewportWidth="530.0">
+                           <content>
+                              <Accordion fx:id="fonctionnaireAccordion2" layoutX="34.0" layoutY="30.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
+                           </content>
+                        </ScrollPane>
                         <VBox alignment="CENTER" layoutX="618.0" layoutY="50.0" prefHeight="414.0" prefWidth="230.0" spacing="30.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="29.0">
                            <padding>
                               <Insets bottom="30.0" />
@@ -58,7 +66,11 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Accordion fx:id="fonctionnaireAccordion3" layoutX="43.0" layoutY="55.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
+                        <ScrollPane layoutX="40.0" layoutY="50.0" prefViewportHeight="430.0" prefViewportWidth="530.0">
+                           <content>
+                              <Accordion fx:id="fonctionnaireAccordion3" layoutX="43.0" layoutY="55.0" prefHeight="430.0" prefWidth="530.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="50.0" />
+                           </content>
+                        </ScrollPane>
                         <VBox alignment="TOP_CENTER" layoutX="616.0" layoutY="42.0" prefHeight="414.0" prefWidth="230.0" spacing="50.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="610.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="29.0">
                            <children>
                               <Button alignment="CENTER" mnemonicParsing="false" onAction="#rechercherFonctionaireOnAction" prefHeight="40.0" prefWidth="160.0" text="Rechercher" />
@@ -190,11 +202,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Statistiques">
-               <content>
-                  <Accordion prefHeight="450.0" prefWidth="900.0" />
-               </content>
-            </Tab>
+            <Tab text="Statistiques" />
         </tabs>
       </TabPane>
       <ImageView id="logo" fitHeight="72.0" fitWidth="127.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
