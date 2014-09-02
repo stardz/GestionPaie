@@ -382,6 +382,21 @@ public class ConnexionBdd {
         }
         return retList;
     }
+    public ArrayList<Indemnite> getAllInimnete(Long nss,int imposable,int cotisable) {
+        ArrayList<Indemnite> retList = new ArrayList<Indemnite>();
+        String requete = "select * from paie.indemnite natural join paie.possede_indemnite natural join paie.fonctionnaire where"
+                + " nss='"+nss+"' && imposable='"+imposable+"' && cotisable='"+cotisable+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Indemnite indemnite = new Indemnite(res.getInt("id_ind"),res.getInt("taux_ind"),res.getString("libelle_indimnite"));
+                retList.add(indemnite);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
     public ArrayList<Retenu> getAllRetenu(Long nss) {
         ArrayList<Retenu> retList = new ArrayList<Retenu>();
         String requete = "select * from paie.retenu natural join paie.avoir_retenu natural join paie.fonctionnaire where"
@@ -599,6 +614,7 @@ public class ConnexionBdd {
       }
       /*********************************** Modif ***********************************/
       public void modifierFonctionnaire(Fonctionnaire fonctionnaire, int idBanque) {
+      
         modifierTable("fonctionnaire", "Nom", ""+fonctionnaire.getNomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "Prenom", ""+fonctionnaire.getPrenomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "Sexe", ""+fonctionnaire.getSexe(), " nss='"+fonctionnaire.getNss()+"'");
@@ -607,7 +623,7 @@ public class ConnexionBdd {
         modifierTable("fonctionnaire", "enfant_charg", ""+fonctionnaire.getEnfantCharg(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "enfant_scol", ""+fonctionnaire.getEnfantScolarise(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "enfant_pdix", ""+fonctionnaire.getEnfantPlusDixAns(), " nss='"+fonctionnaire.getNss()+"'");
-        modifierTable("fonctionnaire", "num_mutuel", ""+fonctionnaire.getNomFonctionnaire(), " nss='"+fonctionnaire.getNss()+"'");
+        modifierTable("fonctionnaire", "num_mutuel", ""+fonctionnaire.getNumMutuelle(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "num_cpt", ""+fonctionnaire.getNumCompte(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "rue", ""+fonctionnaire.getRue(), " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "ville", ""+fonctionnaire.getVile(), " nss='"+fonctionnaire.getNss()+"'");

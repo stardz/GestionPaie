@@ -455,11 +455,9 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
             FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size()-1).getLibelleFonction());
             fonctionnairePanes.add(pane);
-
             fonctionnaireAccordion2.getPanes().add(pane);
             fonctionnaireAccordion1.getPanes().add(pane);
             fonctionnaireAccordion3.getPanes().add(pane);
-
         }
         accordion = fonctionnaireAccordion1;
         cnx.deconnecter();
