@@ -5,6 +5,7 @@
  */
 package gestionpaie;
 
+import static gestionpaie.FicheFonctionnaire1FXMLController.fonctionnaire;
 import static gestionpaie.MenuPrincipaleFXMLController.accordion;
 import java.io.IOException;
 import java.net.URL;
@@ -58,11 +59,45 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
     private TextField adresseVille;
    @FXML
     private TextField adresseRue;
-    public static Fonctionnaire fonctionnaireInitiale;
-    public static Fonctionnaire fonctionnaireModifie;
+    public static Fonctionnaire fonctionnaire;
 
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
+                FicheFonctionnaire1FXMLController.fonctionnaire = new Fonctionnaire();
+        if (!nss.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setNss(Integer.parseInt(nss.getText()));
+        }
+        if (!nom.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setNomFonctionnaire(nom.getText());
+        }
+        if (!prenom.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setPrenomFonctionnaire(prenom.getText());
+        }
+
+        if (feminin.isSelected()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setSexe("Feminin");
+        } else {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setSexe("Masculin");
+        }
+        // System.out.println("si " + choiceSituationFamiliale.getValue());
+        if (!choiceSituationFamiliale.getValue().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setSituationFamiliale(choiceSituationFamiliale.getValue());
+        }
+        if (!adresseRue.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setRue(adresseRue.getText());
+        }
+        if (!enfantsEnCharge.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setEnfantCharg(Integer.parseInt(enfantsEnCharge.getText()));
+        }
+        if (!enfantScolarise.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setEnfantScolarise(Integer.parseInt(enfantScolarise.getText()));
+        }
+        if (!enfantPlus10Ans.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
+        }
+        if (!adresseVille.getText().isEmpty()) {
+            FicheFonctionnaire1FXMLController.fonctionnaire.setVile(adresseVille.getText());
+        }
         Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire2FXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
@@ -92,19 +127,13 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
         }
         if (i < MenuPrincipaleFXMLController.accordion.getPanes().size()) {
             
-            fonctionnaireInitiale=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ; 
-            afficherFonctionnaire(fonctionnaireInitiale) ;
-            ConnexionBdd cnx = new ConnexionBdd();
-            cnx.connecter();
-            
-            
-            cnx.deconnecter();
-
+            fonctionnaire=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ; 
+            afficherInformationsFonctionnaire(fonctionnaire) ;
 
         }
 
     }
-    private void afficherFonctionnaire(Fonctionnaire fonctionnaire) {
+    private void afficherInformationsFonctionnaire(Fonctionnaire fonctionnaire) {
        nss.setText(fonctionnaire.getNss().toString());
        nom.setText(fonctionnaire.getNomFonctionnaire());
        prenom.setText(fonctionnaire.getPrenomFonctionnaire());

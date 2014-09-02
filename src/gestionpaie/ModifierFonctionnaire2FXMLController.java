@@ -7,12 +7,17 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,15 +32,15 @@ import javafx.scene.control.TextField;
 public class ModifierFonctionnaire2FXMLController implements Initializable {
 
     @FXML
-    private ChoiceBox fonctionCombo;
+    private ComboBox<String> fonctionCombo;
     @FXML
-    private ComboBox statusCombo;
+    private ComboBox<String> statusCombo;
     @FXML
     private TextField categorie;
     @FXML
     private TextField echelon;
     @FXML
-    private ComboBox banquesCombo;
+    private ComboBox<String> banquesCombo;
     @FXML
     private TextField numCompte;
     @FXML
@@ -65,19 +70,80 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
 
     }
 
-    @FXML
-    private void confirmerOnAction(ActionEvent event) throws IOException {
-        /// Sauvegarde des données dans la BDD
-        Main.primaryStage2.hide();
-
-    }
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        modifierFonctionnaire();
+    }
+
+    private void modifierFonctionnaire() {
+        afficherInformationsFonctionnaire(ModifierFonctionnaire1FXMLController.fonctionnaire);
+    }
+
+    private void afficherInformationsFonctionnaire(Fonctionnaire fonctionnaire) {
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
+        ArrayList<Bareme> listesBareme = cnx.getAllBareme(fonctionnaire.getNss());
+        Banque banque = cnx.getBanque(fonctionnaire.getNss());
+        cnx.deconnecter();
+        fonctionCombo.setValue(listefonctions.get(0).getLibelleFonction());
+        System.out.println(" fonction " + listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+        banquesCombo.setValue(banque.getNomBanque());
+        statusCombo.setValue(fonctionnaire.getStatus());
+        dateRecrutement.setValue(LocalDate.parse(fonctionnaire.getDateRecrutement()));
+        categorie.setText(((Integer) listesBareme.get(listesBareme.size() - 1).getCategorie()).toString());
+        echelon.setText(((Integer) listesBareme.get(listesBareme.size() - 1).getEchelon()).toString());
+        numCompte.setText(fonctionnaire.getNumCompte().toString());
+        numMutuelle.setText(fonctionnaire.getNumMutuelle().toString());
+
+    }
+
+    @FXML
+    private void confirmerOnAction(ActionEvent event) throws IOException {
+
+        Fonctionnaire f = ModifierFonctionnaire1FXMLController.fonctionnaire;
+        if (!numCompte.getText().isEmpty()) {
+            f.setNumCompte(Long.parseLong(numCompte.getText()));
+        }
+        if (!numMutuelle.getText().isEmpty()) {
+            f.setNumMutuelle(Long.parseLong(numMutuelle.getText()));
+        }
+        if (!statusCombo.getValue().isEmpty()) {
+            f.setStatus(statusCombo.getValue().toString());
+
+        }
+        if (!dateRecrutement.getValue().toString().isEmpty()) {
+            f.setDateRecrutement(dateRecrutement.getValue().toString());
+        }
+
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        cnx.modifierFonctionnaire(f, banquesCombo.getItems().indexOf(banquesCombo.getValue()) + 1);
+        cnx.attribuerFonction(f.getNss(), fonctionCombo.getItems().indexOf(fonctionCombo.getValue()) + 1, Date.valueOf(f.getDateRecrutement()));
+        cnx.attribuerPrime(f.getNss(), 1);
+        // cnx.attribuer
+
+        for (int i = 0; i < retenusMenu.getItems().size(); i++) {
+            if (((CheckMenuItem) retenusMenu.getItems().get(i)).isSelected()) {
+                System.out.println("\n " + retenusMenu.getItems().get(i).getText());
+                cnx.attribuerRetenu(f.getNss(), i + 1);
+            }
+        }
+        for (int i = 0; i < indimnitésMenu.getItems().size(); i++) {
+            if (((CheckMenuItem) indimnitésMenu.getItems().get(i)).isSelected()) {
+                System.out.println("\n " + indimnitésMenu.getItems().get(i).getText());
+                cnx.attribuerIndemnite(f.getNss(), i + 1);
+            }
+        }
+        cnx.attribuerBareme(f.getNss(), categorie.getText() + "/" + echelon.getText(), Date.valueOf(f.getDateRecrutement()));
+        MenuPrincipaleFXMLController.ajouterFonctionnaireAccordion(f, banquesCombo.getValue().toString(), fonctionCombo.getValue().toString());
+        cnx.deconnecter();
+        Main.primaryStage2.hide();
+
     }
 
 }

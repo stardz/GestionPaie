@@ -47,9 +47,9 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     @FXML
     private TextField adresseRue;
     public static Fonctionnaire fonctionnaire;
-    public static Bareme Barem ;
-    public static Fonction fonction ;
-    public static Banque banque ;
+    public static Bareme Barem;
+    public static Fonction fonction;
+    public static Banque banque;
 
     /**
      * Initializes the controller class.
@@ -69,32 +69,46 @@ public class FicheFonctionnaire1FXMLController implements Initializable {
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
         fonctionnaire = new Fonctionnaire();
-        if(!nss.getText().isEmpty())fonctionnaire.setNss(Integer.parseInt(nss.getText()));
-        if(!nom.getText().isEmpty())fonctionnaire.setNomFonctionnaire(nom.getText());
-        if(!prenom.getText().isEmpty())fonctionnaire.setPrenomFonctionnaire(prenom.getText());
+        if (!nss.getText().isEmpty()) {
+            fonctionnaire.setNss(Integer.parseInt(nss.getText()));
+        }
+        if (!nom.getText().isEmpty()) {
+            fonctionnaire.setNomFonctionnaire(nom.getText());
+        }
+        if (!prenom.getText().isEmpty()) {
+            fonctionnaire.setPrenomFonctionnaire(prenom.getText());
+        }
 
         if (feminin.isSelected()) {
             fonctionnaire.setSexe("Feminin");
         } else {
             fonctionnaire.setSexe("Masculin");
         }
-       // System.out.println("si " + choiceSituationFamiliale.getValue());
-        fonctionnaire.setSituationFamiliale(choiceSituationFamiliale.getValue());
+        // System.out.println("si " + choiceSituationFamiliale.getValue());
+        if (!choiceSituationFamiliale.getValue().isEmpty()) {
+            fonctionnaire.setSituationFamiliale(choiceSituationFamiliale.getValue());
+        }
+        if (!adresseRue.getText().isEmpty()) {
+            fonctionnaire.setRue(adresseRue.getText());
+        }
+        if (!enfantsEnCharge.getText().isEmpty()) {
+            fonctionnaire.setEnfantCharg(Integer.parseInt(enfantsEnCharge.getText()));
+        }
+        if (!enfantScolarise.getText().isEmpty()) {
+            fonctionnaire.setEnfantScolarise(Integer.parseInt(enfantScolarise.getText()));
+        }
+        if (!enfantPlus10Ans.getText().isEmpty()) {
+            fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
+        }
+        if (!adresseVille.getText().isEmpty()) {
+            fonctionnaire.setVile(adresseVille.getText());
+        }
 
-        fonctionnaire.setEnfantCharg(Integer.parseInt(enfantsEnCharge.getText()));
-        fonctionnaire.setEnfantScolarise(Integer.parseInt(enfantScolarise.getText()));
-        fonctionnaire.setEnfantPlusDixAns(Integer.parseInt(enfantPlus10Ans.getText()));
-        fonctionnaire.setVile(adresseVille.getText());
-        fonctionnaire.setRue(adresseRue.getText());
-        
         /*System.out.println("\n  NSS :"+ fonctionnaire.getNss() +" / enfan en charge : "+fonctionnaire.getEnfantCharg());
-        System.out.println("\n Nom :"+fonctionnaire.getNomFonctionnaire()+" /  enfant scolarise :"+fonctionnaire.getEnfantScolarise());
-        System.out.println("\n Prenom :"+fonctionnaire.getPrenomFonctionnaire()+" / enfant+10ans : "+ fonctionnaire.getEnfantPlusDixAns());
-        System.out.println("\n Sexe :"+fonctionnaire.getSexe()+ "/ ville : "+ fonctionnaire.getVile());
-        System.out.println("\n situation familiale : "+fonctionnaire.getSituationFamiliale()+" /  rue :"+fonctionnaire.getRue());*/
-
-        
-
+         System.out.println("\n Nom :"+fonctionnaire.getNomFonctionnaire()+" /  enfant scolarise :"+fonctionnaire.getEnfantScolarise());
+         System.out.println("\n Prenom :"+fonctionnaire.getPrenomFonctionnaire()+" / enfant+10ans : "+ fonctionnaire.getEnfantPlusDixAns());
+         System.out.println("\n Sexe :"+fonctionnaire.getSexe()+ "/ ville : "+ fonctionnaire.getVile());
+         System.out.println("\n situation familiale : "+fonctionnaire.getSituationFamiliale()+" /  rue :"+fonctionnaire.getRue());*/
         Main.root2 = FXMLLoader.load(getClass().getResource("FicheFonctionnaire2FXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
         Main.primaryStage2.setScene(Main.scene2);
