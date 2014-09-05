@@ -21,7 +21,7 @@ public class ConnexionBdd {
         String url = "jdbc:mysql://localhost:3306/paie";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connexion = DriverManager.getConnection(url, "root", "85795544");
+            connexion = DriverManager.getConnection(url, "root", "");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erreur - SQL - lors de la connexion" + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {
@@ -293,6 +293,20 @@ public class ConnexionBdd {
         }
         return retList;
     }
+        public ArrayList<Salaire> getAllSlaire() {
+        ArrayList<Salaire> retList = new ArrayList<Salaire>();
+        String requete = "select * from paie.salaire ;";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Salaire salaire = new Salaire(res.getInt(1),res.getDouble(2),res.getDouble(3),res.getDouble(4),res.getDouble(5));
+                retList.add(salaire);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
         /************************  recuperation des informations d'un fonctionnaire************************************************/
          public ArrayList<Bareme> getAllBareme(Long nss) {
         ArrayList<Bareme> retList = new ArrayList<Bareme>();
@@ -401,6 +415,21 @@ public class ConnexionBdd {
         ArrayList<Retenu> retList = new ArrayList<Retenu>();
         String requete = "select * from paie.retenu natural join paie.avoir_retenu natural join paie.fonctionnaire where"
                 + "nss='"+nss+"';";
+        ResultSet res = getResultatRequete(requete);
+        try {
+            while (res.next()) {
+                Retenu retenu = new Retenu(res.getInt("id_retenu"),res.getString("libelle_ret"),res.getInt("taux_ret"));
+                retList.add(retenu);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retList;
+    }
+    public ArrayList<Retenu> getAllRetenu(Long nss,int cotisation) {
+        ArrayList<Retenu> retList = new ArrayList<Retenu>();
+        String requete = "select * from paie.retenu natural join paie.avoir_retenu natural join paie.fonctionnaire where"
+                + " nss='"+nss+"' && cotisation='"+cotisation+"';";
         ResultSet res = getResultatRequete(requete);
         try {
             while (res.next()) {

@@ -25,11 +25,12 @@ public class TestConsol {
      //           "Celebataire", "Celebatiare", "Setif", "Hdhab", 5, 3,2 ,new Long("13625"),new Long("56985"),"2001-10-14");
         // SalaireManager.imprimerFichePaie(fonctionnaire);
         // Desktop.getDesktop().print(new File("fichepaie.xls"));
-        Salaire salaire=new Salaire(100, 20, 20, 20, 20);
+       
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
-        
-        System.out.println(cnx.getAllInimnete(new Long("12354698"),1,1).get(0).getLibelle_indemnite());
+        Salaire salaire=SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx);
+        salaire.printSalaire();
+        System.out.println();
         cnx.deconnecter();
         
     }
