@@ -6,7 +6,7 @@
 package gestionpaie;
 
 import static gestionpaie.FicheFonctionnaire1FXMLController.fonctionnaire;
-import static gestionpaie.MenuPrincipaleFXMLController.accordion;
+import static gestionpaie.MenuPrincipaleFXMLController.accordion1;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,8 +35,6 @@ import javafx.stage.Stage;
  */
 public class ModifierFonctionnaire1FXMLController implements Initializable {
 
-
-
     @FXML
     private TextField nss;
     @FXML
@@ -57,13 +55,13 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
     private TextField enfantPlus10Ans;
     @FXML
     private TextField adresseVille;
-   @FXML
+    @FXML
     private TextField adresseRue;
     public static Fonctionnaire fonctionnaire;
 
     @FXML
     private void suivantOnAction(ActionEvent event) throws IOException {
-                FicheFonctionnaire1FXMLController.fonctionnaire = new Fonctionnaire();
+        FicheFonctionnaire1FXMLController.fonctionnaire = new Fonctionnaire();
         if (!nss.getText().isEmpty()) {
             FicheFonctionnaire1FXMLController.fonctionnaire.setNss(Integer.parseInt(nss.getText()));
         }
@@ -117,41 +115,42 @@ public class ModifierFonctionnaire1FXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        choiceSituationFamiliale.getItems().add("Marié");
+        choiceSituationFamiliale.getItems().add("Célibataire");
+        choiceSituationFamiliale.getItems().add("divorsé");
         modifierFonctionnaire();
     }
 
     public void modifierFonctionnaire() {
         int i = 0;
-        while (i < MenuPrincipaleFXMLController.accordion.getPanes().size() && !MenuPrincipaleFXMLController.accordion.getPanes().get(i).isExpanded()) {
+        while (i < MenuPrincipaleFXMLController.accordion1.getPanes().size() && !MenuPrincipaleFXMLController.accordion1.getPanes().get(i).isExpanded()) {
             i++;
         }
-        if (i < MenuPrincipaleFXMLController.accordion.getPanes().size()) {
-            
-            fonctionnaire=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ; 
-            afficherInformationsFonctionnaire(fonctionnaire) ;
+        if (i < MenuPrincipaleFXMLController.accordion1 .getPanes().size()) {
+
+            fonctionnaire = MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire();
+            afficherInformationsFonctionnaire(fonctionnaire);
 
         }
 
     }
+
     private void afficherInformationsFonctionnaire(Fonctionnaire fonctionnaire) {
-       nss.setText(fonctionnaire.getNss().toString());
-       nom.setText(fonctionnaire.getNomFonctionnaire());
-       prenom.setText(fonctionnaire.getPrenomFonctionnaire());
-       if(fonctionnaire.getSexe().compareToIgnoreCase("Masculin")==0){
-           masculin.setSelected(true);
-       }
-       else{
-           masculin.setSelected(false);
-         feminin.setSelected(true);
-       }
-       choiceSituationFamiliale.setValue(fonctionnaire.getSituationFamiliale());
-       enfantsEnCharge.setText(fonctionnaire.getEnfantCharg().toString());
-       enfantScolarise.setText(fonctionnaire.getEnfantScolarise().toString());
-       enfantPlus10Ans .setText(fonctionnaire.getEnfantPlusDixAns().toString());
-       adresseVille.setText(fonctionnaire.getVile());
-       adresseRue.setText(fonctionnaire.getRue());
-       
-       
-       
+        nss.setText(fonctionnaire.getNss().toString());
+        nom.setText(fonctionnaire.getNomFonctionnaire());
+        prenom.setText(fonctionnaire.getPrenomFonctionnaire());
+        if (fonctionnaire.getSexe().compareToIgnoreCase("Masculin") == 0) {
+            masculin.setSelected(true);
+        } else {
+            masculin.setSelected(false);
+            feminin.setSelected(true);
+        }
+        choiceSituationFamiliale.setValue(fonctionnaire.getSituationFamiliale());
+        enfantsEnCharge.setText(fonctionnaire.getEnfantCharg().toString());
+        enfantScolarise.setText(fonctionnaire.getEnfantScolarise().toString());
+        enfantPlus10Ans.setText(fonctionnaire.getEnfantPlusDixAns().toString());
+        adresseVille.setText(fonctionnaire.getVile());
+        adresseRue.setText(fonctionnaire.getRue());
+
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -11,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestionpaie.MenuPrincipaleFXMLController">
    <children>
-      <TabPane layoutX="1.0" layoutY="79.0" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" layoutX="1.0" layoutY="79.0" maxHeight="600.0" maxWidth="900.0" minHeight="600.0" minWidth="900.0" prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Gestion des fonctionnaires">
             <content>
@@ -202,7 +203,10 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Statistiques" />
+            <Tab text="Statistiques">
+               <content>
+                  <PieChart fx:id="pieChart" />
+               </content></Tab>
         </tabs>
       </TabPane>
       <ImageView id="logo" fitHeight="72.0" fitWidth="127.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
