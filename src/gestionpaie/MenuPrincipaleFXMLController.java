@@ -10,13 +10,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Accordion;
@@ -410,7 +409,55 @@ public class MenuPrincipaleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         remplirAccordions();
-        //la configuration
+        pieChart.getData().add(new PieChart.Data("a", 50));
+        pieChart.getData().add(new PieChart.Data("b", 50));
+        pieChart.setLabelLineLength(10);
+        pieChart.setLegendSide(Side.BOTTOM);
+
+
+    }
+
+    public void remplirAccordions() {
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        fonctionnairePanes = new ArrayList<FonctionnairePane>();
+        listesFonctionnaire = cnx.getAllFonctionnaire();
+
+        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
+            ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
+
+            Banque banque = cnx.getBanque(fonctionnaire.getNss());
+
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            fonctionnairePanes.add(pane);
+            fonctionnaireAccordion2.getPanes().add(pane);
+            fonctionnaireAccordion1.getPanes().add(pane1);
+            fonctionnaireAccordion3.getPanes().add(pane2);
+        }
+        accordion1 = fonctionnaireAccordion1;
+        accordion2 = fonctionnaireAccordion2;
+        accordion3 = fonctionnaireAccordion3;
+        cnx.deconnecter();
+        //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
+        // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
+
+    }
+
+    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire, String libeleBanque, String libeleFonction) {
+        listesFonctionnaire.add(fonctionnaire);
+        FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        FonctionnairePane pane3 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        fonctionnairePanes.add(pane1);
+        accordion1.getPanes().add(pane1);
+        accordion2.getPanes().add(pane2);
+        accordion3.getPanes().add(pane3);
+
+    }
+    public void configuration(){
+                //la configuration
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
         // initialisation des combobox
@@ -450,57 +497,13 @@ public class MenuPrincipaleFXMLController implements Initializable {
         }
 
         cnx.deconnecter();
-
     }
-
-    public void remplirAccordions() {
-        ConnexionBdd cnx = new ConnexionBdd();
-        cnx.connecter();
-        fonctionnairePanes = new ArrayList<FonctionnairePane>();
-        listesFonctionnaire = cnx.getAllFonctionnaire();
-
-        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
-            ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
-
-            Banque banque = cnx.getBanque(fonctionnaire.getNss());
-
-            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
-            FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
-            FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
-            fonctionnairePanes.add(pane);
-            fonctionnaireAccordion2.getPanes().add(pane);
-            fonctionnaireAccordion1.getPanes().add(pane1);
-            fonctionnaireAccordion3.getPanes().add(pane2);
-        }
-        accordion1 = fonctionnaireAccordion1;
-        accordion2 = fonctionnaireAccordion2;
-        accordion3 = fonctionnaireAccordion3
-                ;
-        cnx.deconnecter();
-        //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
-        // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
-
-    }
-
-    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire, String libeleBanque, String libeleFonction) {
-        listesFonctionnaire.add(fonctionnaire);
-        FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
-        FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
-        FonctionnairePane pane3 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
-        fonctionnairePanes.add(pane1);
-        accordion1.getPanes().add(pane1);
-        accordion2.getPanes().add(pane2);
-        accordion3.getPanes().add(pane3);
-
-    }
-
-  /*  public void listenPanesChanged() {
-        tabPane.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
-                // do something...
-            }
-        });
-    }*/
-
+    /*  public void listenPanesChanged() {
+     tabPane.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+     @Override
+     public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+     // do something...
+     }
+     });
+     }*/
 }

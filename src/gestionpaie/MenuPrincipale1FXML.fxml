@@ -205,7 +205,7 @@
             </Tab>
             <Tab text="Statistiques">
                <content>
-                  <PieChart fx:id="pieChart" />
+                  <PieChart fx:id="pieChart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
                </content></Tab>
         </tabs>
       </TabPane>
