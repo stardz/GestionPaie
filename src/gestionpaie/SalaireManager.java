@@ -7,11 +7,12 @@ package gestionpaie;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
@@ -147,7 +148,7 @@ public class SalaireManager {
          // L'entet
          DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
 	   //get current date time with Date()
-	   Date date = new Date();
+	   java.util.Date date=new java.util.Date();
 	   System.out.println(dateFormat.format(date));
          l = new Label(5,17, dateFormat.format(date));
          cell = (WritableCell) l;
@@ -256,12 +257,77 @@ public class SalaireManager {
         // Desktop.getDesktop().print(new File("cpy.xls"));
     }
 
-    static void calculerRappel(Fonctionnaire fonctionnaire, Date dateDebut) {
-
+    static Rappel calculerRappel(Fonctionnaire fonctionnaire, Date dateDebut,ConnexionBdd cnx) {
+       ArrayList<Salaire>salairesDu=cnx.getAllSalaireDu(fonctionnaire.getNss(), dateDebut);
+       ArrayList<Salaire>salairesRecu=cnx.getAllSalaireRecu(fonctionnaire.getNss(), dateDebut);
+       if(salairesDu.size()!=salairesRecu.size())return null;
+       Rappel rappel=new Rappel();
+       double res=0;
+       rappel.setDebutRappel(dateDebut);
+       for(int i=0;i<salairesDu.size();i++){
+           res+=salairesDu.get(i).getSalaire_net()-salairesRecu.get(i).getSalaire_net();
+       }
+        rappel.setValeurRappel(res);
+        return rappel;
     }
 
-    static void imprimerFicheRappel(Fonctionnaire fonctionnaire, Date dateDebut) {
-
+    static void imprimerFicheRappel(Fonctionnaire fonctionnaire,Rappel rappel,ConnexionBdd cnx) throws IOException, BiffException, WriteException {
+          Workbook existingWorkbook = Workbook.getWorkbook(new File("ficherappel.xls"));
+         WritableWorkbook workbookCopy = Workbook.createWorkbook(new File("cpyR.xls"), existingWorkbook);
+         WritableSheet sheetToEdit = workbookCopy.getSheet("fp");
+         WritableCell cell;
+         Label l;
+          // L'entet
+         
+         
+         l = new Label(2,23, fonctionnaire.getNomFonctionnaire());
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+        
+         l = new Label(6,23, fonctionnaire.getPrenomFonctionnaire());
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+        
+         l = new Label(2,24, fonctionnaire.getNss()+"");
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+        
+         l = new Label(2,25,cnx.getAllBareme(fonctionnaire.getNss()).get(cnx.getAllBareme(fonctionnaire.getNss()).size()-1).getCategorie()+"");
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+        
+         l = new Label(6,25,cnx.getAllBareme(fonctionnaire.getNss()).get(cnx.getAllBareme(fonctionnaire.getNss()).size()-1).getEchelon()+"");
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+        
+         l = new Label(2,26,cnx.getAllFonction(fonctionnaire.getNss()).get(cnx.getAllFonction(fonctionnaire.getNss()).size()-1).getLibelleFonction());
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+         // comps rappel
+         
+         l = new Label(1,34,rappel.getDebutRappel().toString());
+         cell = (WritableCell) l;
+         cell.setCellFormat(sheetToEdit.getCell("B35").getCellFormat());
+         sheetToEdit.addCell(cell);
+         
+         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	   //get current date time with Date()
+	   java.util.Date date=new java.util.Date();
+	   System.out.println(dateFormat.format(date));
+         l = new Label(3,34, dateFormat.format(date));
+         cell = (WritableCell) l;
+         cell.setCellFormat(sheetToEdit.getCell("B35").getCellFormat());
+         sheetToEdit.addCell(cell);
+         
+         l = new Label(6,34, rappel.getValeurRappel()+"");
+         cell = (WritableCell) l;
+         cell.setCellFormat(sheetToEdit.getCell("B35").getCellFormat());
+         sheetToEdit.addCell(cell);
+         
+         workbookCopy.write();
+         workbookCopy.close();
+         existingWorkbook.close();
+         // Desktop.getDesktop().print(new File("cpyR.xls"));
     }
 
     static double getSalaireDeBase(Long nss, ConnexionBdd connexion) {
