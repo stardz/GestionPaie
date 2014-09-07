@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,13 +18,18 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Side;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -40,7 +46,11 @@ public class MenuPrincipaleFXMLController implements Initializable {
      * *************************************
      */
     @FXML
-    PieChart pieChart;
+    PieChart pieChartSexe;
+    @FXML
+    PieChart pieChartSituationFamiliale;
+    @FXML
+    BarChart<String, Number> barChartFonction;
     @FXML
     TabPane tabPane;
     @FXML
@@ -409,11 +419,8 @@ public class MenuPrincipaleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         remplirAccordions();
-        pieChart.getData().add(new PieChart.Data("a", 50));
-        pieChart.getData().add(new PieChart.Data("b", 50));
-        pieChart.setLabelLineLength(10);
-        pieChart.setLegendSide(Side.BOTTOM);
-
+        configuration();
+        statistiques();
 
     }
 
@@ -456,8 +463,9 @@ public class MenuPrincipaleFXMLController implements Initializable {
         accordion3.getPanes().add(pane3);
 
     }
-    public void configuration(){
-                //la configuration
+
+    public void configuration() {
+        //la configuration
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
         // initialisation des combobox
@@ -506,4 +514,54 @@ public class MenuPrincipaleFXMLController implements Initializable {
      }
      });
      }*/
+
+    private void statistiques() {
+        pieChartSexe.getData().add(new PieChart.Data("Masculin", 50));
+        pieChartSexe.getData().add(new PieChart.Data("Feminin", 50));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Marié", 50));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Célibataire", 25));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Divorsé", 25));
+        pieChartSexe.setLabelLineLength(10);
+        pieChartSexe.setLegendSide(Side.LEFT);
+        pieChartSituationFamiliale.setLabelLineLength(10);
+        pieChartSituationFamiliale.setLegendSide(Side.LEFT);
+
+        final Label caption;
+        caption = new Label("");
+        caption.setTextFill(Color.DARKORANGE);
+        caption.setStyle("-fx-font: 24 arial;");
+
+        for (final PieChart.Data data : pieChartSexe.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(String.valueOf(data.getPieValue()) + "%");
+                        }
+                    });
+        }
+        for (final PieChart.Data data : pieChartSituationFamiliale.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
+                    new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent e) {
+                            caption.setTranslateX(e.getSceneX());
+                            caption.setTranslateY(e.getSceneY());
+                            caption.setText(String.valueOf(data.getPieValue()) + "%");
+                        }
+                    });
+        }
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.getData().add(new XYChart.Data("Ingénieure", 25));
+        series1.getData().add(new XYChart.Data("Tchnicien superieure", 10));
+        series1.getData().add(new XYChart.Data("Technicien", 12));
+        
+
+        barChartFonction.getData().add(series1);
+        barChartFonction.setLegendVisible(false);
+        barChartFonction.setCategoryGap(50);
+    }
 }
