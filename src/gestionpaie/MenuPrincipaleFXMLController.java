@@ -220,7 +220,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
         }
         indicereel.setText("" + bareme.getIndiceCategorie());
         ptsEchelon.setText("" + bareme.getIndiceEchelon());
-        indiceBrut.setText("" + bareme.getIndiceCategorie() + bareme.getIndiceEchelon());
+        indiceBrut.setText("" + (bareme.getIndiceCategorie() + bareme.getIndiceEchelon()));
         cnx.deconnecter();
 
     }
@@ -409,6 +409,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         remplirAccordions();
+        configuration();
         pieChart.getData().add(new PieChart.Data("a", 50));
         pieChart.getData().add(new PieChart.Data("b", 50));
         pieChart.setLabelLineLength(10);
