@@ -7,6 +7,8 @@ package gestionpaie;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -134,91 +136,123 @@ public class SalaireManager {
         return salaire;
     }
 
-    static void imprimerFichePaie(Fonctionnaire fonctionnaire) throws IOException, BiffException, WriteException {
+    static void imprimerFichePaie(Fonctionnaire fonctionnaire,Salaire salaire,ConnexionBdd cnx) throws IOException, BiffException, WriteException {
 
          Workbook existingWorkbook = Workbook.getWorkbook(new File("fichepaie.xls"));
          WritableWorkbook workbookCopy = Workbook.createWorkbook(new File("cpy.xls"), existingWorkbook);
          WritableSheet sheetToEdit = workbookCopy.getSheet("fp");
          WritableCell cell;
          Label l;
-        /*
+        
          // L'entet
-         l = new Label(2,24, fonctionnaire.getNomFonctionnaire());
+         DateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+	   //get current date time with Date()
+	   Date date = new Date();
+	   System.out.println(dateFormat.format(date));
+         l = new Label(5,17, dateFormat.format(date));
+         cell = (WritableCell) l;
+         sheetToEdit.addCell(cell);
+         
+         l = new Label(2,23, fonctionnaire.getNomFonctionnaire());
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
         
-         l = new Label(6,24, fonctionnaire.getPrenomFonctionnaire());
+         l = new Label(6,23, fonctionnaire.getPrenomFonctionnaire());
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
         
-         l = new Label(9,24, fonctionnaire.getNss()+"");
+         l = new Label(2,24, fonctionnaire.getNss()+"");
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
         
-         l = new Label(2,25,SalaireManager.baremTest.getCategorie()+"");
+         l = new Label(2,25,cnx.getAllBareme(fonctionnaire.getNss()).get(cnx.getAllBareme(fonctionnaire.getNss()).size()-1).getCategorie()+"");
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
         
-         l = new Label(6,25,SalaireManager.baremTest.getEchelon()+"");
+         l = new Label(6,25,cnx.getAllBareme(fonctionnaire.getNss()).get(cnx.getAllBareme(fonctionnaire.getNss()).size()-1).getEchelon()+"");
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
         
-         l = new Label(2,26,SalaireManager.fonctionTest.getLibelleFonction());
+         l = new Label(2,26,cnx.getAllFonction(fonctionnaire.getNss()).get(cnx.getAllFonction(fonctionnaire.getNss()).size()-1).getLibelleFonction());
          cell = (WritableCell) l;
          sheetToEdit.addCell(cell);
          // Les compasant de la paie
-         l = new Label(9,31,getSalaireDeBase(fonctionnaire.getNss())+"");
+         l = new Label(6,30,salaire.getSalaire_base()+"");
          cell = (WritableCell) l;
+             cell.setCellFormat(sheetToEdit.getCell("H31").getCellFormat());
          sheetToEdit.addCell(cell);
         
-         l = new Label(9,33,getIEP(fonctionnaire)+"");
+         l = new Label(6,39,salaire.getSalaire_poste()+"");
          cell = (WritableCell) l;
+             cell.setCellFormat(sheetToEdit.getCell("H31").getCellFormat());
          sheetToEdit.addCell(cell);
         
-         l = new Label(9,34,getIFC(fonctionnaire)+"");
+         l = new Label(6,49,salaire.getSalaire_imposable()+"");
          cell = (WritableCell) l;
+             cell.setCellFormat(sheetToEdit.getCell("H31").getCellFormat());
          sheetToEdit.addCell(cell);
         
-         l = new Label(9,35,getIEP(fonctionnaire)+getIFC(fonctionnaire)+"");
+         l = new Label(5,60,salaire.getSalaire_net()+"");
          cell = (WritableCell) l;
+             cell.setCellFormat(sheetToEdit.getCell("H31").getCellFormat());
          sheetToEdit.addCell(cell);
-        
-         l = new Label(9,36,getSalaireDeBase(fonctionnaire.getNss())+getIEP(fonctionnaire)+getIFC(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,38,getAllocation(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,39,getSalaireBrut(fonctionnaire)+getAllocation(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,41,getSecSociale(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,42,getIrg(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,43,getMutuelle(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(9,44,getSecSociale(fonctionnaire)+getMutuelle(fonctionnaire)+getIrg(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-         l = new Label(8,48,calculerPaie(fonctionnaire)+"");
-         cell = (WritableCell) l;
-         sheetToEdit.addCell(cell);
-        
-  
+         int i=31;
+         for(String key :salaire.getIndemniteVal().get(0).keySet()){
+             l = new Label(2,i,key+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             
+            l = new Label(6,i,salaire.getIndemniteVal().get(0).get(key)+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             i++;
+         }
+         i=40;
+         for(String key :salaire.getIndemniteVal().get(1).keySet()){
+             l = new Label(2,i,key+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+            
+            l = new Label(6,i,salaire.getIndemniteVal().get(1).get(key)+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             i++;
+         }
+         for(String key :salaire.getRetenuVal().get(0).keySet()){
+             l = new Label(2,i,key+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             
+            l = new Label(6,i,salaire.getRetenuVal().get(0).get(key)+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             i++;
+         }
+         i=50;
+         for(String key :salaire.getIndemniteVal().get(2).keySet()){
+             l = new Label(2,i,key+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             
+            l = new Label(6,i,salaire.getIndemniteVal().get(2).get(key)+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+             i++;
+         }
+         for(String key :salaire.getRetenuVal().get(1).keySet()){
+             l = new Label(2,i,key+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+            
+            l = new Label(6,i,salaire.getRetenuVal().get(1).get(key)+"");
+             cell = (WritableCell) l;
+             sheetToEdit.addCell(cell);
+              i++;
+         }
+         
          workbookCopy.write();
          workbookCopy.close();
-         existingWorkbook.close();*/
+         existingWorkbook.close();
         // Desktop.getDesktop().print(new File("cpy.xls"));
     }
 

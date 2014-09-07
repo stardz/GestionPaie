@@ -8,6 +8,8 @@ package gestionpaie;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 
 
@@ -31,7 +33,10 @@ public class TestConsol {
         /*
         Salaire salaire=SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx);
         salaire.printSalaire();*/
-        System.out.println("=========="+cnx.nbrFonctPar("libelle_fonction", "technicien"));
+        //System.out.println("=========="+cnx.nbrFonctPar("libelle_fonction", "technicien"));
+       SalaireManager.imprimerFichePaie(cnx.getFonctionnaire(new Long("12354698")),
+               SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx), cnx);
+         
         cnx.deconnecter();
         
     }
