@@ -153,6 +153,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
             Main.scene2 = new Scene(Main.root2);
             Main.primaryStage2.setScene(Main.scene2);
             Main.primaryStage2.show();
+            
         } else {
             // afficher message  selectionner un fonctionnaire
             Stage dialogStage = new Stage();
@@ -182,10 +183,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
             // System.out.println("\n size accordion1 :"+accordion1.getPanes().size() ) ;
             // System.out.println("\n size accordion1 :"+ fonctionnairePanes.size()) ;
             cnx.deconnecter();
-            accordion1.getPanes().remove(i);
-            accordion2.getPanes().remove(i);
-            accordion3.getPanes().remove(i);
-            fonctionnairePanes.remove(i);
+            supprimerFonctionnaireAccordion(i);
 
         } else {
             // afficher message  selectionner un fonctionnaire
@@ -434,7 +432,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
             ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
 
             Banque banque = cnx.getBanque(fonctionnaire.getNss());
-
+          //  System.out.println("\nnomF :"+fonctionnaire.getNomFonctionnaire()+"  size : "+listefonctions.size());
             FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
             FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
             FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
@@ -462,6 +460,15 @@ public class MenuPrincipaleFXMLController implements Initializable {
         accordion2.getPanes().add(pane2);
         accordion3.getPanes().add(pane3);
 
+    }
+    
+    public static void supprimerFonctionnaireAccordion(int i){
+        fonctionnairePanes.remove(i) ;
+        listesFonctionnaire.remove(i) ;
+        accordion1.getPanes().remove(i) ;
+        accordion2.getPanes().remove(i) ;
+        accordion3.getPanes().remove(i) ;
+        
     }
 
     public void configuration() {
@@ -516,11 +523,27 @@ public class MenuPrincipaleFXMLController implements Initializable {
      }*/
 
     private void statistiques() {
-        pieChartSexe.getData().add(new PieChart.Data("Masculin", 50));
-        pieChartSexe.getData().add(new PieChart.Data("Feminin", 50));
-        pieChartSituationFamiliale.getData().add(new PieChart.Data("Marié", 50));
-        pieChartSituationFamiliale.getData().add(new PieChart.Data("Célibataire", 25));
-        pieChartSituationFamiliale.getData().add(new PieChart.Data("Divorsé", 25));
+        ConnexionBdd cnx =new ConnexionBdd() ;
+        cnx.connecter();
+        int nbFoncMasc=cnx.nbrFonctPar("Sexe", "Masculin") ;
+        int nbFoncFemin=cnx.nbrFonctPar("Sexe", "Feminin") ;
+        int totalSexe=nbFoncFemin+nbFoncMasc ;
+        int nbFoncMarie=cnx.nbrFonctPar("situation_conj", "Marié") ;
+        int nbFoncDivorse=cnx.nbrFonctPar("situation_conj", "Divorsé") ;
+        int nbFoncCelibat=cnx.nbrFonctPar("situation_conj", "Célibat") ;
+        int totalSitu=nbFoncCelibat+nbFoncDivorse+nbFoncMarie ;
+        int nbFoncIng=cnx.nbrFonctPar("libelle_fonction","Ingenieur") ;
+        int nbFoncTech=cnx.nbrFonctPar("libelle_fonction","Technicien") ;
+        int nbFoncTechSup=cnx.nbrFonctPar("libelle_fonction","Technicien superieur") ;
+        int totalFonc=nbFoncIng+nbFoncTech+nbFoncTechSup ;
+        cnx.deconnecter();
+        System.out.println("\nmscu :"+nbFoncMasc);
+        System.out.println("\n femin:");
+        pieChartSexe.getData().add(new PieChart.Data("Masculin", nbFoncMasc*100/totalSexe));
+        pieChartSexe.getData().add(new PieChart.Data("Feminin", nbFoncFemin*100/totalSexe));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Marié", nbFoncMarie*100/totalSitu));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Célibataire", nbFoncCelibat*100/totalSitu));
+        pieChartSituationFamiliale.getData().add(new PieChart.Data("Divorsé", nbFoncDivorse*100/totalSitu));
         pieChartSexe.setLabelLineLength(10);
         pieChartSexe.setLegendSide(Side.LEFT);
         pieChartSituationFamiliale.setLabelLineLength(10);
@@ -542,7 +565,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
                         }
                     });
         }
-        for (final PieChart.Data data : pieChartSituationFamiliale.getData()) {
+      /*  for (final PieChart.Data data : pieChartSituationFamiliale.getData()) {
             data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED,
                     new EventHandler<MouseEvent>() {
                         @Override
@@ -552,12 +575,12 @@ public class MenuPrincipaleFXMLController implements Initializable {
                             caption.setText(String.valueOf(data.getPieValue()) + "%");
                         }
                     });
-        }
+        }*/
 
         XYChart.Series series1 = new XYChart.Series();
-        series1.getData().add(new XYChart.Data("Ingénieure", 25));
-        series1.getData().add(new XYChart.Data("Tchnicien superieure", 10));
-        series1.getData().add(new XYChart.Data("Technicien", 12));
+        series1.getData().add(new XYChart.Data("Ingénieure", nbFoncIng));
+        series1.getData().add(new XYChart.Data("Tchnicien superieure", nbFoncTechSup));
+        series1.getData().add(new XYChart.Data("Technicien", nbFoncTech));
         
 
         barChartFonction.getData().add(series1);

@@ -5,6 +5,9 @@
  */
 package gestionpaie;
 
+import static gestionpaie.MenuPrincipaleFXMLController.accordion1;
+import static gestionpaie.MenuPrincipaleFXMLController.listesFonctionnaire;
+import java.awt.Menu;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -75,7 +78,7 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                // TODO
+        // TODO
 
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
@@ -109,7 +112,20 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
     }
 
     private void modifierFonctionnaire() {
-        afficherInformationsFonctionnaire(ModifierFonctionnaire1FXMLController.fonctionnaire);
+        Fonctionnaire fonctionnaire ;
+                int i = 0;
+        while (i < MenuPrincipaleFXMLController.accordion1.getPanes().size() && !MenuPrincipaleFXMLController.accordion1.getPanes().get(i).isExpanded()) {
+            i++;
+        }
+        if (i < MenuPrincipaleFXMLController.accordion1 .getPanes().size()) {
+            
+            
+
+            fonctionnaire= MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire();
+           // fonctionnaire =new Fonctionnaire(f.getNss(),f.getNomFonctionnaire(), f.getPrenomFonctionnaire(),f.getSexe(),f.getSituationFamiliale(),f.getDateRecrutement(), f.getEnfantCharg(), f.getEnfantScolarise(), f.getEnfantPlusDixAns(),f.getNumMutuelle(), f.getNumCompte(), f.getRue(),f.getVile(), f.getStatus()) ;
+            afficherInformationsFonctionnaire(fonctionnaire);
+
+        }
     }
 
     private void afficherInformationsFonctionnaire(Fonctionnaire fonctionnaire) {
@@ -120,12 +136,13 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
         Banque banque = cnx.getBanque(fonctionnaire.getNss());
         cnx.deconnecter();
         fonctionCombo.setValue(listefonctions.get(0).getLibelleFonction());
-        System.out.println(" fonction " + listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+       // System.out.println(" fonction " + listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+        System.out.println(fonctionnaire.getDateRecrutement());
         banquesCombo.setValue(banque.getNomBanque());
         statusCombo.setValue(fonctionnaire.getStatus());
         dateRecrutement.setValue(LocalDate.parse(fonctionnaire.getDateRecrutement()));
-        categorie.setText(((Integer) listesBareme.get(listesBareme.size() - 1).getCategorie()).toString());
-        echelon.setText(((Integer) listesBareme.get(listesBareme.size() - 1).getEchelon()).toString());
+        categorie.setText(listesBareme.get(listesBareme.size() - 1).getcategorieEchelon().split("/")[0]) ;
+        echelon.setText(listesBareme.get(listesBareme.size() - 1).getcategorieEchelon().split("/")[1]);
         numCompte.setText(fonctionnaire.getNumCompte().toString());
         numMutuelle.setText(fonctionnaire.getNumMutuelle().toString());
 
@@ -151,14 +168,14 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
 
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
-      /*  System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
+        /*  System.out.println("\n Codefonction :"+FicheFonctionnaire1FXMLController.fonction.getLibelleFonction());
          System.out.println("\n statusCombo :"+f.getStatus());
          System.out.println("\n Date de recrutement :"+f.getDateRecrutement().toString());
          System.out.println("\n banquesCombo:"+FicheFonctionnaire1FXMLController.banquesCombo.getNomBanque());
          System.out.println("\n bareme:"+FicheFonctionnaire1FXMLController.Barem.getcategorieEchelon());
          System.out.println("\n Num mutuelle:"+ f.getNumMutuelle());
          System.out.println("\n Num compte:"+ f.getNumCompte());*/
-        System.out.println("id banque "+banquesCombo.getItems().indexOf(banquesCombo.getValue()) + 1);
+        System.out.println("id banque " + banquesCombo.getItems().indexOf(banquesCombo.getValue()) + 1);
         cnx.modifierFonctionnaire(f, banquesCombo.getItems().indexOf(banquesCombo.getValue()) + 1);
         cnx.attribuerFonction(f.getNss(), fonctionCombo.getItems().indexOf(fonctionCombo.getValue()) + 1, Date.valueOf(f.getDateRecrutement()));
         cnx.attribuerPrime(f.getNss(), 1);
@@ -177,6 +194,15 @@ public class ModifierFonctionnaire2FXMLController implements Initializable {
             }
         }
         cnx.attribuerBareme(f.getNss(), categorie.getText() + "/" + echelon.getText(), Date.valueOf(f.getDateRecrutement()));
+        int i = 0;
+        while (i < accordion1.getPanes().size() && !accordion1.getPanes().get(i).isExpanded()) {
+            i++;
+        }
+        if (i < accordion1.getPanes().size()) {
+            MenuPrincipaleFXMLController.supprimerFonctionnaireAccordion(i);
+
+        }
+
         MenuPrincipaleFXMLController.ajouterFonctionnaireAccordion(f, banquesCombo.getValue().toString(), fonctionCombo.getValue().toString());
         cnx.deconnecter();
         Main.primaryStage2.hide();
