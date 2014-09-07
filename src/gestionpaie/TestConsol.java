@@ -28,9 +28,10 @@ public class TestConsol {
        
         ConnexionBdd cnx=new ConnexionBdd();
         cnx.connecter();
+        /*
         Salaire salaire=SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx);
-        salaire.printSalaire();
-        System.out.println();
+        salaire.printSalaire();*/
+        System.out.println("=========="+cnx.nbrFonctPar("libelle_fonction", "technicien"));
         cnx.deconnecter();
         
     }

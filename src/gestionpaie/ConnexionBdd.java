@@ -21,7 +21,7 @@ public class ConnexionBdd {
         String url = "jdbc:mysql://localhost:3306/paie";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connexion = DriverManager.getConnection(url, "root", "85795544");
+            connexion = DriverManager.getConnection(url, "root", "");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erreur - SQL - lors de la connexion" + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {
@@ -659,5 +659,20 @@ public class ConnexionBdd {
         modifierTable("fonctionnaire", "id_banque", ""+idBanque, " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "statut", ""+fonctionnaire.getStatus(), " nss='"+fonctionnaire.getNss()+"'");      
     }
+      /****************************** Statistiques *******************************************************************/
+      public int nbrFonctPar(String attribut,String valeur){  
+          String requete="Select * from fonctionnaire natural join occupe "
+                  + "natural join fonction where "+attribut+"= '"+valeur+"';";
+          ResultSet res=getResultatRequete(requete);
+          int cpt=0;
+        try {
+            while(res.next()){
+                cpt++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return cpt;
+      }
       
 }

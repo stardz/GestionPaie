@@ -230,7 +230,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
         }
         indicereel.setText("" + bareme.getIndiceCategorie());
         ptsEchelon.setText("" + bareme.getIndiceEchelon());
-        indiceBrut.setText("" + bareme.getIndiceCategorie() + bareme.getIndiceEchelon());
+        indiceBrut.setText("" + (bareme.getIndiceCategorie() + bareme.getIndiceEchelon()));
         cnx.deconnecter();
 
     }
@@ -421,6 +421,11 @@ public class MenuPrincipaleFXMLController implements Initializable {
         remplirAccordions();
         configuration();
         statistiques();
+
+        pieChart.getData().add(new PieChart.Data("a", 50));
+        pieChart.getData().add(new PieChart.Data("b", 50));
+        pieChart.setLabelLineLength(10);
+        pieChart.setLegendSide(Side.BOTTOM);
 
     }
 
