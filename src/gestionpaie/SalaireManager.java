@@ -5,11 +5,17 @@
  */
 package gestionpaie;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import jxl.Workbook;
 import jxl.read.biff.BiffException;
+import jxl.write.Label;
+import jxl.write.WritableCell;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
 
 /**
@@ -130,11 +136,12 @@ public class SalaireManager {
 
     static void imprimerFichePaie(Fonctionnaire fonctionnaire) throws IOException, BiffException, WriteException {
 
-        /*  Workbook existingWorkbook = Workbook.getWorkbook(new File("fichepaie.xls"));
+         Workbook existingWorkbook = Workbook.getWorkbook(new File("fichepaie.xls"));
          WritableWorkbook workbookCopy = Workbook.createWorkbook(new File("cpy.xls"), existingWorkbook);
          WritableSheet sheetToEdit = workbookCopy.getSheet("fp");
          WritableCell cell;
          Label l;
+        /*
          // L'entet
          l = new Label(2,24, fonctionnaire.getNomFonctionnaire());
          cell = (WritableCell) l;

@@ -659,5 +659,19 @@ public class ConnexionBdd {
         modifierTable("fonctionnaire", "id_banque", ""+idBanque, " nss='"+fonctionnaire.getNss()+"'");
         modifierTable("fonctionnaire", "statut", ""+fonctionnaire.getStatus(), " nss='"+fonctionnaire.getNss()+"'");      
     }
+      /****************************** Statistiques *******************************************************************/
+      public int nbrFonctPar(String attribut,String valeur){  
+          String requete="Select * from fonctionnaire where "+attribut+"= '"+valeur+"';";
+          ResultSet res=getResultatRequete(requete);
+          int cpt=0;
+        try {
+            while(res.next()){
+                cpt++;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnexionBdd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          return cpt;
+      }
       
 }
