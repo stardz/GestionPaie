@@ -422,11 +422,6 @@ public class MenuPrincipaleFXMLController implements Initializable {
         configuration();
         statistiques();
 
-        pieChart.getData().add(new PieChart.Data("a", 50));
-        pieChart.getData().add(new PieChart.Data("b", 50));
-        pieChart.setLabelLineLength(10);
-        pieChart.setLegendSide(Side.BOTTOM);
-
     }
 
     public void remplirAccordions() {
