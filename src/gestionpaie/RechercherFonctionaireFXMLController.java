@@ -107,11 +107,11 @@ public class RechercherFonctionaireFXMLController implements Initializable {
         cnx.connecter();
         fonctionnaireTrouve = cnx.getFonctionnaire(fonctionnaireRecherche.getNss());
 
-        MenuPrincipaleFXMLController.accordion.getPanes().remove(0, MenuPrincipaleFXMLController.accordion.getPanes().size());
+        MenuPrincipaleFXMLController.accordion1.getPanes().remove(0, MenuPrincipaleFXMLController.accordion1.getPanes().size());
         if (fonctionnaireTrouve != null) {
             Banque banque=cnx.getBanque(fonctionnaireTrouve.getNss()) ;
             ArrayList<Fonction> listeFonction=cnx.getAllFonction(fonctionnaireTrouve.getNss()) ;
-            MenuPrincipaleFXMLController.accordion.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
+            MenuPrincipaleFXMLController.accordion1.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
         }
 
         cnx.deconnecter();

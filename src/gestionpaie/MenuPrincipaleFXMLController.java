@@ -5,7 +5,6 @@
  */
 package gestionpaie;
 
-import java.awt.Dialog;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,10 +15,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Side;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBoxBuilder;
 import javafx.scene.text.Text;
@@ -37,6 +39,10 @@ public class MenuPrincipaleFXMLController implements Initializable {
      * ******************* LA CONFIGURATION
      * *************************************
      */
+    @FXML
+    PieChart pieChart;
+    @FXML
+    TabPane tabPane;
     @FXML
     ComboBox valTauxInd;
     @FXML
@@ -96,7 +102,9 @@ public class MenuPrincipaleFXMLController implements Initializable {
     Accordion fonctionnaireAccordion2;
     @FXML
     Accordion fonctionnaireAccordion3;
-    public static Accordion accordion;
+    public static Accordion accordion1;
+    public static Accordion accordion2;
+    public static Accordion accordion3;
     public static ArrayList<Fonctionnaire> listesFonctionnaire;
     public static ArrayList<FonctionnairePane> fonctionnairePanes;
 
@@ -114,17 +122,27 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void rechercherFonctionaireOnAction(ActionEvent event) throws IOException {
-        
-        int i=0 ;
-        while (i < accordion.getPanes().size() && !accordion.getPanes().get(i).isExpanded()) {
+
+        Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
+
+    }
+
+    @FXML
+    private void modifierFonctionnaireOnAction(ActionEvent event) throws IOException {
+
+        int i = 0;
+        while (i < accordion1.getPanes().size() && !accordion1.getPanes().get(i).isExpanded()) {
             i++;
         }
-        if (i < accordion.getPanes().size()) {
-            Main.root2 = FXMLLoader.load(getClass().getResource("RechercherFonctionaireFXML.fxml"));
+        if (i < accordion1.getPanes().size()) {
+
+            Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire1FXML.fxml"));
             Main.scene2 = new Scene(Main.root2);
             Main.primaryStage2.setScene(Main.scene2);
             Main.primaryStage2.show();
-            
         } else {
             // afficher message  selectionner un fonctionnaire
             Stage dialogStage = new Stage();
@@ -139,32 +157,24 @@ public class MenuPrincipaleFXMLController implements Initializable {
     }
 
     @FXML
-    private void modifierFonctionnaireOnAction(ActionEvent event) throws IOException {
-
-        Main.root2 = FXMLLoader.load(getClass().getResource("ModifierFonctionnaire1FXML.fxml"));
-        Main.scene2 = new Scene(Main.root2);
-        Main.primaryStage2.setScene(Main.scene2);
-        Main.primaryStage2.show();
-
-    }
-
-    @FXML
     private void supprimerFonctionnaireOnAction(ActionEvent event) throws IOException {
 
         int i = 0;
-        while (i < accordion.getPanes().size() && !accordion.getPanes().get(i).isExpanded()) {
+        while (i < accordion1.getPanes().size() && !accordion1.getPanes().get(i).isExpanded()) {
             i++;
         }
-        if (i < accordion.getPanes().size()) {
+        if (i < accordion1.getPanes().size()) {
 
             ConnexionBdd cnx = new ConnexionBdd();
             cnx.connecter();
             cnx.supprimer(fonctionnairePanes.get(i).getFonctionnaire().getNss());
             //  System.out.println("\nNSS :"+fonctionnairePanes.get(j).getFonctionnaire().getNss());
-            // System.out.println("\n size accordion :"+accordion.getPanes().size() ) ;
-            // System.out.println("\n size accordion :"+ fonctionnairePanes.size()) ;
+            // System.out.println("\n size accordion1 :"+accordion1.getPanes().size() ) ;
+            // System.out.println("\n size accordion1 :"+ fonctionnairePanes.size()) ;
             cnx.deconnecter();
-            accordion.getPanes().remove(i);
+            accordion1.getPanes().remove(i);
+            accordion2.getPanes().remove(i);
+            accordion3.getPanes().remove(i);
             fonctionnairePanes.remove(i);
 
         } else {
@@ -186,7 +196,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
     @FXML
     private void actualiserOnAction(ActionEvent event) throws IOException {
 
-        accordion.getPanes().remove(0, accordion.getPanes().size());
+        accordion1.getPanes().remove(0, accordion1.getPanes().size());
         for (FonctionnairePane pane : fonctionnairePanes) {
 
             // fonctionnaireAccordion2.getPanes().add(pane);
@@ -194,7 +204,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
             // fonctionnaireAccordion3.getPanes().add(pane);
 
         }
-        accordion = fonctionnaireAccordion1;
+        accordion1 = fonctionnaireAccordion1;
     }
 
     @FXML
@@ -399,7 +409,55 @@ public class MenuPrincipaleFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         remplirAccordions();
-        //la configuration
+        pieChart.getData().add(new PieChart.Data("a", 50));
+        pieChart.getData().add(new PieChart.Data("b", 50));
+        pieChart.setLabelLineLength(10);
+        pieChart.setLegendSide(Side.BOTTOM);
+
+
+    }
+
+    public void remplirAccordions() {
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        fonctionnairePanes = new ArrayList<FonctionnairePane>();
+        listesFonctionnaire = cnx.getAllFonctionnaire();
+
+        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
+            ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
+
+            Banque banque = cnx.getBanque(fonctionnaire.getNss());
+
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            fonctionnairePanes.add(pane);
+            fonctionnaireAccordion2.getPanes().add(pane);
+            fonctionnaireAccordion1.getPanes().add(pane1);
+            fonctionnaireAccordion3.getPanes().add(pane2);
+        }
+        accordion1 = fonctionnaireAccordion1;
+        accordion2 = fonctionnaireAccordion2;
+        accordion3 = fonctionnaireAccordion3;
+        cnx.deconnecter();
+        //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
+        // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
+
+    }
+
+    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire, String libeleBanque, String libeleFonction) {
+        listesFonctionnaire.add(fonctionnaire);
+        FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        FonctionnairePane pane3 = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
+        fonctionnairePanes.add(pane1);
+        accordion1.getPanes().add(pane1);
+        accordion2.getPanes().add(pane2);
+        accordion3.getPanes().add(pane3);
+
+    }
+    public void configuration(){
+                //la configuration
         ConnexionBdd cnx = new ConnexionBdd();
         cnx.connecter();
         // initialisation des combobox
@@ -439,39 +497,13 @@ public class MenuPrincipaleFXMLController implements Initializable {
         }
 
         cnx.deconnecter();
-
     }
-
-    public void remplirAccordions() {
-        ConnexionBdd cnx = new ConnexionBdd();
-        cnx.connecter();
-        fonctionnairePanes = new ArrayList<FonctionnairePane>();
-        listesFonctionnaire = cnx.getAllFonctionnaire();
-
-        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
-            ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
-
-            Banque banque = cnx.getBanque(fonctionnaire.getNss());
-
-            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(0).getLibelleFonction());
-            fonctionnairePanes.add(pane);
-            fonctionnaireAccordion2.getPanes().add(pane);
-            fonctionnaireAccordion1.getPanes().add(pane);
-            fonctionnaireAccordion3.getPanes().add(pane);
-        }
-        accordion = fonctionnaireAccordion1;
-        cnx.deconnecter();
-        //fonctionnaireAccordion2=fonctionnaireAccordion1 ;
-        // fonctionnaireAccordion3=fonctionnaireAccordion1 ;
-
-    }
-
-    public static void ajouterFonctionnaireAccordion(Fonctionnaire fonctionnaire, String libeleBanque, String libeleFonction) {
-        listesFonctionnaire.add(fonctionnaire);
-        FonctionnairePane pane = new FonctionnairePane(fonctionnaire, libeleBanque, libeleFonction);
-        fonctionnairePanes.add(pane);
-        accordion.getPanes().add(pane);
-
-    }
-
+    /*  public void listenPanesChanged() {
+     tabPane.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+     @Override
+     public void changed(ObservableValue<? extends Number> ov, Number oldValue, Number newValue) {
+     // do something...
+     }
+     });
+     }*/
 }

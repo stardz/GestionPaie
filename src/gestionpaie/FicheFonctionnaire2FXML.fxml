@@ -42,7 +42,7 @@
                   </VBox>
                   <VBox layoutX="135.0" prefHeight="366.0" prefWidth="141.0" spacing="25.0">
                      <children>
-                        <ChoiceBox fx:id="fonctionCombo" prefWidth="150.0" />
+                        <ComboBox fx:id="fonctionCombo" prefWidth="150.0" />
                         <ComboBox fx:id="statusCombo" prefWidth="150.0" />
                         <DatePicker fx:id="dateRecrutement" />
                         <ComboBox fx:id="banquesCombo" prefWidth="150.0" />
