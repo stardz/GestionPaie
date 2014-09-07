@@ -34,9 +34,13 @@ public class TestConsol {
         Salaire salaire=SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx);
         salaire.printSalaire();*/
         //System.out.println("=========="+cnx.nbrFonctPar("libelle_fonction", "technicien"));
-       SalaireManager.imprimerFichePaie(cnx.getFonctionnaire(new Long("12354698")),
-               SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx), cnx);
-         
+      // SalaireManager.imprimerFichePaie(cnx.getFonctionnaire(new Long("12354698")),
+        //       SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx), cnx);
+      //   System.out.println("=========="+SalaireManager.calculerRappel(cnx.getFonctionnaire(new Long("12354698")),
+      //           Date.valueOf("2014-10-01"), cnx).getValeurRappel()+"");
+         SalaireManager.imprimerFicheRappel(cnx.getFonctionnaire(new Long("12354698")), 
+                SalaireManager.calculerRappel(cnx.getFonctionnaire(new Long("12354698")),Date.valueOf("2014-10-01")
+                ,cnx) , cnx);
         cnx.deconnecter();
         
     }
