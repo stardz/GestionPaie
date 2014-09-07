@@ -31,7 +31,7 @@ public class TestConsol {
         /*
         Salaire salaire=SalaireManager.calculerSalaire(cnx.getFonctionnaire(new Long("12354698")), cnx);
         salaire.printSalaire();*/
-        System.out.println("========== masculin"+cnx.nbrFonctPar("sexe", "masculin"));
+        System.out.println("=========="+cnx.nbrFonctPar("libelle_fonction", "technicien"));
         cnx.deconnecter();
         
     }
