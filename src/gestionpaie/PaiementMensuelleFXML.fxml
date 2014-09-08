@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gestionpaie.PaiementMensuelleFXMLController">
+   <children>
+      <Label alignment="CENTER" layoutX="90.0" layoutY="16.0" prefHeight="46.0" prefWidth="306.0" text="Paiement Mensuelle">
+         <font>
+            <Font name="Cambria Bold" size="24.0" />
+         </font>
+      </Label>
+      <HBox layoutX="8.0" layoutY="315.0" prefHeight="91.0" prefWidth="487.0" spacing="30.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Annuler" />
+            <Button mnemonicParsing="false" prefHeight="40.0" text="Confirmer et imprimer la fiche de paie" />
+         </children>
+         <padding>
+            <Insets left="70.0" top="20.0" />
+         </padding>
+      </HBox>
+      <SplitPane dividerPositions="0.5, 0.5" layoutX="9.0" layoutY="61.0" prefHeight="257.0" prefWidth="487.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox layoutX="3.0" layoutY="7.0" prefHeight="241.0" prefWidth="100.0" spacing="30.0">
+                     <children>
+                        <Label text="NSS :" />
+                        <Label text="Nom ;" />
+                        <Label text="Prénom :" />
+                        <Label text="Num Compte :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="112.0" layoutY="7.0" prefHeight="241.0" prefWidth="126.0" spacing="20.0">
+                     <children>
+                        <TextField fx:id="nss" editable="false" />
+                        <TextField fx:id="nom" editable="false" />
+                        <TextField fx:id="prenom" editable="false" />
+                        <TextField fx:id="numCompte" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="201.0">
+               <children>
+                  <VBox layoutX="3.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="241.0" prefWidth="100.0" spacing="30.0">
+                     <children>
+                        <Label text="Salaire de base :" />
+                        <Label text="Salaire posté :" />
+                        <Label text="Salaire imposable :" />
+                        <Label text="Salaire Net :" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  <VBox layoutX="106.0" layoutY="7.0" prefHeight="241.0" prefWidth="126.0" spacing="20.0">
+                     <children>
+                        <TextField fx:id="salaireBase" editable="false" />
+                        <TextField fx:id="salairePost" editable="false" />
+                        <TextField fx:id="salaireImpose" editable="false" />
+                        <TextField fx:id="salaireNet" editable="false" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

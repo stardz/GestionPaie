@@ -108,10 +108,14 @@ public class RechercherFonctionaireFXMLController implements Initializable {
         fonctionnaireTrouve = cnx.getFonctionnaire(fonctionnaireRecherche.getNss());
 
         MenuPrincipaleFXMLController.accordion1.getPanes().remove(0, MenuPrincipaleFXMLController.accordion1.getPanes().size());
+         MenuPrincipaleFXMLController.accordion2.getPanes().remove(0, MenuPrincipaleFXMLController.accordion2.getPanes().size());
+          MenuPrincipaleFXMLController.accordion3.getPanes().remove(0, MenuPrincipaleFXMLController.accordion3.getPanes().size());
         if (fonctionnaireTrouve != null) {
             Banque banque=cnx.getBanque(fonctionnaireTrouve.getNss()) ;
             ArrayList<Fonction> listeFonction=cnx.getAllFonction(fonctionnaireTrouve.getNss()) ;
             MenuPrincipaleFXMLController.accordion1.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
+            MenuPrincipaleFXMLController.accordion2.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
+            MenuPrincipaleFXMLController.accordion3.getPanes().add(new FonctionnairePane(fonctionnaireTrouve , banque.getNomBanque(),listeFonction.get(0).getLibelleFonction()));
         }
 
         cnx.deconnecter();
@@ -119,7 +123,6 @@ public class RechercherFonctionaireFXMLController implements Initializable {
         Main.primaryStage2.hide();
 
     }
-
     @FXML
     private void annulerOnAction(ActionEvent event) throws IOException {
         Main.primaryStage2.hide();

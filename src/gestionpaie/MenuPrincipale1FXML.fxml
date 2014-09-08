@@ -54,7 +54,7 @@
                            </padding>
                            <children>
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rechercherFonctionaireOnAction" prefHeight="40.0" prefWidth="160.0" text="Rechercher" />
-                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Paiement réguliére" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#paiementMensuelleOnAction" prefHeight="40.0" prefWidth="160.0" text="Paiement Mensuelle" />
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Prime de rendement" />
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Prime de scolarité" />
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#actualiserOnAction" prefHeight="40.0" prefWidth="160.0" text="Actualiser" />

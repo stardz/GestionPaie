@@ -203,16 +203,28 @@ public class MenuPrincipaleFXMLController implements Initializable {
 
     @FXML
     private void actualiserOnAction(ActionEvent event) throws IOException {
+        ConnexionBdd cnx = new ConnexionBdd();
+        cnx.connecter();
+        fonctionnairePanes = new ArrayList<FonctionnairePane>();
+        listesFonctionnaire = cnx.getAllFonctionnaire();
 
-        accordion1.getPanes().remove(0, accordion1.getPanes().size());
-        for (FonctionnairePane pane : fonctionnairePanes) {
+        for (Fonctionnaire fonctionnaire : listesFonctionnaire) {
+            ArrayList<Fonction> listefonctions = cnx.getAllFonction(fonctionnaire.getNss());
 
-            // fonctionnaireAccordion2.getPanes().add(pane);
-            fonctionnaireAccordion1.getPanes().add(pane);
-            // fonctionnaireAccordion3.getPanes().add(pane);
-
+            Banque banque = cnx.getBanque(fonctionnaire.getNss());
+          //  System.out.println("\nnomF :"+fonctionnaire.getNomFonctionnaire()+"  size : "+listefonctions.size());
+            FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
+            fonctionnairePanes.add(pane1);
+            fonctionnaireAccordion2.getPanes().add(pane);
+            fonctionnaireAccordion1.getPanes().add(pane1);
+            fonctionnaireAccordion3.getPanes().add(pane2);
         }
         accordion1 = fonctionnaireAccordion1;
+        accordion2 = fonctionnaireAccordion2;
+        accordion3 = fonctionnaireAccordion3;
+        cnx.deconnecter();
     }
 
     @FXML
@@ -436,7 +448,7 @@ public class MenuPrincipaleFXMLController implements Initializable {
             FonctionnairePane pane = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
             FonctionnairePane pane1 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
             FonctionnairePane pane2 = new FonctionnairePane(fonctionnaire, banque.getNomBanque(), listefonctions.get(listefonctions.size() - 1).getLibelleFonction());
-            fonctionnairePanes.add(pane);
+            fonctionnairePanes.add(pane2);
             fonctionnaireAccordion2.getPanes().add(pane);
             fonctionnaireAccordion1.getPanes().add(pane1);
             fonctionnaireAccordion3.getPanes().add(pane2);
@@ -586,5 +598,31 @@ public class MenuPrincipaleFXMLController implements Initializable {
         barChartFonction.getData().add(series1);
         barChartFonction.setLegendVisible(false);
         barChartFonction.setCategoryGap(50);
+    }
+    @FXML
+    private void paiementMensuelleOnAction(ActionEvent event) throws IOException {
+        
+        int i = 0;
+        while (i < accordion2.getPanes().size() && !accordion2.getPanes().get(i).isExpanded()) {
+            i++;
+        }
+        if (i < accordion2.getPanes().size()) {
+
+        Main.root2 = FXMLLoader.load(getClass().getResource("PaiementMensuelleFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
+            
+        } else {
+            // afficher message  selectionner un fonctionnaire
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+                    children(new Text("Vous devez selectionner un fonctionnaire  "), new Button("Ok.")).
+                    alignment(Pos.CENTER).padding(new Insets(20)).build()));
+            dialogStage.show();
+
+        }
+
     }
 }
