@@ -65,8 +65,8 @@ public class SalaireManager {
                     somme+=Double.valueOf(indem.getTaux_indemnite() + "");
                     salaire.getIndemniteVal().get(0).put(indem.getLibelle_indemnite(), Double.valueOf(indem.getTaux_indemnite() + ""));
                 } else {
-                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + "");
-                    salaire.getIndemniteVal().get(0).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + ""));
+                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + "");
+                    salaire.getIndemniteVal().get(0).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + ""));
                 }
             }
         }
@@ -77,15 +77,15 @@ public class SalaireManager {
         for (Retenu retenu : retenuList) {
             if(retenu.getLibelleRetenu().equals("R.S.S")){
                 diff+=(salaire.getSalaire_poste()*retenu.getTauxRetenu()/100);
-                salaire.getRetenuVal().get(0).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu());
+                salaire.getRetenuVal().get(0).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu()/100);
             }else{
                 if(retenu.getTauxRetenu()>200){
                   diff+=retenu.getTauxRetenu();  
                   salaire.getRetenuVal().get(0).put(retenu.getLibelleRetenu(), Double.valueOf(""+retenu.getTauxRetenu()));
            
                 }else{
-                  diff+=salaire.getSalaire_base()*retenu.getTauxRetenu();
-                  salaire.getRetenuVal().get(0).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu());
+                  diff+=salaire.getSalaire_base()*retenu.getTauxRetenu()/100;
+                  salaire.getRetenuVal().get(0).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu()/100);
                 }               
             }
         }
@@ -96,8 +96,8 @@ public class SalaireManager {
                     somme+=Double.valueOf(indem.getTaux_indemnite() + "");
                     salaire.getIndemniteVal().get(1).put(indem.getLibelle_indemnite(), Double.valueOf(indem.getTaux_indemnite() + ""));
                 } else {
-                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + "");
-                    salaire.getIndemniteVal().get(1).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + ""));
+                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + "");
+                    salaire.getIndemniteVal().get(1).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + ""));
                 }
             
         }
@@ -116,8 +116,8 @@ public class SalaireManager {
                   salaire.getRetenuVal().get(1).put(retenu.getLibelleRetenu(), Double.valueOf(""+retenu.getTauxRetenu()));
            
                 }else{
-                  diff+=salaire.getSalaire_base()*retenu.getTauxRetenu();
-                  salaire.getRetenuVal().get(1).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu());
+                  diff+=salaire.getSalaire_base()*retenu.getTauxRetenu()/100;
+                  salaire.getRetenuVal().get(1).put(retenu.getLibelleRetenu(), salaire.getSalaire_poste()*retenu.getTauxRetenu()/100);
                 }               
             }
         }
@@ -128,8 +128,8 @@ public class SalaireManager {
                     somme+=Double.valueOf(indem.getTaux_indemnite() + "");
                     salaire.getIndemniteVal().get(2).put(indem.getLibelle_indemnite(), Double.valueOf(indem.getTaux_indemnite() + ""));
                 } else {
-                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + "");
-                    salaire.getIndemniteVal().get(2).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()) + ""));
+                    somme+=Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + "");
+                    salaire.getIndemniteVal().get(2).put(indem.getLibelle_indemnite(), Double.valueOf((salaire.getSalaire_base() * indem.getTaux_indemnite()/100) + ""));
                 }          
         }
         salaire.setSalaire_net(salaire.getSalaire_imposable()+somme-diff);
@@ -224,7 +224,7 @@ public class SalaireManager {
              cell = (WritableCell) l;
              sheetToEdit.addCell(cell);
              
-            l = new Label(6,i,salaire.getRetenuVal().get(0).get(key)+"");
+            l = new Label(7,i,salaire.getRetenuVal().get(0).get(key)+"");
              cell = (WritableCell) l;
              sheetToEdit.addCell(cell);
              i++;
@@ -245,7 +245,7 @@ public class SalaireManager {
              cell = (WritableCell) l;
              sheetToEdit.addCell(cell);
             
-            l = new Label(6,i,salaire.getRetenuVal().get(1).get(key)+"");
+            l = new Label(7,i,salaire.getRetenuVal().get(1).get(key)+"");
              cell = (WritableCell) l;
              sheetToEdit.addCell(cell);
               i++;

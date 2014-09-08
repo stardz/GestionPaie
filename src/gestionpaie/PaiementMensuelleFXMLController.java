@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import jxl.read.biff.BiffException;
+import jxl.write.WriteException;
 
 /**
  * FXML Controller class
@@ -20,7 +22,7 @@ import javafx.scene.control.TextField;
  * @author Ahmed
  */
 public class PaiementMensuelleFXMLController implements Initializable {
-
+      Salaire salaire;
     @FXML
     private TextField nss;
     @FXML
@@ -53,7 +55,7 @@ public class PaiementMensuelleFXMLController implements Initializable {
             ConnexionBdd cnx = new ConnexionBdd();
             cnx.connecter();
             f=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ;
-            Salaire salaire = SalaireManager.calculerSalaire(f, cnx);
+            salaire = SalaireManager.calculerSalaire(f, cnx);
             nss.setText(f.getNss().toString());
             nom.setText(f.getNomFonctionnaire());
             prenom.setText(f.getPrenomFonctionnaire());
@@ -73,9 +75,13 @@ public class PaiementMensuelleFXMLController implements Initializable {
 
     }
         @FXML
-    private void confirmerOnAction(ActionEvent event) throws IOException {
-        
-
+    private void confirmerOnAction(ActionEvent event) throws IOException, BiffException, WriteException {
+        ConnexionBdd cnx=new ConnexionBdd();
+        cnx.connecter();
+        SalaireManager.imprimerFichePaie(f,
+                salaire,
+                cnx);
+        cnx.deconnecter();
     }
 
 }
