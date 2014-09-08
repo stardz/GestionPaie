@@ -629,10 +629,10 @@ public class MenuPrincipaleFXMLController implements Initializable {
     private void rappelOnAction(ActionEvent event) throws IOException {
         
         int i = 0;
-        while (i < accordion2.getPanes().size() && !accordion2.getPanes().get(i).isExpanded()) {
+        while (i < accordion3.getPanes().size() && !accordion3.getPanes().get(i).isExpanded()) {
             i++;
         }
-        if (i < accordion2.getPanes().size()) {
+        if (i < accordion3.getPanes().size()) {
 
         Main.root2 = FXMLLoader.load(getClass().getResource("RappelFXML.fxml"));
         Main.scene2 = new Scene(Main.root2);
