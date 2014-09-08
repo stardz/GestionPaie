@@ -76,7 +76,7 @@
                            <children>
                               <Button alignment="CENTER" mnemonicParsing="false" onAction="#rechercherFonctionaireOnAction" prefHeight="40.0" prefWidth="160.0" text="Rechercher" />
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" text="Afficher les fonctionaires qui ont des rappels" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true" />
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" text="Imprimer fiche de rappels" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#rappelOnAction" prefHeight="40.0" prefWidth="160.0" text="Imprimer fiche de rappels" />
                               <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#actualiserOnAction" prefHeight="40.0" prefWidth="160.0" text="Actualiser" />
                            </children>
                            <padding>

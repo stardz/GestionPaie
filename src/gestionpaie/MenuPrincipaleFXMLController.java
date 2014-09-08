@@ -625,4 +625,30 @@ public class MenuPrincipaleFXMLController implements Initializable {
         }
 
     }
+        @FXML
+    private void rappelOnAction(ActionEvent event) throws IOException {
+        
+        int i = 0;
+        while (i < accordion2.getPanes().size() && !accordion2.getPanes().get(i).isExpanded()) {
+            i++;
+        }
+        if (i < accordion2.getPanes().size()) {
+
+        Main.root2 = FXMLLoader.load(getClass().getResource("RappelFXML.fxml"));
+        Main.scene2 = new Scene(Main.root2);
+        Main.primaryStage2.setScene(Main.scene2);
+        Main.primaryStage2.show();
+            
+        } else {
+            // afficher message  selectionner un fonctionnaire
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.setScene(new Scene(VBoxBuilder.create().
+                    children(new Text("Vous devez selectionner un fonctionnaire  "), new Button("Ok.")).
+                    alignment(Pos.CENTER).padding(new Insets(20)).build()));
+            dialogStage.show();
+
+        }
+
+    }
 }
