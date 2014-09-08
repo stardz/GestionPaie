@@ -82,13 +82,13 @@ public class FicheFonctionnaire2FXMLController implements Initializable {
         for (Retenu retenu : listeRetenus) {
             //retenusCombo.getItems().add(retenu.getLibelleRetenu()) ;
             retenusMenu.getItems().add(new CheckMenuItem(retenu.getLibelleRetenu()));
-            retenusMenu.getItems().add(new CheckMenuItem(retenu.getLibelleRetenu()));
+           // retenusMenu.getItems().add(new CheckMenuItem(retenu.getLibelleRetenu()));
 
         }
 
         for (Indemnite indemnite : listeIndemnites) {
             indimnitésMenu.getItems().add(new CheckMenuItem(indemnite.getLibelle_indemnite()));
-            indimnitésMenu.getItems().add(new CheckMenuItem(indemnite.getLibelle_indemnite()));
+          //  indimnitésMenu.getItems().add(new CheckMenuItem(indemnite.getLibelle_indemnite()));
         }
         statusCombo.getItems().add("Tutulaire");
         statusCombo.getItems().add("Vacataire");
