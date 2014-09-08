@@ -5,7 +5,7 @@
  */
 package gestionpaie;
 
-import static gestionpaie.MenuPrincipaleFXMLController.accordion2;
+import static gestionpaie.MenuPrincipaleFXMLController.accordion3;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -45,10 +45,10 @@ public class RappelFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         int i = 0;
-        while (i < accordion2.getPanes().size() && !accordion2.getPanes().get(i).isExpanded()) {
+        while (i < accordion3.getPanes().size() && !accordion3.getPanes().get(i).isExpanded()) {
             i++;
         }
-        if (i < accordion2.getPanes().size()) {
+        if (i < accordion3.getPanes().size()) {
             ConnexionBdd cnx = new ConnexionBdd();
             cnx.connecter();
             f=MenuPrincipaleFXMLController.fonctionnairePanes.get(i).getFonctionnaire() ;
