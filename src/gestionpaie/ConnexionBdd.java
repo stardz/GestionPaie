@@ -21,7 +21,7 @@ public class ConnexionBdd {
         String url = "jdbc:mysql://localhost:3306/paie";
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connexion = DriverManager.getConnection(url, "root", "85795544");
+            connexion = DriverManager.getConnection(url, "root", "");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erreur - SQL - lors de la connexion" + e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException e) {

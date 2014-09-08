@@ -5,6 +5,7 @@
  */
 package gestionpaie;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
@@ -254,7 +255,7 @@ public class SalaireManager {
          workbookCopy.write();
          workbookCopy.close();
          existingWorkbook.close();
-        // Desktop.getDesktop().print(new File("cpy.xls"));
+         Desktop.getDesktop().print(new File("cpy.xls"));
     }
 
     static Rappel calculerRappel(Fonctionnaire fonctionnaire, Date dateDebut,ConnexionBdd cnx) {
@@ -327,7 +328,7 @@ public class SalaireManager {
          workbookCopy.write();
          workbookCopy.close();
          existingWorkbook.close();
-         // Desktop.getDesktop().print(new File("cpyR.xls"));
+         Desktop.getDesktop().print(new File("cpyR.xls"));
     }
 
     static double getSalaireDeBase(Long nss, ConnexionBdd connexion) {
