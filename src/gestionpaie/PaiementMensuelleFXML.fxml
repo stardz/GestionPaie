@@ -25,7 +25,7 @@
             <Insets left="70.0" top="20.0" />
          </padding>
       </HBox>
-      <SplitPane dividerPositions="0.5, 0.5" layoutX="9.0" layoutY="61.0" prefHeight="257.0" prefWidth="487.0">
+      <SplitPane dividerPositions="0.5010309278350515, 0.51340206185567" layoutX="9.0" layoutY="61.0" prefHeight="257.0" prefWidth="487.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
@@ -40,7 +40,7 @@
                         <Insets bottom="20.0" left="20.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="112.0" layoutY="7.0" prefHeight="241.0" prefWidth="126.0" spacing="20.0">
+                  <VBox layoutX="112.0" layoutY="7.0" prefHeight="241.0" prefWidth="115.0" spacing="20.0">
                      <children>
                         <TextField fx:id="nss" editable="false" />
                         <TextField fx:id="nom" editable="false" />
@@ -56,7 +56,7 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="255.0" prefWidth="201.0">
                <children>
-                  <VBox layoutX="3.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="241.0" prefWidth="100.0" spacing="30.0">
+                  <VBox layoutX="-3.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="241.0" prefWidth="121.0" spacing="30.0">
                      <children>
                         <Label text="Salaire de base :" />
                         <Label text="Salaire posté :" />
@@ -64,10 +64,10 @@
                         <Label text="Salaire Net :" />
                      </children>
                      <padding>
-                        <Insets bottom="20.0" top="20.0" />
+                        <Insets bottom="20.0" left="10.0" top="20.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="106.0" layoutY="7.0" prefHeight="241.0" prefWidth="126.0" spacing="20.0">
+                  <VBox layoutX="105.0" layoutY="7.0" prefHeight="241.0" prefWidth="127.0" spacing="20.0">
                      <children>
                         <TextField fx:id="salaireBase" editable="false" />
                         <TextField fx:id="salairePost" editable="false" />
